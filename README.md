@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-12%25-orange)
+![Course Progress](https://img.shields.io/badge/Progress-14%25-orange)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -37,7 +37,7 @@ By completing this course, you will be able to:
 
 ### Module 1: HTML Fundamentals
 
-**Progress: 6/13 Topics** ![Progress](https://img.shields.io/badge/Progress-46%25-yellowgreen)
+**Progress: 7/13 Topics** ![Progress](https://img.shields.io/badge/Progress-54%25-yellowgreen)
 
 **Topics Covered:**
 
@@ -49,7 +49,7 @@ By completing this course, you will be able to:
 | Content Tags         | ✅ Complete    | `<h1>`, `<p>`, `<div>`, `<span>`                                     | Text content layout       |
 | Heading Tags         | ✅ Complete    | `<h1>` to `<h6>`, `<span>`                                           | Headings layout           |
 | Self-closing Tags    | ✅ Complete    | `<hr>`, `<br>`, proper usage                                         | Line breaks and dividers  |
-| Attributes & Classes | ⬜ Not Started | `id`, `class`, `style` attributes                                    | Styled elements           |
+| Attributes & Classes | ✅ Complete    | `id`, `class`, `style` attributes                                    | Styled elements           |
 | Hyperlinks           | ⬜ Not Started | `<a>` tags, navigation between pages                                 | Multi-page website        |
 | Images               | ⬜ Not Started | `<img>` tags, alt text, optimization                                 | Image gallery             |
 | Lists                | ⬜ Not Started | `<ul>`, `<ol>`, `<li>` for content organization                      | Navigation menu           |
