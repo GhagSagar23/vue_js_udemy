@@ -100,7 +100,7 @@ jobs:
       - name: Update index.html (if exists)
         run: |
           if [ -f "index.html" ]; then
-            echo "📊 Updating index.html progress visualization..."
+            echo "📊 Updating index.html progress visualization...."
             
             COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
             NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0")
