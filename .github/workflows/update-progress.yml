@@ -6,32 +6,72 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   update-progress:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "18"
+
+      - name: Install dependencies
+        run: |
+          if [ -f package.json ]; then
+            npm ci
+          else
+            npm init -y
+            npm install
+          fi
 
       - name: Update Progress Badges
         run: |
-          # Count completed topics in README.md
-          COMPLETED=$(grep -o "✅" README.md | wc -l)
-          TOTAL=$(grep -o "⬜\|✅" README.md | wc -l)
-          PERCENTAGE=$((COMPLETED * 100 / TOTAL))
+          # Run progress tracking script
+          if [ -f "scripts/update-progress.js" ]; then
+            npm run progress || echo "Progress script not found, skipping..."
+          fi
 
-          # Update progress badges
-          sed -i "s/Progress-[0-9]*%/Progress-${PERCENTAGE}%/g" README.md
-          sed -i "s/Progress-[0-9]*%/Progress-${PERCENTAGE}%/g" index.html
+          # Alternative: Update badges with shell commands
+          if [ -f "README.md" ]; then
+            COMPLETED=$(grep -o "✅ Complete" README.md | wc -l)
+            NOT_STARTED=$(grep -o "⬜ Not Started" README.md | wc -l)
+            TOTAL=$((COMPLETED + NOT_STARTED))
+            
+            if [ $TOTAL -gt 0 ]; then
+              PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+              
+              # Update progress badges
+              sed -i "s/Progress-[0-9]*%25/Progress-${PERCENTAGE}%25/g" README.md || true
+              sed -i "s/Progress-[0-9]*%-[a-z]*/Progress-${PERCENTAGE}%25-yellow/g" README.md || true
+              
+              echo "📊 Updated progress: $COMPLETED/$TOTAL ($PERCENTAGE%)"
+            fi
+          fi
 
       - name: Commit Progress Updates
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md index.html
-          git diff --staged --quiet || git commit -m "🤖 Auto-update progress tracking"
-          git push
+
+          # Add files if they exist
+          git add README.md || true
+          git add index.html || true
+          git add progress-report.md || true
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🤖 Auto-update progress tracking"
+            git push
+          fi
