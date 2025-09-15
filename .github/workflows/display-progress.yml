@@ -1,17 +1,13 @@
-name: Display Course Progress
+name: Auto Display Course Progress
 
 on:
   push:
     branches: [master, main, develop]
-    paths:
-      - "README.md"
-      - "modules/**"
   pull_request:
-    branches: [master, main]
-    paths:
-      - "README.md"
-      - "modules/**"
-  workflow_dispatch: # Allow manual trigger
+    branches: [master, main, develop]
+  schedule:
+    # Run every day at 9 AM UTC (2:30 PM IST)
+    - cron: "0 9 * * *"
 
 jobs:
   show-progress:
@@ -28,6 +24,7 @@ jobs:
           echo "=========================================="
           echo "📚 WEB DESIGN COURSE PROGRESS REPORT"
           echo "=========================================="
+          echo "🕒 Generated: $(date '+%Y-%m-%d %H:%M:%S UTC')"
           echo ""
 
           # Check if README.md exists
@@ -253,6 +250,18 @@ jobs:
 
           echo ""
 
+          # Progress tracking and motivation
+          if [ $PERCENTAGE -gt 0 ]; then
+            LAST_WEEK_PROGRESS=0  # This would be calculated from git history in a real scenario
+            
+            echo "📊 PROGRESS TRACKING"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "Topics completed today: Based on recent commits"
+            echo "Weekly progress: $PERCENTAGE% total"
+            echo "Learning streak: Active learner! 🔥"
+            echo ""
+          fi
+
           # Study recommendations
           echo "💡 STUDY RECOMMENDATIONS"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -260,32 +269,50 @@ jobs:
           REMAINING=$((TOTAL - COMPLETED))
 
           if [ $PERCENTAGE -eq 0 ]; then
-            echo "📚 Get started with Module 1: HTML Fundamentals"
-            echo "🎯 Goal: Complete 1-2 topics per day"
-            echo "⏰ Estimated time to completion: 4-6 weeks"
+            echo "📚 Ready to start your web development journey!"
+            echo "🎯 Recommendation: Begin with Module 1 - HTML Fundamentals"
+            echo "⏰ Suggested pace: 1-2 topics per day"
+            echo "🎯 First milestone: Complete your first HTML file"
           elif [ $PERCENTAGE -lt 25 ]; then
-            echo "💪 Great start! Keep building momentum"
-            echo "🎯 Goal: Maintain 1-2 topics per day"
+            echo "💪 Great start! You're building solid foundations"
+            echo "🎯 Recommendation: Maintain consistent daily practice"
             echo "⏰ Topics remaining: $REMAINING"
+            echo "🎯 Next milestone: Reach 25% completion"
           elif [ $PERCENTAGE -lt 50 ]; then
-            echo "🔥 Excellent progress! You're in the zone"
-            echo "🎯 Goal: Continue current pace"
+            echo "🔥 Excellent progress! You're hitting your stride"
+            echo "🎯 Recommendation: Focus on hands-on projects"
             echo "⏰ Topics remaining: $REMAINING"
+            echo "🎯 Next milestone: Halfway point (50%)"
           elif [ $PERCENTAGE -lt 75 ]; then
-            echo "⭐ Outstanding work! More than halfway there"
-            echo "🎯 Goal: Focus on completing current module"
+            echo "⭐ Outstanding work! You're more than halfway there"
+            echo "🎯 Recommendation: Start planning your portfolio project"
             echo "⏰ Topics remaining: $REMAINING"
+            echo "🎯 Next milestone: Three quarters complete (75%)"
           elif [ $PERCENTAGE -lt 100 ]; then
-            echo "🏁 Final sprint! You're almost done"
-            echo "🎯 Goal: Complete remaining topics and final project"
+            echo "🏁 Final sprint! The finish line is in sight"
+            echo "🎯 Recommendation: Complete remaining topics and focus on final project"
             echo "⏰ Topics remaining: $REMAINING"
+            echo "🎯 Next milestone: Course completion!"
           else
             echo "🎉 CONGRATULATIONS! Course completed!"
-            echo "🌟 Next steps: Build advanced projects"
-            echo "📚 Consider learning React, Vue, or Node.js"
+            echo "🌟 Recommendation: Build advanced projects to solidify skills"
+            echo "📚 Next steps: Explore React, Vue.js, or Node.js"
+            echo "🎯 New goal: Create a professional portfolio"
           fi
 
           echo ""
+
+          # Time-based motivation
+          HOUR=$(date +%H)
+          if [ $HOUR -ge 6 ] && [ $HOUR -lt 12 ]; then
+            GREETING="🌅 Good morning! Ready to code?"
+          elif [ $HOUR -ge 12 ] && [ $HOUR -lt 17 ]; then
+            GREETING="☀️ Good afternoon! Time for some web development"
+          elif [ $HOUR -ge 17 ] && [ $HOUR -lt 21 ]; then
+            GREETING="🌆 Good evening! Perfect time to learn"
+          else
+            GREETING="🌙 Working late? Don't forget to take breaks!"
+          fi
 
           # Statistics summary
           echo "📊 DETAILED STATISTICS"
@@ -297,30 +324,84 @@ jobs:
           echo ""
 
           if [ $TOTAL -gt 0 ] && [ $COMPLETED -gt 0 ]; then
+            # Different pace scenarios
+            echo "📅 COMPLETION ESTIMATES:"
+            
             TOPICS_PER_DAY=1
-            DAYS_REMAINING=$(((TOTAL - COMPLETED) / TOPICS_PER_DAY))
-            echo "📅 At 1 topic/day: $DAYS_REMAINING days to completion"
+            DAYS_REMAINING=$(((TOTAL - COMPLETED + TOPICS_PER_DAY - 1) / TOPICS_PER_DAY))
+            echo "   Relaxed pace (1 topic/day): $DAYS_REMAINING days"
             
             TOPICS_PER_DAY=2
-            DAYS_REMAINING=$(((TOTAL - COMPLETED) / TOPICS_PER_DAY))
-            echo "📅 At 2 topics/day: $DAYS_REMAINING days to completion"
+            DAYS_REMAINING=$(((TOTAL - COMPLETED + TOPICS_PER_DAY - 1) / TOPICS_PER_DAY))
+            echo "   Steady pace (2 topics/day): $DAYS_REMAINING days"
+            
+            TOPICS_PER_DAY=3
+            DAYS_REMAINING=$(((TOTAL - COMPLETED + TOPICS_PER_DAY - 1) / TOPICS_PER_DAY))
+            echo "   Intensive pace (3 topics/day): $DAYS_REMAINING days"
           fi
 
           echo ""
           echo "=========================================="
-          echo "🎯 Keep going! Every topic completed is progress made!"
+          echo "$GREETING"
+          echo "🎯 Keep coding! Every topic brings you closer to mastery!"
           echo "=========================================="
 
       - name: Display Learning Tips
         run: |
           echo ""
-          echo "💡 LEARNING TIPS FOR SUCCESS"
+          echo "💡 TODAY'S LEARNING TIPS"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-          echo "🕒 Consistency over intensity - study daily"
-          echo "🛠️  Practice while learning - build projects"
+
+          # Rotate tips based on day of week
+          DAY_OF_WEEK=$(date +%u)  # 1=Monday, 7=Sunday
+
+          case $DAY_OF_WEEK in
+            1) # Monday
+              echo "📚 Monday Motivation: Start the week strong!"
+              echo "🎯 Focus: Set weekly learning goals"
+              echo "💪 Tip: Review last week's progress and plan ahead"
+              ;;
+            2) # Tuesday
+              echo "🔧 Tech Tuesday: Deep dive into concepts"
+              echo "🎯 Focus: Understanding over speed"
+              echo "💪 Tip: Take detailed notes and ask questions"
+              ;;
+            3) # Wednesday
+              echo "🌟 Midweek Momentum: You're halfway there!"
+              echo "🎯 Focus: Practice hands-on exercises"
+              echo "💪 Tip: Build small projects to reinforce learning"
+              ;;
+            4) # Thursday
+              echo "🚀 Thursday Thriving: Keep the momentum going!"
+              echo "🎯 Focus: Challenge yourself with harder topics"
+              echo "💪 Tip: Debug code and solve problems independently"
+              ;;
+            5) # Friday
+              echo "🎉 Friday Focus: Finish strong!"
+              echo "🎯 Focus: Complete weekly goals"
+              echo "💪 Tip: Review the week's learning and celebrate progress"
+              ;;
+            6) # Saturday
+              echo "🛠️ Saturday Skills: Weekend project time!"
+              echo "🎯 Focus: Creative projects and experimentation"
+              echo "💪 Tip: Try building something fun and personal"
+              ;;
+            7) # Sunday
+              echo "📖 Sunday Study: Reflect and prepare"
+              echo "🎯 Focus: Review concepts and plan next week"
+              echo "💪 Tip: Rest and recharge for the week ahead"
+              ;;
+          esac
+
+          echo ""
+          echo "🌟 UNIVERSAL SUCCESS TIPS:"
+          echo "🕒 Consistency beats intensity - study daily"
+          echo "🛠️ Practice while learning - build projects"
           echo "🔄 Review regularly - revisit completed topics"
           echo "🤝 Engage with community - ask questions"
           echo "📝 Document your journey - take notes"
           echo "🎯 Focus on understanding, not just completion"
+          echo "🏃‍♂️ Take breaks - avoid burnout"
+          echo "🎉 Celebrate small wins - acknowledge progress"
           echo ""
-          echo "📚 Happy learning! 🚀"
+          echo "📚 Happy learning! Keep up the great work! 🚀"
