@@ -3,7 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Design Course - Progress Tracker</title>
+    <title>Sagar Ghag - Web Development Journey | Progress Dashboard</title>
+    <meta
+      name="description"
+      content="Sagar Ghag's web development learning journey - Flutter Tech Lead expanding into full-stack development"
+    />
+    <meta
+      name="keywords"
+      content="Sagar Ghag, Flutter Developer, Web Development, Vue.js, JavaScript, HTML, CSS"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
+    />
     <style>
       * {
         margin: 0;
@@ -27,23 +39,113 @@
       }
 
       .header {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         text-align: center;
+      }
+
+      .profile-section {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        flex-shrink: 0;
+      }
+
+      .profile-info {
+        text-align: left;
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .profile-info h1 {
+        font-size: 3rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+
+      .profile-info .subtitle {
+        font-size: 1.4rem;
+        color: #666;
+        margin-bottom: 15px;
+        font-weight: 300;
+      }
+
+      .profile-info .description {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .social-links a {
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .social-links a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .learning-journey {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 15px;
-        padding: 40px;
+        padding: 30px;
         margin-bottom: 30px;
         backdrop-filter: blur(10px);
       }
 
-      .header h1 {
+      .journey-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .journey-header h2 {
         color: #2c3e50;
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin-bottom: 10px;
       }
 
-      .header p {
+      .journey-description {
         color: #7f8c8d;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto;
       }
 
       .progress-overview {
@@ -64,8 +166,8 @@
         height: 150px;
         border-radius: 50%;
         background: conic-gradient(
-          #4caf50 0deg 50.4deg,
-          #e0e0e0 50.4deg 360deg
+          #4caf50 0deg 21.6deg,
+          #e0e0e0 21.6deg 360deg
         );
         display: flex;
         align-items: center;
@@ -103,6 +205,7 @@
         padding: 25px;
         backdrop-filter: blur(10px);
         transition: transform 0.3s ease;
+        cursor: pointer;
       }
 
       .module-card:hover {
@@ -149,11 +252,39 @@
         color: #7f8c8d;
       }
 
+      .experience-section {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .experience-card {
+        background: rgba(102, 126, 234, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #667eea;
+      }
+
+      .experience-card h3 {
+        color: #2c3e50;
+        margin-bottom: 10px;
+      }
+
       .achievements {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 15px;
         padding: 30px;
         backdrop-filter: blur(10px);
+        margin-bottom: 30px;
       }
 
       .achievements h2 {
@@ -174,11 +305,13 @@
         border-radius: 10px;
         background: rgba(52, 152, 219, 0.1);
         border: 2px dashed #3498db;
+        transition: all 0.3s ease;
       }
 
       .achievement.unlocked {
         background: rgba(46, 204, 113, 0.1);
         border: 2px solid #2ecc71;
+        transform: scale(1.02);
       }
 
       .achievement-icon {
@@ -194,8 +327,25 @@
       .footer {
         text-align: center;
         margin-top: 40px;
-        padding: 20px;
-        color: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        color: white;
+      }
+
+      .footer h3 {
+        margin-bottom: 15px;
+        font-size: 1.5rem;
+      }
+
+      .footer p {
+        margin-bottom: 10px;
+      }
+
+      .footer a {
+        color: #fff;
+        text-decoration: underline;
       }
 
       .update-btn {
@@ -214,12 +364,76 @@
         transform: scale(1.05);
       }
 
+      .tech-stack {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        backdrop-filter: blur(10px);
+      }
+
+      .tech-categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .tech-category {
+        padding: 20px;
+        background: rgba(102, 126, 234, 0.05);
+        border-radius: 10px;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+      }
+
+      .tech-category h3 {
+        color: #667eea;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+      }
+
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tech-item {
+        background: #667eea;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .learning {
+        background: #f39c12;
+      }
+
       @media (max-width: 768px) {
-        .header h1 {
+        .profile-section {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .profile-info {
+          text-align: center;
+        }
+
+        .profile-info h1 {
           font-size: 2rem;
         }
 
         .modules-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tech-categories {
+          grid-template-columns: 1fr;
+        }
+
+        .experience-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -227,22 +441,159 @@
   </head>
   <body>
     <div class="container">
+      <!-- Header with Profile -->
       <div class="header">
-        <h1>🚀 Web Design Course Progress</h1>
-        <p>Modern HTML, CSS, JavaScript & DOM Mastery</p>
+        <div class="profile-section">
+          <div class="profile-avatar">👨‍💻</div>
+          <div class="profile-info">
+            <h1>Hi, I'm Sagar! 👋</h1>
+            <div class="subtitle">Flutter Tech Lead & Full-Stack Developer</div>
+            <div class="description">
+              6 years of mobile development experience, currently expanding into
+              modern web development. Passionate about creating exceptional user
+              experiences across mobile and web platforms.
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/ghag23" target="_blank"
+            >💼 LinkedIn</a
+          >
+          <a href="https://github.com/GhagSagar23" target="_blank">🐙 GitHub</a>
+          <a href="mailto:sagar.ghag1997@gmail.com">📧 Email</a>
+          <a
+            href="https://wa.me/917383565932?text=Hi,%20I%20found%20you%20on%20Github.%0A%0ACan%20we%20connect?"
+            target="_blank"
+            >💬 WhatsApp</a
+          >
+        </div>
       </div>
 
+      <!-- Learning Journey -->
+      <div class="learning-journey">
+        <div class="journey-header">
+          <h2>🌐 My Web Development Learning Journey</h2>
+          <div class="journey-description">
+            As a seasoned Flutter Tech Lead, I'm expanding my expertise into
+            full-stack web development. This dashboard tracks my progress
+            through comprehensive web technologies including HTML5, CSS3,
+            JavaScript ES6+, Vue.js, and modern DOM manipulation techniques.
+          </div>
+        </div>
+      </div>
+
+      <!-- Professional Experience -->
+      <div class="experience-section">
+        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px">
+          💼 Professional Experience
+        </h2>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <h3>🏢 Current Role</h3>
+            <p>
+              <strong>Senior Software Engineer</strong><br />
+              @ CriticalStart<br />
+              Flutter Tech Lead & Team Lead
+            </p>
+          </div>
+          <div class="experience-card">
+            <h3>📱 Mobile Expertise</h3>
+            <p>
+              <strong>5 years Flutter Development</strong><br />
+              <strong>2 years iOS Development</strong><br />
+              Cross-platform mobile apps
+            </p>
+          </div>
+          <div class="experience-card">
+            <h3>🚀 Open Source</h3>
+            <p>
+              <strong>livelyness_detection</strong><br />
+              Flutter package for facial detection<br />
+              Published on pub.dev
+            </p>
+          </div>
+          <div class="experience-card">
+            <h3>🎯 Current Focus</h3>
+            <p>
+              <strong>Full-Stack Development</strong><br />
+              Learning Vue.js, HTML5, CSS3<br />
+              Modern JavaScript & DOM
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="tech-stack">
+        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px">
+          🛠️ Tech Stack
+        </h2>
+        <div class="tech-categories">
+          <div class="tech-category">
+            <h3>📱 Mobile Development</h3>
+            <div class="tech-list">
+              <span class="tech-item">Flutter</span>
+              <span class="tech-item">Dart</span>
+              <span class="tech-item">Swift</span>
+              <span class="tech-item">Kotlin</span>
+              <span class="tech-item">iOS</span>
+              <span class="tech-item">Android</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3>🌐 Web Development (Learning)</h3>
+            <div class="tech-list">
+              <span class="tech-item learning">HTML5</span>
+              <span class="tech-item learning">CSS3</span>
+              <span class="tech-item learning">JavaScript ES6+</span>
+              <span class="tech-item learning">Vue.js</span>
+              <span class="tech-item learning">DOM Manipulation</span>
+              <span class="tech-item learning">Responsive Design</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3>🔧 Tools & Technologies</h3>
+            <div class="tech-list">
+              <span class="tech-item">Git</span>
+              <span class="tech-item">GitHub Actions</span>
+              <span class="tech-item">Firebase</span>
+              <span class="tech-item">VS Code</span>
+              <span class="tech-item">Xcode</span>
+              <span class="tech-item">Android Studio</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h3>🎯 Methodologies</h3>
+            <div class="tech-list">
+              <span class="tech-item">Agile</span>
+              <span class="tech-item">Scrum</span>
+              <span class="tech-item">TDD</span>
+              <span class="tech-item">BDD</span>
+              <span class="tech-item">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Course Progress Overview -->
       <div class="progress-overview">
         <div class="overall-progress">
           <div class="progress-circle" id="overallProgress">
             <div class="progress-text">27%</div>
           </div>
           <h2>Overall Course Progress</h2>
-          <p>Keep going! Every line of code brings you closer to mastery.</p>
+          <p>
+            🎯 Building a strong foundation in modern web development
+            technologies
+          </p>
         </div>
 
         <div class="modules-grid">
-          <div class="module-card">
+          <div
+            class="module-card"
+            onclick="window.open('modules/01-html/README.md', '_blank')"
+          >
             <div class="module-header">
               <div class="module-icon">📄</div>
               <div class="module-title">HTML Fundamentals</div>
@@ -256,7 +607,10 @@
             </div>
           </div>
 
-          <div class="module-card">
+          <div
+            class="module-card"
+            onclick="window.open('modules/02-css/README.md', '_blank')"
+          >
             <div class="module-header">
               <div class="module-icon">🎨</div>
               <div class="module-title">CSS Styling & Design</div>
@@ -270,7 +624,10 @@
             </div>
           </div>
 
-          <div class="module-card">
+          <div
+            class="module-card"
+            onclick="window.open('modules/03-javascript/README.md', '_blank')"
+          >
             <div class="module-header">
               <div class="module-icon">⚡</div>
               <div class="module-title">JavaScript Fundamentals</div>
@@ -284,7 +641,10 @@
             </div>
           </div>
 
-          <div class="module-card">
+          <div
+            class="module-card"
+            onclick="window.open('modules/04-dom/README.md', '_blank')"
+          >
             <div class="module-header">
               <div class="module-icon">🌐</div>
               <div class="module-title">JavaScript DOM</div>
@@ -300,8 +660,9 @@
         </div>
       </div>
 
+      <!-- Achievements -->
       <div class="achievements">
-        <h2>🏆 Achievements</h2>
+        <h2>🏆 Learning Achievements</h2>
         <div class="achievement-grid">
           <div class="achievement.unlocked">
             <div class="achievement-icon">🎯</div>
@@ -347,14 +708,14 @@
 
           <div class="achievement">
             <div class="achievement-icon">💼</div>
-            <h3>Portfolio Ready</h3>
+            <h3>Full-Stack Ready</h3>
             <p>Build your professional portfolio</p>
           </div>
         </div>
 
         <div style="text-align: center">
           <button class="update-btn" onclick="updateProgress()">
-            Update Progress
+            📊 Update Progress
           </button>
           <p style="margin-top: 15px; font-size: 0.9rem; color: #7f8c8d">
             Click to refresh progress from your latest commits
@@ -362,30 +723,35 @@
         </div>
       </div>
 
+      <!-- Footer -->
       <div class="footer">
+        <h3>🚀 Ready to Connect?</h3>
         <p>
-          💡 <strong>Pro Tip:</strong> Consistency beats perfection. Code a
-          little every day!
+          <strong
+            >Let's discuss Flutter development, web technologies, or potential
+            collaborations!</strong
+          >
         </p>
         <p>
-          🔗
+          📧
+          <a href="mailto:sagar.ghag1997@gmail.com">sagar.ghag1997@gmail.com</a>
+        </p>
+        <p>
+          💬
           <a
-            href="https://github.com/GhagSagar23/vue_js_udemy/blob/develop/README.md"
-            style="color: #fff"
-            >View Course Details</a
+            href="https://wa.me/917383565932?text=Hi,%20I%20found%20you%20on%20your%20learning%20dashboard.%0A%0ACan%20we%20connect?"
+            target="_blank"
+            >WhatsApp</a
           >
-          | 📁
-          <a
-            href="https://github.com/GhagSagar23/vue_js_udemy/tree/develop/modules"
-            style="color: #fff"
-            >Browse Modules</a
-          >
-          | 🎯
-          <a
-            href="https://github.com/GhagSagar23/vue_js_udemy/blob/develop/README.md"
-            style="color: #fff"
-            >Final Project</a
-          >
+        </p>
+        <p>
+          🔗 <a href="README.md">View Course Details</a> | 📁
+          <a href="modules/">Browse Modules</a> | 🛠️
+          <a href="setup-guide.md">Setup Guide</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8">
+          💡 <strong>Pro Tip:</strong> Consistency beats perfection. Code a
+          little every day!
         </p>
       </div>
     </div>
@@ -393,24 +759,25 @@
     <script>
       // Progress tracking functionality
       function updateProgress() {
-        // In a real implementation, this would fetch data from GitHub API
-        // or read from a JSON file updated by CI/CD
         console.log('Updating progress from repository...');
 
-        // Simulate progress update
+        // Add animation to show update is happening
         const modules = document.querySelectorAll('.module-card');
         const achievements = document.querySelectorAll('.achievement');
 
-        // Add some animation
-        modules.forEach((module) => {
-          module.style.transform = 'scale(0.95)';
+        modules.forEach((module, index) => {
           setTimeout(() => {
-            module.style.transform = 'scale(1)';
-          }, 200);
+            module.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+              module.style.transform = 'scale(1)';
+            }, 200);
+          }, index * 100);
         });
 
         // Show update notification
-        showNotification('Progress updated! 🎉');
+        showNotification(
+          '🔄 Progress updated! Check the latest commit for changes.'
+        );
       }
 
       function showNotification(message) {
@@ -419,7 +786,7 @@
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: #2ecc71;
+                background: linear-gradient(135deg, #667eea, #764ba2);
                 color: white;
                 padding: 15px 25px;
                 border-radius: 10px;
@@ -427,6 +794,7 @@
                 z-index: 1000;
                 transform: translateX(100%);
                 transition: transform 0.3s ease;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             `;
         notification.textContent = message;
 
@@ -441,27 +809,50 @@
           setTimeout(() => {
             document.body.removeChild(notification);
           }, 300);
-        }, 3000);
+        }, 4000);
       }
 
       // Initialize progress visualization
       function initializeProgress() {
         const progressCircle = document.getElementById('overallProgress');
-        const percentage = 0; // This would be calculated from actual progress
+        const percentage = 6; // This would be calculated from actual progress
 
-        progressCircle.style.background = `conic-gradient(#4CAF50 0deg 97.2deg, #e0e0e0 97.2deg 360deg)`;
+        const angle = percentage * 3.6;
+        progressCircle.style.background = `conic-gradient(#4CAF50 0deg ${angle}deg, #e0e0e0 ${angle}deg 360deg)`;
       }
 
       // Load progress on page load
-      document.addEventListener('DOMContentLoaded', initializeProgress);
+      document.addEventListener('DOMContentLoaded', function () {
+        initializeProgress();
 
-      // Add some interactive effects
-      document.querySelectorAll('.module-card').forEach((card) => {
-        card.addEventListener('click', function () {
-          const moduleName = this.querySelector('.module-title').textContent;
-          window.location.href = `modules/${moduleName
-            .toLowerCase()
-            .replace(/\s+/g, '-')}/README.md`;
+        // Add welcome message after page loads
+        setTimeout(() => {
+          showNotification(
+            '👋 Welcome to my learning journey! Track my progress as I master web development.'
+          );
+        }, 1000);
+      });
+
+      // Add hover effects to profile avatar
+      document
+        .querySelector('.profile-avatar')
+        .addEventListener('mouseenter', function () {
+          this.style.transform = 'rotate(10deg) scale(1.1)';
+        });
+
+      document
+        .querySelector('.profile-avatar')
+        .addEventListener('mouseleave', function () {
+          this.style.transform = 'rotate(0deg) scale(1)';
+        });
+
+      // Add smooth scrolling for internal links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+          });
         });
       });
     </script>
