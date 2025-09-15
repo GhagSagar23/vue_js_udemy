@@ -351,7 +351,7 @@ class TableBasedProgressTracker {
 ## 🗺️ Learning Path & Progress Tracking
 
 ### Module 1: HTML Fundamentals
-**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
+**Progress: 0/13 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
 
 **Topics Covered:**
 
