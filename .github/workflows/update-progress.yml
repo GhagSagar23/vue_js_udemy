@@ -1,0 +1,37 @@
+name: Update Course Progress
+
+on:
+  push:
+    branches: [master, develop]
+  pull_request:
+    branches: [master]
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - name: Update Progress Badges
+        run: |
+          # Count completed topics in README.md
+          COMPLETED=$(grep -o "✅" README.md | wc -l)
+          TOTAL=$(grep -o "⬜\|✅" README.md | wc -l)
+          PERCENTAGE=$((COMPLETED * 100 / TOTAL))
+
+          # Update progress badges
+          sed -i "s/Progress-[0-9]*%/Progress-${PERCENTAGE}%/g" README.md
+          sed -i "s/Progress-[0-9]*%/Progress-${PERCENTAGE}%/g" index.html
+
+      - name: Commit Progress Updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md index.html
+          git diff --staged --quiet || git commit -m "🤖 Auto-update progress tracking"
+          git push
