@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-0%25-red)
+![Course Progress](https://img.shields.io/badge/Progress-6%25-orange)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -33,15 +33,15 @@ By completing this course, you will be able to:
 ## 🗺️ Learning Path & Progress Tracking
 
 ### Module 1: HTML Fundamentals
-**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-13%25-red)
+**Progress: 3/12 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
 
 **Topics Covered:**
 
 | Topic | Status | Description | Hands-on Project |
 |-------|--------|-------------|------------------|
-| Setup & Environment | ⬜ Not Started | Editor setup, creating HTML files | Create first HTML file |
-| HTML Anatomy | ⬜ Not Started | Elements, tags, attributes structure | Build basic page template |
-| Essential Tags | ⬜ Not Started | `<html>`, `<head>`, `<title>`, `<body>` | Complete page structure |
+| Setup & Environment | ✅ Complete | Editor setup, creating HTML files | Create first HTML file |
+| HTML Anatomy | ✅ Complete | Elements, tags, attributes structure | Build basic page template |
+| Essential Tags | ✅ Complete | `<html>`, `<head>`, `<title>`, `<body>` | Complete page structure |
 | Content Tags | ⬜ Not Started | `<h1>`, `<p>`, `<div>`, `<span>` | Text content layout |
 | Self-closing Tags | ⬜ Not Started | `<hr>`, `<br>`, proper usage | Line breaks and dividers |
 | Attributes & Classes | ⬜ Not Started | `id`, `class`, `style` attributes | Styled elements |
@@ -57,7 +57,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 2: CSS Styling & Design
-**Progress: 0/15 Topics** ![Progress](https://img.shields.io/badge/Progress-13%25-red)
+**Progress: 0/15 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
 
 **Topics Covered:**
 
@@ -84,7 +84,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 3: JavaScript Fundamentals
-**Progress: 0/9 Topics** ![Progress](https://img.shields.io/badge/Progress-13%25-red)
+**Progress: 0/9 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
 
 **Topics Covered:**
 
@@ -105,7 +105,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 4: JavaScript DOM Manipulation
-**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-13%25-red)
+**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
 
 **Topics Covered:**
 
