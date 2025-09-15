@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-16%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-18%25-yellow)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -37,7 +37,7 @@ By completing this course, you will be able to:
 
 ### Module 1: HTML Fundamentals
 
-**Progress: 8/13 Topics** ![Progress](https://img.shields.io/badge/Progress-62%25-yellowgreen)
+**Progress: 9/13 Topics** ![Progress](https://img.shields.io/badge/Progress-69%25-green)
 
 **Topics Covered:**
 
@@ -51,7 +51,7 @@ By completing this course, you will be able to:
 | Self-closing Tags    | ✅ Complete    | `<hr>`, `<br>`, proper usage                                         | Line breaks and dividers  |
 | Attributes & Classes | ✅ Complete    | `id`, `class`, `style` attributes                                    | Styled elements           |
 | Hyperlinks           | ✅ Complete    | `<a>` tags, navigation between pages                                 | Multi-page website        |
-| Images               | ⬜ Not Started | `<img>` tags, alt text, optimization                                 | Image gallery             |
+| Images               | ✅ Complete    | `<img>` tags, alt text, optimization                                 | Image gallery             |
 | Lists                | ⬜ Not Started | `<ul>`, `<ol>`, `<li>` for content organization                      | Navigation menu           |
 | Tables               | ⬜ Not Started | `<table>`, `<tr>`, `<td>`, `<th>` structure                          | Data presentation         |
 | Semantic Elements    | ⬜ Not Started | `<nav>`, `<header>`, `<section>`, `<article>`, `<aside>`, `<footer>` | Professional page layout  |
