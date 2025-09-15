@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-8%25-orange)
+![Course Progress](https://img.shields.io/badge/Progress-10%25-orange)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -33,7 +33,7 @@ By completing this course, you will be able to:
 ## 🗺️ Learning Path & Progress Tracking
 
 ### Module 1: HTML Fundamentals
-**Progress: 4/12 Topics** ![Progress](https://img.shields.io/badge/Progress-33%25-yellow)
+**Progress: 5/13 Topics** ![Progress](https://img.shields.io/badge/Progress-38%25-yellowgreen)
 
 **Topics Covered:**
 
@@ -43,6 +43,7 @@ By completing this course, you will be able to:
 | HTML Anatomy | ✅ Complete | Elements, tags, attributes structure | Build basic page template |
 | Essential Tags | ✅ Complete | `<html>`, `<head>`, `<title>`, `<body>` | Complete page structure |
 | Content Tags | ✅ Complete | `<h1>`, `<p>`, `<div>`, `<span>` | Text content layout |
+| Heading Tags | ✅ Complete | `<h1>` to `<h6>`, `<span>` | Headings layout |
 | Self-closing Tags | ⬜ Not Started | `<hr>`, `<br>`, proper usage | Line breaks and dividers |
 | Attributes & Classes | ⬜ Not Started | `id`, `class`, `style` attributes | Styled elements |
 | Hyperlinks | ⬜ Not Started | `<a>` tags, navigation between pages | Multi-page website |
