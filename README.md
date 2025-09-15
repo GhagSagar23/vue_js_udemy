@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-22%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-24%25-yellow)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -37,7 +37,7 @@ By completing this course, you will be able to:
 
 ### Module 1: HTML Fundamentals
 
-**Progress: 11/13 Topics** ![Progress](https://img.shields.io/badge/Progress-85%25-brightgreen)
+**Progress: 12/13 Topics** ![Progress](https://img.shields.io/badge/Progress-92%25-brightgreen)
 
 **Topics Covered:**
 
@@ -54,7 +54,7 @@ By completing this course, you will be able to:
 | Images               | ✅ Complete    | `<img>` tags, alt text, optimization                                 | Image gallery             |
 | Lists                | ✅ Complete    | `<ul>`, `<ol>`, `<li>` for content organization                      | Navigation menu           |
 | Tables               | ✅ Complete    | `<table>`, `<tr>`, `<td>`, `<th>` structure                          | Data presentation         |
-| Semantic Elements    | ⬜ Not Started | `<nav>`, `<header>`, `<section>`, `<article>`, `<aside>`, `<footer>` | Professional page layout  |
+| Semantic Elements    | ✅ Complete    | `<nav>`, `<header>`, `<section>`, `<article>`, `<aside>`, `<footer>` | Professional page layout  |
 | GitHub Pages Deploy  | ⬜ Not Started | Going live with your HTML site                                       | Live website deployment   |
 
 **Milestone Project:** Personal Portfolio Website (HTML only)
