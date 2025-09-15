@@ -1,208 +1,326 @@
-name: Update Course Progress
+name: Display Course Progress
 
 on:
   push:
-    branches: [master, develop]
+    branches: [master, main, develop]
     paths:
       - "README.md"
       - "modules/**"
-
-permissions:
-  contents: write
+  pull_request:
+    branches: [master, main]
+    paths:
+      - "README.md"
+      - "modules/**"
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
-  update-progress:
+  show-progress:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, '🤖 Auto-update')"
 
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update Progress Badges
+      - name: Analyze Course Progress
         run: |
           #!/bin/bash
-          set -e
-          echo "📊 Analyzing progress in README.md..."
 
+          echo "=========================================="
+          echo "📚 WEB DESIGN COURSE PROGRESS REPORT"
+          echo "=========================================="
+          echo ""
+
+          # Check if README.md exists
           if [ ! -f "README.md" ]; then
-            echo "README.md not found, exiting..."
-            exit 0
+            echo "❌ README.md not found!"
+            echo "Please ensure your course content is in README.md"
+            exit 1
           fi
 
-          # Count progress items with better error handling
+          echo "📊 Analyzing progress from README.md..."
+          echo ""
+
+          # Count overall progress items
           COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
           NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
 
-          # Clean variables (remove any non-numeric characters)
+          # Clean variables
           COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
           NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
-
-          # Default to 0 if empty
           COMPLETED=${COMPLETED:-0}
           NOT_STARTED=${NOT_STARTED:-0}
 
           TOTAL=$((COMPLETED + NOT_STARTED))
 
-          echo "Found: $COMPLETED completed, $NOT_STARTED not started"
-          echo "Total topics: $TOTAL"
-
-          if [ $TOTAL -eq 0 ]; then
-            echo "No progress items found, exiting..."
-            exit 0
-          fi
-
-          # Calculate percentage with safety check
+          # Calculate overall percentage
           if [ $TOTAL -gt 0 ]; then
             PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
           else
             PERCENTAGE=0
           fi
 
-          echo "Progress percentage: $PERCENTAGE%"
-
-          # Determine color based on percentage
+          # Determine progress status
           if [ $PERCENTAGE -eq 0 ]; then
-            COLOR="red"
+            STATUS="🔴 Not Started"
+            EMOJI="😴"
           elif [ $PERCENTAGE -lt 25 ]; then
-            COLOR="orange"  
+            STATUS="🟠 Getting Started"
+            EMOJI="🚀"
           elif [ $PERCENTAGE -lt 50 ]; then
-            COLOR="yellow"
+            STATUS="🟡 Making Progress"
+            EMOJI="💪"
           elif [ $PERCENTAGE -lt 75 ]; then
-            COLOR="yellowgreen"
+            STATUS="🟢 Good Progress"
+            EMOJI="🔥"
           elif [ $PERCENTAGE -lt 100 ]; then
-            COLOR="green"
+            STATUS="🔵 Almost Complete"
+            EMOJI="⭐"
           else
-            COLOR="brightgreen"
+            STATUS="✅ Course Complete"
+            EMOJI="🎉"
           fi
 
-          echo "Badge color: $COLOR"
+          # Display overall progress
+          echo "🎯 OVERALL COURSE PROGRESS"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Progress: $PERCENTAGE% ($COMPLETED/$TOTAL topics)"
+          echo "Status: $STATUS $EMOJI"
+          echo ""
 
-          # Update progress badges with better sed syntax
-          sed -i.bak "s|Progress-[0-9]*%25-[a-z]*|Progress-${PERCENTAGE}%25-${COLOR}|g" README.md
-          sed -i.bak "s|Progress-[0-9]*%25|Progress-${PERCENTAGE}%25|g" README.md
+          # Create progress bar
+          BAR_LENGTH=40
+          FILLED_LENGTH=$(((PERCENTAGE * BAR_LENGTH) / 100))
+          EMPTY_LENGTH=$((BAR_LENGTH - FILLED_LENGTH))
 
-          # Clean up backup file
-          rm -f README.md.bak
+          PROGRESS_BAR=""
+          for i in $(seq 1 $FILLED_LENGTH); do
+            PROGRESS_BAR="${PROGRESS_BAR}█"
+          done
+          for i in $(seq 1 $EMPTY_LENGTH); do
+            PROGRESS_BAR="${PROGRESS_BAR}░"
+          done
 
-          # Update module progress lines with safer approach
-          echo "📈 Updating module progress..."
+          echo "[$PROGRESS_BAR] $PERCENTAGE%"
+          echo ""
 
-          # Module 1: HTML (12 topics expected)
-          MODULE1_COMPLETED=$(grep -A 20 "### Module 1:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
-          MODULE1_COMPLETED=$(echo "$MODULE1_COMPLETED" | tr -cd '0-9')
-          MODULE1_COMPLETED=${MODULE1_COMPLETED:-0}
+          # Analyze individual modules
+          echo "📚 MODULE BREAKDOWN"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-          if [ ${MODULE1_COMPLETED} -le 12 ]; then
-            MODULE1_PERCENT=$(((MODULE1_COMPLETED * 100) / 12))
-            sed -i.bak "s|Progress: [0-9]*/12 Topics|Progress: ${MODULE1_COMPLETED}/12 Topics|g" README.md
-          fi
-
-          # Module 2: CSS (15 topics expected)  
-          MODULE2_COMPLETED=$(grep -A 30 "### Module 2:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
-          MODULE2_COMPLETED=$(echo "$MODULE2_COMPLETED" | tr -cd '0-9')
-          MODULE2_COMPLETED=${MODULE2_COMPLETED:-0}
-
-          if [ ${MODULE2_COMPLETED} -le 15 ]; then
-            MODULE2_PERCENT=$(((MODULE2_COMPLETED * 100) / 15))
-            sed -i.bak "s|Progress: [0-9]*/15 Topics|Progress: ${MODULE2_COMPLETED}/15 Topics|g" README.md
-          fi
-
-          # Module 3: JavaScript (9 topics expected)
-          MODULE3_COMPLETED=$(grep -A 20 "### Module 3:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
-          MODULE3_COMPLETED=$(echo "$MODULE3_COMPLETED" | tr -cd '0-9')
-          MODULE3_COMPLETED=${MODULE3_COMPLETED:-0}
-
-          if [ ${MODULE3_COMPLETED} -le 9 ]; then
-            MODULE3_PERCENT=$(((MODULE3_COMPLETED * 100) / 9))
-            sed -i.bak "s|Progress: [0-9]*/9 Topics|Progress: ${MODULE3_COMPLETED}/9 Topics|g" README.md
-          fi
-
-          # Module 4: DOM (12 topics expected)
-          MODULE4_COMPLETED=$(grep -A 25 "### Module 4:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
-          MODULE4_COMPLETED=$(echo "$MODULE4_COMPLETED" | tr -cd '0-9')
-          MODULE4_COMPLETED=${MODULE4_COMPLETED:-0}
-
-          if [ ${MODULE4_COMPLETED} -le 12 ]; then
-            MODULE4_PERCENT=$(((MODULE4_COMPLETED * 100) / 12))
-            sed -i.bak "s|Progress: [0-9]*/12 Topics|Progress: ${MODULE4_COMPLETED}/12 Topics|g" README.md
-          fi
-
-          # Clean up any backup files
-          rm -f README.md.bak
-
-          echo "📈 Updated progress:"
-          echo "  Overall: $PERCENTAGE% ($COMPLETED/$TOTAL)"
-          echo "  Module 1: ${MODULE1_PERCENT:-0}% ($MODULE1_COMPLETED/12)" 
-          echo "  Module 2: ${MODULE2_PERCENT:-0}% ($MODULE2_COMPLETED/15)"
-          echo "  Module 3: ${MODULE3_PERCENT:-0}% ($MODULE3_COMPLETED/9)"
-          echo "  Module 4: ${MODULE4_PERCENT:-0}% ($MODULE4_COMPLETED/12)"
-
-      - name: Update index.html
-        run: |
-          if [ -f "index.html" ]; then
-            echo "📊 Updating index.html progress visualization..."
+          # Module 1: HTML Fundamentals
+          if grep -q "### Module 1:" README.md; then
+            MODULE1_COMPLETED=$(grep -A 20 "### Module 1:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+            MODULE1_COMPLETED=$(echo "$MODULE1_COMPLETED" | tr -cd '0-9')
+            MODULE1_COMPLETED=${MODULE1_COMPLETED:-0}
+            MODULE1_TOTAL=12
             
-            COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
-            NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
-            
-            # Clean variables
-            COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
-            NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
-            COMPLETED=${COMPLETED:-0}
-            NOT_STARTED=${NOT_STARTED:-0}
-            
-            TOTAL=$((COMPLETED + NOT_STARTED))
-            
-            if [ $TOTAL -gt 0 ]; then
-              PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
-              ANGLE=$((PERCENTAGE * 36 / 10))
-              
-              # Update progress text
-              sed -i.bak "s|<div class=\"progress-text\">[0-9]*%</div>|<div class=\"progress-text\">${PERCENTAGE}%</div>|g" index.html
-              
-              # Update progress circle
-              sed -i.bak "s|conic-gradient(#4CAF50 0deg [0-9.]*deg|conic-gradient(#4CAF50 0deg ${ANGLE}deg|g" index.html
-              
-              # Clean up backup
-              rm -f index.html.bak
-              
-              echo "✅ Updated index.html with $PERCENTAGE% progress"
-            fi
-          else
-            echo "⚠️ index.html not found, skipping..."
-          fi
-
-      - name: Commit changes
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Check if there are any changes
-          if git diff --quiet HEAD -- README.md index.html 2>/dev/null; then
-            echo "No changes to commit"
-          else
-            # Calculate final stats for commit message
-            COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
-            NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
-            
-            # Clean variables
-            COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
-            NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
-            COMPLETED=${COMPLETED:-0}
-            NOT_STARTED=${NOT_STARTED:-0}
-            
-            TOTAL=$((COMPLETED + NOT_STARTED))
-            
-            if [ $TOTAL -gt 0 ]; then
-              PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+            if [ $MODULE1_TOTAL -gt 0 ]; then
+              MODULE1_PERCENT=$(((MODULE1_COMPLETED * 100) / MODULE1_TOTAL))
             else
-              PERCENTAGE=0
+              MODULE1_PERCENT=0
             fi
             
-            git add README.md index.html
-            git commit -m "🤖 Auto-update progress tracking: ${PERCENTAGE}% complete (${COMPLETED}/${TOTAL} topics)"
-            git push
+            # Module 1 progress bar
+            M1_FILLED=$(((MODULE1_PERCENT * 20) / 100))
+            M1_EMPTY=$((20 - M1_FILLED))
+            M1_BAR=""
+            for i in $(seq 1 $M1_FILLED); do M1_BAR="${M1_BAR}█"; done
+            for i in $(seq 1 $M1_EMPTY); do M1_BAR="${M1_BAR}░"; done
+            
+            echo "📄 Module 1: HTML Fundamentals"
+            echo "   Progress: $MODULE1_PERCENT% ($MODULE1_COMPLETED/$MODULE1_TOTAL topics)"
+            echo "   [$M1_BAR] $MODULE1_PERCENT%"
+            echo ""
           fi
+
+          # Module 2: CSS Styling & Design
+          if grep -q "### Module 2:" README.md; then
+            MODULE2_COMPLETED=$(grep -A 30 "### Module 2:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+            MODULE2_COMPLETED=$(echo "$MODULE2_COMPLETED" | tr -cd '0-9')
+            MODULE2_COMPLETED=${MODULE2_COMPLETED:-0}
+            MODULE2_TOTAL=15
+            
+            if [ $MODULE2_TOTAL -gt 0 ]; then
+              MODULE2_PERCENT=$(((MODULE2_COMPLETED * 100) / MODULE2_TOTAL))
+            else
+              MODULE2_PERCENT=0
+            fi
+            
+            # Module 2 progress bar
+            M2_FILLED=$(((MODULE2_PERCENT * 20) / 100))
+            M2_EMPTY=$((20 - M2_FILLED))
+            M2_BAR=""
+            for i in $(seq 1 $M2_FILLED); do M2_BAR="${M2_BAR}█"; done
+            for i in $(seq 1 $M2_EMPTY); do M2_BAR="${M2_BAR}░"; done
+            
+            echo "🎨 Module 2: CSS Styling & Design"
+            echo "   Progress: $MODULE2_PERCENT% ($MODULE2_COMPLETED/$MODULE2_TOTAL topics)"
+            echo "   [$M2_BAR] $MODULE2_PERCENT%"
+            echo ""
+          fi
+
+          # Module 3: JavaScript Fundamentals
+          if grep -q "### Module 3:" README.md; then
+            MODULE3_COMPLETED=$(grep -A 20 "### Module 3:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+            MODULE3_COMPLETED=$(echo "$MODULE3_COMPLETED" | tr -cd '0-9')
+            MODULE3_COMPLETED=${MODULE3_COMPLETED:-0}
+            MODULE3_TOTAL=9
+            
+            if [ $MODULE3_TOTAL -gt 0 ]; then
+              MODULE3_PERCENT=$(((MODULE3_COMPLETED * 100) / MODULE3_TOTAL))
+            else
+              MODULE3_PERCENT=0
+            fi
+            
+            # Module 3 progress bar
+            M3_FILLED=$(((MODULE3_PERCENT * 20) / 100))
+            M3_EMPTY=$((20 - M3_FILLED))
+            M3_BAR=""
+            for i in $(seq 1 $M3_FILLED); do M3_BAR="${M3_BAR}█"; done
+            for i in $(seq 1 $M3_EMPTY); do M3_BAR="${M3_BAR}░"; done
+            
+            echo "⚡ Module 3: JavaScript Fundamentals"
+            echo "   Progress: $MODULE3_PERCENT% ($MODULE3_COMPLETED/$MODULE3_TOTAL topics)"
+            echo "   [$M3_BAR] $MODULE3_PERCENT%"
+            echo ""
+          fi
+
+          # Module 4: JavaScript DOM Manipulation
+          if grep -q "### Module 4:" README.md; then
+            MODULE4_COMPLETED=$(grep -A 25 "### Module 4:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+            MODULE4_COMPLETED=$(echo "$MODULE4_COMPLETED" | tr -cd '0-9')
+            MODULE4_COMPLETED=${MODULE4_COMPLETED:-0}
+            MODULE4_TOTAL=12
+            
+            if [ $MODULE4_TOTAL -gt 0 ]; then
+              MODULE4_PERCENT=$(((MODULE4_COMPLETED * 100) / MODULE4_TOTAL))
+            else
+              MODULE4_PERCENT=0
+            fi
+            
+            # Module 4 progress bar
+            M4_FILLED=$(((MODULE4_PERCENT * 20) / 100))
+            M4_EMPTY=$((20 - M4_FILLED))
+            M4_BAR=""
+            for i in $(seq 1 $M4_FILLED); do M4_BAR="${M4_BAR}█"; done
+            for i in $(seq 1 $M4_EMPTY); do M4_BAR="${M4_BAR}░"; done
+            
+            echo "🌐 Module 4: JavaScript DOM Manipulation"
+            echo "   Progress: $MODULE4_PERCENT% ($MODULE4_COMPLETED/$MODULE4_TOTAL topics)"
+            echo "   [$M4_BAR] $MODULE4_PERCENT%"
+            echo ""
+          fi
+
+          # Achievement status
+          echo "🏆 ACHIEVEMENT STATUS"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          if [ $COMPLETED -ge 1 ]; then
+            echo "🎯 First Steps: ✅ UNLOCKED"
+          else
+            echo "🎯 First Steps: 🔒 Locked (Complete 1 topic)"
+          fi
+
+          if [ $COMPLETED -ge 5 ]; then
+            echo "🚀 Getting Started: ✅ UNLOCKED"
+          else
+            echo "🚀 Getting Started: 🔒 Locked (Complete 5 topics)"
+          fi
+
+          if [ $PERCENTAGE -ge 25 ]; then
+            echo "📈 Quarter Progress: ✅ UNLOCKED"
+          else
+            echo "📈 Quarter Progress: 🔒 Locked (Reach 25% completion)"
+          fi
+
+          if [ $PERCENTAGE -ge 50 ]; then
+            echo "⭐ Halfway Hero: ✅ UNLOCKED"
+          else
+            echo "⭐ Halfway Hero: 🔒 Locked (Reach 50% completion)"
+          fi
+
+          if [ $PERCENTAGE -ge 75 ]; then
+            echo "🌟 Three Quarters: ✅ UNLOCKED"
+          else
+            echo "🌟 Three Quarters: 🔒 Locked (Reach 75% completion)"
+          fi
+
+          if [ $PERCENTAGE -ge 100 ]; then
+            echo "🎓 Course Graduate: ✅ UNLOCKED"
+          else
+            echo "🎓 Course Graduate: 🔒 Locked (Complete entire course)"
+          fi
+
+          echo ""
+
+          # Study recommendations
+          echo "💡 STUDY RECOMMENDATIONS"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+          REMAINING=$((TOTAL - COMPLETED))
+
+          if [ $PERCENTAGE -eq 0 ]; then
+            echo "📚 Get started with Module 1: HTML Fundamentals"
+            echo "🎯 Goal: Complete 1-2 topics per day"
+            echo "⏰ Estimated time to completion: 4-6 weeks"
+          elif [ $PERCENTAGE -lt 25 ]; then
+            echo "💪 Great start! Keep building momentum"
+            echo "🎯 Goal: Maintain 1-2 topics per day"
+            echo "⏰ Topics remaining: $REMAINING"
+          elif [ $PERCENTAGE -lt 50 ]; then
+            echo "🔥 Excellent progress! You're in the zone"
+            echo "🎯 Goal: Continue current pace"
+            echo "⏰ Topics remaining: $REMAINING"
+          elif [ $PERCENTAGE -lt 75 ]; then
+            echo "⭐ Outstanding work! More than halfway there"
+            echo "🎯 Goal: Focus on completing current module"
+            echo "⏰ Topics remaining: $REMAINING"
+          elif [ $PERCENTAGE -lt 100 ]; then
+            echo "🏁 Final sprint! You're almost done"
+            echo "🎯 Goal: Complete remaining topics and final project"
+            echo "⏰ Topics remaining: $REMAINING"
+          else
+            echo "🎉 CONGRATULATIONS! Course completed!"
+            echo "🌟 Next steps: Build advanced projects"
+            echo "📚 Consider learning React, Vue, or Node.js"
+          fi
+
+          echo ""
+
+          # Statistics summary
+          echo "📊 DETAILED STATISTICS"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Total topics: $TOTAL"
+          echo "Completed: $COMPLETED"
+          echo "Not started: $NOT_STARTED"
+          echo "Completion rate: $PERCENTAGE%"
+          echo ""
+
+          if [ $TOTAL -gt 0 ] && [ $COMPLETED -gt 0 ]; then
+            TOPICS_PER_DAY=1
+            DAYS_REMAINING=$(((TOTAL - COMPLETED) / TOPICS_PER_DAY))
+            echo "📅 At 1 topic/day: $DAYS_REMAINING days to completion"
+            
+            TOPICS_PER_DAY=2
+            DAYS_REMAINING=$(((TOTAL - COMPLETED) / TOPICS_PER_DAY))
+            echo "📅 At 2 topics/day: $DAYS_REMAINING days to completion"
+          fi
+
+          echo ""
+          echo "=========================================="
+          echo "🎯 Keep going! Every topic completed is progress made!"
+          echo "=========================================="
+
+      - name: Display Learning Tips
+        run: |
+          echo ""
+          echo "💡 LEARNING TIPS FOR SUCCESS"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🕒 Consistency over intensity - study daily"
+          echo "🛠️  Practice while learning - build projects"
+          echo "🔄 Review regularly - revisit completed topics"
+          echo "🤝 Engage with community - ask questions"
+          echo "📝 Document your journey - take notes"
+          echo "🎯 Focus on understanding, not just completion"
+          echo ""
+          echo "📚 Happy learning! 🚀"
