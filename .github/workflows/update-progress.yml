@@ -1,4 +1,4 @@
-name: Simple Progress Update
+name: Update Course Progress
 
 on:
   push:
@@ -24,6 +24,7 @@ jobs:
       - name: Update Progress Badges
         run: |
           #!/bin/bash
+          set -e
           echo "📊 Analyzing progress in README.md..."
 
           if [ ! -f "README.md" ]; then
@@ -31,9 +32,18 @@ jobs:
             exit 0
           fi
 
-          # Count progress items
-          COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
-          NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0")
+          # Count progress items with better error handling
+          COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
+          NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
+
+          # Clean variables (remove any non-numeric characters)
+          COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
+          NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
+
+          # Default to 0 if empty
+          COMPLETED=${COMPLETED:-0}
+          NOT_STARTED=${NOT_STARTED:-0}
+
           TOTAL=$((COMPLETED + NOT_STARTED))
 
           echo "Found: $COMPLETED completed, $NOT_STARTED not started"
@@ -44,8 +54,13 @@ jobs:
             exit 0
           fi
 
-          # Calculate percentage
-          PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+          # Calculate percentage with safety check
+          if [ $TOTAL -gt 0 ]; then
+            PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+          else
+            PERCENTAGE=0
+          fi
+
           echo "Progress percentage: $PERCENTAGE%"
 
           # Determine color based on percentage
@@ -65,45 +80,80 @@ jobs:
 
           echo "Badge color: $COLOR"
 
-          # Update progress badges
-          sed -i "s/Progress-[0-9]*%25-[a-z]*/Progress-${PERCENTAGE}%25-${COLOR}/g" README.md
-          sed -i "s/Progress-[0-9]*%25/Progress-${PERCENTAGE}%25/g" README.md
+          # Update progress badges with better sed syntax
+          sed -i.bak "s|Progress-[0-9]*%25-[a-z]*|Progress-${PERCENTAGE}%25-${COLOR}|g" README.md
+          sed -i.bak "s|Progress-[0-9]*%25|Progress-${PERCENTAGE}%25|g" README.md
 
-          # Update module progress lines
+          # Clean up backup file
+          rm -f README.md.bak
+
+          # Update module progress lines with safer approach
+          echo "📈 Updating module progress..."
+
           # Module 1: HTML (12 topics expected)
-          MODULE1_COMPLETED=$(grep -A 20 "### Module 1:" README.md | grep -c "✅ Complete" || echo "0")
-          MODULE1_PERCENT=$(((MODULE1_COMPLETED * 100) / 12))
-          sed -i "s/\*\*Progress: [0-9]*\/12 Topics\*\*/\*\*Progress: ${MODULE1_COMPLETED}\/12 Topics\*\*/g" README.md
+          MODULE1_COMPLETED=$(grep -A 20 "### Module 1:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+          MODULE1_COMPLETED=$(echo "$MODULE1_COMPLETED" | tr -cd '0-9')
+          MODULE1_COMPLETED=${MODULE1_COMPLETED:-0}
+
+          if [ ${MODULE1_COMPLETED} -le 12 ]; then
+            MODULE1_PERCENT=$(((MODULE1_COMPLETED * 100) / 12))
+            sed -i.bak "s|Progress: [0-9]*/12 Topics|Progress: ${MODULE1_COMPLETED}/12 Topics|g" README.md
+          fi
 
           # Module 2: CSS (15 topics expected)  
-          MODULE2_COMPLETED=$(grep -A 30 "### Module 2:" README.md | grep -c "✅ Complete" || echo "0")
-          MODULE2_PERCENT=$(((MODULE2_COMPLETED * 100) / 15))
-          sed -i "s/\*\*Progress: [0-9]*\/15 Topics\*\*/\*\*Progress: ${MODULE2_COMPLETED}\/15 Topics\*\*/g" README.md
+          MODULE2_COMPLETED=$(grep -A 30 "### Module 2:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+          MODULE2_COMPLETED=$(echo "$MODULE2_COMPLETED" | tr -cd '0-9')
+          MODULE2_COMPLETED=${MODULE2_COMPLETED:-0}
+
+          if [ ${MODULE2_COMPLETED} -le 15 ]; then
+            MODULE2_PERCENT=$(((MODULE2_COMPLETED * 100) / 15))
+            sed -i.bak "s|Progress: [0-9]*/15 Topics|Progress: ${MODULE2_COMPLETED}/15 Topics|g" README.md
+          fi
 
           # Module 3: JavaScript (9 topics expected)
-          MODULE3_COMPLETED=$(grep -A 20 "### Module 3:" README.md | grep -c "✅ Complete" || echo "0") 
-          MODULE3_PERCENT=$(((MODULE3_COMPLETED * 100) / 9))
-          sed -i "s/\*\*Progress: [0-9]*\/9 Topics\*\*/\*\*Progress: ${MODULE3_COMPLETED}\/9 Topics\*\*/g" README.md
+          MODULE3_COMPLETED=$(grep -A 20 "### Module 3:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+          MODULE3_COMPLETED=$(echo "$MODULE3_COMPLETED" | tr -cd '0-9')
+          MODULE3_COMPLETED=${MODULE3_COMPLETED:-0}
+
+          if [ ${MODULE3_COMPLETED} -le 9 ]; then
+            MODULE3_PERCENT=$(((MODULE3_COMPLETED * 100) / 9))
+            sed -i.bak "s|Progress: [0-9]*/9 Topics|Progress: ${MODULE3_COMPLETED}/9 Topics|g" README.md
+          fi
 
           # Module 4: DOM (12 topics expected)
-          MODULE4_COMPLETED=$(grep -A 25 "### Module 4:" README.md | grep -c "✅ Complete" || echo "0")
-          MODULE4_PERCENT=$(((MODULE4_COMPLETED * 100) / 12))  
-          sed -i "s/\*\*Progress: [0-9]*\/12 Topics\*\*/\*\*Progress: ${MODULE4_COMPLETED}\/12 Topics\*\*/g" README.md
+          MODULE4_COMPLETED=$(grep -A 25 "### Module 4:" README.md | grep -c "✅ Complete" 2>/dev/null || echo "0")
+          MODULE4_COMPLETED=$(echo "$MODULE4_COMPLETED" | tr -cd '0-9')
+          MODULE4_COMPLETED=${MODULE4_COMPLETED:-0}
+
+          if [ ${MODULE4_COMPLETED} -le 12 ]; then
+            MODULE4_PERCENT=$(((MODULE4_COMPLETED * 100) / 12))
+            sed -i.bak "s|Progress: [0-9]*/12 Topics|Progress: ${MODULE4_COMPLETED}/12 Topics|g" README.md
+          fi
+
+          # Clean up any backup files
+          rm -f README.md.bak
 
           echo "📈 Updated progress:"
           echo "  Overall: $PERCENTAGE% ($COMPLETED/$TOTAL)"
-          echo "  Module 1: $MODULE1_PERCENT% ($MODULE1_COMPLETED/12)" 
-          echo "  Module 2: $MODULE2_PERCENT% ($MODULE2_COMPLETED/15)"
-          echo "  Module 3: $MODULE3_PERCENT% ($MODULE3_COMPLETED/9)"
-          echo "  Module 4: $MODULE4_PERCENT% ($MODULE4_COMPLETED/12)"
+          echo "  Module 1: ${MODULE1_PERCENT:-0}% ($MODULE1_COMPLETED/12)" 
+          echo "  Module 2: ${MODULE2_PERCENT:-0}% ($MODULE2_COMPLETED/15)"
+          echo "  Module 3: ${MODULE3_PERCENT:-0}% ($MODULE3_COMPLETED/9)"
+          echo "  Module 4: ${MODULE4_PERCENT:-0}% ($MODULE4_COMPLETED/12)"
 
-      - name: Update index.html (if exists)
+      - name: Update index.html
         run: |
           if [ -f "index.html" ]; then
-            echo "📊 Updating index.html progress visualization...."
+            echo "📊 Updating index.html progress visualization..."
             
-            COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
-            NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0")
+            COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
+            NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
+            
+            # Clean variables
+            COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
+            NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
+            COMPLETED=${COMPLETED:-0}
+            NOT_STARTED=${NOT_STARTED:-0}
+            
             TOTAL=$((COMPLETED + NOT_STARTED))
             
             if [ $TOTAL -gt 0 ]; then
@@ -111,13 +161,18 @@ jobs:
               ANGLE=$((PERCENTAGE * 36 / 10))
               
               # Update progress text
-              sed -i "s/<div class=\"progress-text\">[0-9]*%<\/div>/<div class=\"progress-text\">${PERCENTAGE}%<\/div>/g" index.html
+              sed -i.bak "s|<div class=\"progress-text\">[0-9]*%</div>|<div class=\"progress-text\">${PERCENTAGE}%</div>|g" index.html
               
               # Update progress circle
-              sed -i "s/conic-gradient(#4CAF50 0deg [0-9.]*deg/conic-gradient(#4CAF50 0deg ${ANGLE}deg/g" index.html
+              sed -i.bak "s|conic-gradient(#4CAF50 0deg [0-9.]*deg|conic-gradient(#4CAF50 0deg ${ANGLE}deg|g" index.html
+              
+              # Clean up backup
+              rm -f index.html.bak
               
               echo "✅ Updated index.html with $PERCENTAGE% progress"
             fi
+          else
+            echo "⚠️ index.html not found, skipping..."
           fi
 
       - name: Commit changes
@@ -125,15 +180,29 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-          if git diff --quiet README.md index.html; then
+          # Check if there are any changes
+          if git diff --quiet HEAD -- README.md index.html 2>/dev/null; then
             echo "No changes to commit"
           else
-            COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
-            NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0") 
+            # Calculate final stats for commit message
+            COMPLETED=$(grep -c "✅ Complete" README.md 2>/dev/null || echo "0")
+            NOT_STARTED=$(grep -c "⬜ Not Started" README.md 2>/dev/null || echo "0")
+            
+            # Clean variables
+            COMPLETED=$(echo "$COMPLETED" | tr -cd '0-9')
+            NOT_STARTED=$(echo "$NOT_STARTED" | tr -cd '0-9')
+            COMPLETED=${COMPLETED:-0}
+            NOT_STARTED=${NOT_STARTED:-0}
+            
             TOTAL=$((COMPLETED + NOT_STARTED))
-            PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+            
+            if [ $TOTAL -gt 0 ]; then
+              PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+            else
+              PERCENTAGE=0
+            fi
             
             git add README.md index.html
-            git commit -m "🤖 Auto-update progress tracking: ${PERCENTAGE}% complete ($COMPLETED/$TOTAL topics)"
+            git commit -m "🤖 Auto-update progress tracking: ${PERCENTAGE}% complete (${COMPLETED}/${TOTAL} topics)"
             git push
           fi
