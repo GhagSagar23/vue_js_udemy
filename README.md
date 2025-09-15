@@ -33,7 +33,7 @@ By completing this course, you will be able to:
 ## 🗺️ Learning Path & Progress Tracking
 
 ### Module 1: HTML Fundamentals
-**Progress: 3/12 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
+**Progress: 3/12 Topics** ![Progress](https://img.shields.io/badge/Progress-25%25-yellow)
 
 **Topics Covered:**
 
@@ -57,7 +57,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 2: CSS Styling & Design
-**Progress: 0/15 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
+**Progress: 0/15 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
 
 **Topics Covered:**
 
@@ -84,7 +84,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 3: JavaScript Fundamentals
-**Progress: 0/9 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
+**Progress: 0/9 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
 
 **Topics Covered:**
 
@@ -105,7 +105,7 @@ By completing this course, you will be able to:
 ---
 
 ### Module 4: JavaScript DOM Manipulation
-**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-6%25-orange)
+**Progress: 0/12 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
 
 **Topics Covered:**
 

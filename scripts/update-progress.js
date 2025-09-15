@@ -4,10 +4,10 @@ const path = require('path');
 class TableBasedProgressTracker {
   constructor() {
     this.modules = [
-      { name: 'HTML Fundamentals', number: 1, expectedTopics: 12 },
-      { name: 'CSS Styling & Design', number: 2, expectedTopics: 15 },
-      { name: 'JavaScript Fundamentals', number: 3, expectedTopics: 9 },
-      { name: 'JavaScript DOM Manipulation', number: 4, expectedTopics: 12 }
+      { name: 'HTML Fundamentals', number: 1, expectedTopics: 12, icon: '📄' },
+      { name: 'CSS Styling & Design', number: 2, expectedTopics: 15, icon: '🎨' },
+      { name: 'JavaScript Fundamentals', number: 3, expectedTopics: 9, icon: '⚡' },
+      { name: 'JavaScript DOM Manipulation', number: 4, expectedTopics: 12, icon: '🌐' }
     ];
   }
 
@@ -143,29 +143,10 @@ class TableBasedProgressTracker {
       `$1${overall.percentage}$2${color}$4`
     );
 
-    // Update any other overall progress badges
-    const otherBadgePattern = /(Progress-)\d+(%25-)(\w+)/g;
-    updatedContent = updatedContent.replace(otherBadgePattern, (match, p1, p2, p3) => {
-      // Only update if it's not already updated and not a module-specific badge
-      if (!match.includes(`${overall.percentage}%`)) {
-        return `${p1}${overall.percentage}${p2}${color}`;
-      }
-      return match;
-    });
-
     return updatedContent;
   }
 
-  getProgressColor(percentage) {
-    if (percentage === 0) return 'red';
-    if (percentage < 15) return 'orange';
-    if (percentage < 35) return 'yellow';
-    if (percentage < 65) return 'yellowgreen';
-    if (percentage < 85) return 'green';
-    return 'brightgreen';
-  }
-
-  updateIndexHTML(overall) {
+  updateIndexHTML(overall, modules) {
     const indexPath = path.join(__dirname, '..', 'index.html');
 
     if (!fs.existsSync(indexPath)) {
@@ -181,28 +162,124 @@ class TableBasedProgressTracker {
       `<div class="progress-text">${overall.percentage}%</div>`
     );
 
-    // Update progress circle
+    // Update progress circle background
     const angle = overall.percentage * 3.6;
     content = content.replace(
-      /conic-gradient\([^)]+\)/g,
+      /conic-gradient\(#4CAF50 0deg [\d.]+deg, #e0e0e0 [\d.]+deg 360deg\)/g,
       `conic-gradient(#4CAF50 0deg ${angle}deg, #e0e0e0 ${angle}deg 360deg)`
     );
 
-    // Update module progress bars if they exist
-    const moduleStatsPattern = /(\d+\/\d+ Topics Complete)/g;
-    let moduleIndex = 0;
+    // Update individual module progress bars and stats
+    const moduleCards = [
+      { selector: 'HTML Fundamentals', index: 0 },
+      { selector: 'CSS Styling & Design', index: 1 },
+      { selector: 'JavaScript Fundamentals', index: 2 },
+      { selector: 'JavaScript DOM', index: 3 }
+    ];
 
-    content = content.replace(moduleStatsPattern, (match) => {
-      if (moduleIndex < this.modules.length) {
-        const module = this.modules[moduleIndex];
-        moduleIndex++;
-        return `${module.completed || 0}/${module.expectedTopics} Topics Complete`;
+    moduleCards.forEach(card => {
+      const module = modules[card.index];
+      if (module && module.total > 0) {
+        // Update progress bar width
+        const progressBarPattern = new RegExp(
+          `(<div class="module-title">${card.selector}</div>[\\s\\S]*?<div class="progress-fill" style="width: )\\d+(%"><\/div>)`
+        );
+        content = content.replace(progressBarPattern,
+          `$1${module.percentage}$2`
+        );
+
+        // Update module stats
+        const statsPattern = new RegExp(
+          `(<div class="module-title">${card.selector}</div>[\\s\\S]*?<span>)\\d+/\\d+ Topics Complete(<\/span>[\\s\\S]*?<span>)\\d+% Complete(<\/span>)`
+        );
+        content = content.replace(statsPattern,
+          `$1${module.completed}/${module.expectedTopics} Topics Complete$2${module.percentage}% Complete$3`
+        );
       }
-      return match;
     });
 
+    // Update achievements based on progress
+    content = this.updateAchievements(content, overall, modules);
+
     fs.writeFileSync(indexPath, content);
-    console.log(`✅ Updated index.html with ${overall.percentage}% overall progress`);
+    console.log(`✅ Updated index.html with ${overall.percentage}% overall progress and individual module progress`);
+  }
+
+  updateAchievements(content, overall, modules) {
+    // Define achievement criteria
+    const achievements = [
+      {
+        name: 'First Steps',
+        condition: overall.completed >= 1,
+        selector: 'First Steps'
+      },
+      {
+        name: 'Style Master',
+        condition: modules[1] && modules[1].completed >= 3, // 3+ CSS topics
+        selector: 'Style Master'
+      },
+      {
+        name: 'Interactive Wizard',
+        condition: modules[2] && modules[2].completed >= 2, // 2+ JS topics
+        selector: 'Interactive Wizard'
+      },
+      {
+        name: 'DOM Manipulator',
+        condition: modules[3] && modules[3].completed >= 1, // 1+ DOM topic
+        selector: 'DOM Manipulator'
+      },
+      {
+        name: 'Responsive Designer',
+        condition: modules[1] && modules[1].completed >= 10, // Advanced CSS topics
+        selector: 'Responsive Designer'
+      },
+      {
+        name: 'Deployment Pro',
+        condition: overall.completed >= 12, // Completed basic deployment
+        selector: 'Deployment Pro'
+      },
+      {
+        name: 'Course Graduate',
+        condition: overall.percentage >= 100,
+        selector: 'Course Graduate'
+      },
+      {
+        name: 'Portfolio Ready',
+        condition: overall.percentage >= 75,
+        selector: 'Portfolio Ready'
+      }
+    ];
+
+    achievements.forEach(achievement => {
+      if (achievement.condition) {
+        // Add 'unlocked' class to achievement
+        const achievementPattern = new RegExp(
+          `(<div class="achievement">([\\s\\S]*?<h3>${achievement.selector}</h3>[\\s\\S]*?)<\/div>)`
+        );
+        content = content.replace(achievementPattern,
+          `<div class="achievement unlocked">$2</div>`
+        );
+      } else {
+        // Ensure 'unlocked' class is removed if condition not met
+        const achievementPattern = new RegExp(
+          `(<div class="achievement unlocked">([\\s\\S]*?<h3>${achievement.selector}</h3>[\\s\\S]*?)<\/div>)`
+        );
+        content = content.replace(achievementPattern,
+          `<div class="achievement">$2</div>`
+        );
+      }
+    });
+
+    return content;
+  }
+
+  getProgressColor(percentage) {
+    if (percentage === 0) return 'red';
+    if (percentage < 15) return 'orange';
+    if (percentage < 35) return 'yellow';
+    if (percentage < 65) return 'yellowgreen';
+    if (percentage < 85) return 'green';
+    return 'brightgreen';
   }
 
   generateProgressReport(modules, overall) {
@@ -232,28 +309,8 @@ class TableBasedProgressTracker {
 
     report += "\n";
 
-    // Detailed module progress
-    report += "## 📋 Detailed Progress by Module\n\n";
-
-    modules.forEach(module => {
-      if (module.total > 0) {
-        report += `### Module ${module.number}: ${module.name}\n`;
-        report += `**Progress:** ${module.percentage}% (${module.completed}/${module.total})\n\n`;
-
-        if (module.topics.length > 0) {
-          report += "| Topic | Status |\n|-------|--------|\n";
-          module.topics.forEach(topic => {
-            const statusIcon = topic.status.includes('✅') ? '✅' : '⬜';
-            const statusText = topic.status.includes('✅') ? 'Complete' : 'Not Started';
-            report += `| ${topic.topic} | ${statusIcon} ${statusText} |\n`;
-          });
-          report += "\n";
-        }
-      }
-    });
-
-    // Achievement tracking
-    report += "## 🏆 Achievements\n\n";
+    // Achievement status
+    report += "## 🏆 Achievement Status\n\n";
     const achievements = [
       { name: "First Steps", condition: overall.completed >= 1, icon: "🎯", desc: "Complete your first topic" },
       { name: "Getting Started", condition: overall.completed >= 5, icon: "🚀", desc: "Complete 5 topics" },
@@ -267,78 +324,6 @@ class TableBasedProgressTracker {
       const status = achievement.condition ? "🔓 **Unlocked**" : "🔒 Locked";
       report += `- ${achievement.icon} **${achievement.name}**: ${status} - ${achievement.desc}\n`;
     });
-
-    // Study recommendations
-    report += "\n## 💡 Study Recommendations\n\n";
-
-    if (overall.percentage === 0) {
-      report += "### Getting Started\n";
-      report += "- 🎯 **Focus**: Begin with Module 1 - HTML Fundamentals\n";
-      report += "- 📅 **Goal**: Complete 1-2 topics per day\n";
-      report += "- 🛠️ **Setup**: Ensure your development environment is ready\n";
-    } else if (overall.percentage < 25) {
-      report += "### Building Momentum\n";
-      report += "- 💪 **Keep Going**: You're building great habits!\n";
-      report += "- 🎯 **Focus**: Maintain consistent daily progress\n";
-      report += "- 📝 **Practice**: Complete hands-on projects for each topic\n";
-    } else if (overall.percentage < 50) {
-      report += "### Steady Progress\n";
-      report += "- 🔥 **Great Work**: You're making excellent progress!\n";
-      report += "- 🔄 **Review**: Revisit completed topics weekly\n";
-      report += "- 🚀 **Challenge**: Try building mini-projects\n";
-    } else if (overall.percentage < 75) {
-      report += "### Advanced Learning\n";
-      report += "- ⭐ **Excellent**: You're well on your way!\n";
-      report += "- 🎨 **Create**: Start working on milestone projects\n";
-      report += "- 🤝 **Share**: Show your work to get feedback\n";
-    } else if (overall.percentage < 100) {
-      report += "### Final Push\n";
-      report += "- 🏁 **Almost There**: You're in the home stretch!\n";
-      report += "- 🎯 **Focus**: Complete remaining topics\n";
-      report += "- 🚀 **Prepare**: Get ready for final portfolio project\n";
-    } else {
-      report += "### Course Complete! 🎉\n";
-      report += "- 🎓 **Congratulations**: You've mastered web design fundamentals!\n";
-      report += "- 🌟 **Next Steps**: Build advanced projects\n";
-      report += "- 📚 **Continue**: Explore frameworks like React, Vue, or Angular\n";
-    }
-
-    // Next actions
-    report += "\n## 📋 Next Actions\n\n";
-    const incompleteModules = modules.filter(m => m.percentage < 100 && m.total > 0);
-
-    if (incompleteModules.length > 0) {
-      const nextModule = incompleteModules[0];
-      const nextTopic = nextModule.topics.find(t => t.status.includes('⬜'));
-
-      if (nextTopic) {
-        report += `### 🎯 Recommended Next Topic\n`;
-        report += `**Module ${nextModule.number}:** ${nextTopic.topic}\n\n`;
-        report += `**To complete this topic:**\n`;
-        report += `1. 📖 Study the topic content\n`;
-        report += `2. 💻 Complete the hands-on project\n`;
-        report += `3. ✅ Update status from "⬜ Not Started" to "✅ Complete"\n`;
-        report += `4. 🔄 Run progress update: \`npm run progress\`\n\n`;
-      }
-    }
-
-    // Study schedule
-    const remainingTopics = overall.total - overall.completed;
-    if (remainingTopics > 0) {
-      report += `### 📅 Suggested Study Schedule\n\n`;
-      const schedules = [
-        { pace: "Intensive", topicsPerDay: 3, days: Math.ceil(remainingTopics / 3) },
-        { pace: "Steady", topicsPerDay: 2, days: Math.ceil(remainingTopics / 2) },
-        { pace: "Relaxed", topicsPerDay: 1, days: remainingTopics }
-      ];
-
-      schedules.forEach(schedule => {
-        report += `- **${schedule.pace} Pace**: ${schedule.topicsPerDay} topic${schedule.topicsPerDay > 1 ? 's' : ''} per day (~${schedule.days} days to complete)\n`;
-      });
-    }
-
-    report += "\n---\n";
-    report += "*To update progress: Change topic status from '⬜ Not Started' to '✅ Complete' in README.md, then run `npm run progress`*\n";
 
     // Save report
     const reportPath = path.join(__dirname, '..', 'progress-report.md');
@@ -493,8 +478,9 @@ class TableBasedProgressTracker {
       // Save updated README
       fs.writeFileSync(readmePath, updatedContent);
 
-      // Update HTML if it exists
-      this.updateIndexHTML(overall);
+      // Update HTML visualization
+      console.log('📊 Updating index.html visualization...');
+      this.updateIndexHTML(overall, modules);
 
       // Generate comprehensive report
       this.generateProgressReport(modules, overall);
