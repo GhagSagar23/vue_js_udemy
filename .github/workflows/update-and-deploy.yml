@@ -1,224 +1,289 @@
-name: Update Progress & Deploy
+name: Update Progress & Deploy (Fixed Permissions)
 
 on:
   push:
-    branches: [ master, main, develop, beta ]
+    branches: [master, main, develop, beta]
   pull_request:
     types: [closed]
-    branches: [ master, main, develop, beta ]
+    branches: [master, main, develop, beta]
 
-# Required permissions for GitHub Pages deployment
+# Required permissions - CRITICAL FOR PUSHING CHANGES
 permissions:
-  contents: read
+  contents: write # Changed from 'read' to 'write' to allow commits
   pages: write
   id-token: write
+  actions: read
+  pull-requests: read
 
 # Allow only one concurrent deployment
 concurrency:
-  group: "pages"
+  group: "pages-${{ github.ref }}"
   cancel-in-progress: false
 
 jobs:
   update-progress:
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
-    
+
     outputs:
       changes-made: ${{ steps.check-changes.outputs.changes }}
-    
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-        token: ${{ secrets.GITHUB_TOKEN }}
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install Dependencies
-      run: |
-        if [ -f package-lock.json ]; then
-          npm ci
-        elif [ -f package.json ]; then
-          npm install
-        else
-          echo "No package.json found, skipping npm install"
-        fi
-    
-    - name: Execute Progress Update Command
-      run: |
-        echo "🔄 Executing progress update command..."
-        
-        # Your command goes here - replace this with your actual command
-        npm run progress || echo "Progress script not found, continuing..."
-        
-        # Alternative: If you don't have npm script, run the Node.js file directly
-        # node scripts/update-progress.js || echo "Progress script not found"
-        
-        # Alternative: If you want to run a bash script
-        # ./scripts/update-progress.sh || echo "Progress script not found"
-        
-        echo "✅ Progress update command completed"
-    
-    - name: Check for Changes
-      id: check-changes
-      run: |
-        # Check if any files were modified
-        if git diff --quiet HEAD; then
-          echo "changes=false" >> $GITHUB_OUTPUT
-          echo "No changes detected"
-        else
-          echo "changes=true" >> $GITHUB_OUTPUT
-          echo "Changes detected in:"
-          git diff --name-only HEAD
-        fi
-    
-    - name: Commit Updated Files
-      if: steps.check-changes.outputs.changes == 'true'
-      run: |
-        git config --local user.name "github-actions[bot]"
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        
-        # Add all modified files
-        git add -A
-        
-        # Create commit with details
-        BRANCH_NAME="${{ github.ref_name }}"
-        COMMIT_SHA="${{ github.sha }}"
-        
-        git commit -m "🤖 Auto-update progress after merge to $BRANCH_NAME
 
-        - Updated progress tracking files
-        - Triggered by commit: ${COMMIT_SHA:0:7}
-        - Branch: $BRANCH_NAME
-        - Workflow: Update Progress & Deploy"
-        
-        # Push changes back to the branch
-        git push origin HEAD:${{ github.ref_name }}
-        
-        echo "✅ Changes committed and pushed"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # Use GITHUB_TOKEN with proper permissions
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Ensure we can push changes
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          elif [ -f package.json ]; then
+            npm install
+          else
+            echo "No package.json found, skipping npm install"
+          fi
+
+      - name: Execute Progress Update Command
+        run: |
+          echo "🔄 Executing progress update command..."
+
+          # Your command goes here - replace with your actual command
+          npm run progress || echo "Progress script not found, continuing..."
+
+          # Alternative: Run Node.js file directly
+          # node scripts/update-progress.js || echo "Progress script not found"
+
+          # Alternative: Run bash script
+          # ./scripts/update-progress.sh || echo "Progress script not found"
+
+          echo "✅ Progress update command completed"
+
+      - name: Check for Changes
+        id: check-changes
+        run: |
+          # Configure git before checking changes
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Check if any files were modified
+          if git diff --quiet HEAD; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in:"
+            git diff --name-only HEAD
+          fi
+
+      - name: Commit Updated Files
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          # Git config already set in previous step
+
+          # Add all modified files
+          git add -A
+
+          # Create commit with details
+          BRANCH_NAME="${{ github.ref_name }}"
+          COMMIT_SHA="${{ github.sha }}"
+
+          git commit -m "🤖 Auto-update progress after merge to $BRANCH_NAME
+
+          - Updated progress tracking files
+          - Triggered by commit: ${COMMIT_SHA:0:7}
+          - Branch: $BRANCH_NAME
+          - Workflow: Update Progress & Deploy"
+
+          # Push changes using GITHUB_TOKEN
+          git push
+
+          echo "✅ Changes committed and pushed"
 
   deploy-pages:
     needs: update-progress
     runs-on: ubuntu-latest
-    if: always() && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-    
+    # Only deploy from master/main branch and if update job succeeded or was skipped
+    if: always() && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && !failure()
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
+
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.ref_name }}  # Get the latest changes including any commits from previous job
-    
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-    
-    - name: Prepare Deployment Files
-      run: |
-        echo "📦 Preparing files for GitHub Pages deployment..."
-        
-        # Create deployment directory
-        mkdir -p _site
-        
-        # Copy all necessary files to deployment directory
-        cp index.html _site/ 2>/dev/null || echo "index.html not found"
-        cp README.md _site/ 2>/dev/null || echo "README.md not found"
-        cp -r assets _site/ 2>/dev/null || echo "assets directory not found"
-        cp -r modules _site/ 2>/dev/null || echo "modules directory not found"
-        cp -r final-project _site/ 2>/dev/null || echo "final-project directory not found"
-        cp setup-guide.md _site/ 2>/dev/null || echo "setup-guide.md not found"
-        cp progress-report.md _site/ 2>/dev/null || echo "progress-report.md not found"
-        
-        # Create a .nojekyll file to bypass Jekyll processing
-        touch _site/.nojekyll
-        
-        # Create a simple 404 page if it doesn't exist
-        if [ ! -f "_site/404.html" ]; then
-          cat > _site/404.html << 'EOF'
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Page Not Found - Web Design Course</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <style>
-                body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-                h1 { color: #e74c3c; }
-                a { color: #3498db; text-decoration: none; }
-                a:hover { text-decoration: underline; }
-            </style>
-        </head>
-        <body>
-            <h1>404 - Page Not Found</h1>
-            <p>The page you're looking for doesn't exist.</p>
-            <p><a href="/">← Back to Course Dashboard</a></p>
-        </body>
-        </html>
-        EOF
-        fi
-        
-        echo "✅ Deployment files prepared"
-        ls -la _site/
-    
-    - name: Upload Artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '_site'
-    
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
-    
-    - name: Display Deployment Info
-      run: |
-        echo "🚀 Deployment completed successfully!"
-        echo "📍 Site URL: ${{ steps.deployment.outputs.page_url }}"
-        echo "⏰ Deployed at: $(date)"
-        echo ""
-        echo "🔗 Your progress dashboard is now live at:"
-        echo "${{ steps.deployment.outputs.page_url }}"
+      - name: Checkout Repository (Latest)
+        uses: actions/checkout@v4
+        with:
+          # Get the latest commit including any changes from update job
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Prepare Deployment Files
+        run: |
+          echo "📦 Preparing files for GitHub Pages deployment..."
+
+          # Create deployment directory
+          mkdir -p _site
+
+          # Copy all necessary files to deployment directory
+          cp index.html _site/ 2>/dev/null || echo "⚠️ index.html not found"
+          cp README.md _site/ 2>/dev/null || echo "⚠️ README.md not found"
+          cp -r assets _site/ 2>/dev/null || echo "⚠️ assets directory not found"
+          cp -r modules _site/ 2>/dev/null || echo "⚠️ modules directory not found"
+          cp -r final-project _site/ 2>/dev/null || echo "⚠️ final-project directory not found"
+          cp setup-guide.md _site/ 2>/dev/null || echo "⚠️ setup-guide.md not found"
+          cp progress-report.md _site/ 2>/dev/null || echo "⚠️ progress-report.md not found"
+
+          # Copy any other important files
+          cp -r scripts _site/ 2>/dev/null || echo "⚠️ scripts directory not found"
+
+          # Create a .nojekyll file to bypass Jekyll processing
+          touch _site/.nojekyll
+
+          # Create a simple 404 page if it doesn't exist
+          if [ ! -f "_site/404.html" ]; then
+            cat > _site/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>404 - Page Not Found | Web Design Course</title>
+              <style>
+                  body { 
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      color: white;
+                      text-align: center; 
+                      padding: 100px 20px;
+                      margin: 0;
+                      min-height: 100vh;
+                      display: flex;
+                      flex-direction: column;
+                      justify-content: center;
+                      align-items: center;
+                  }
+                  .error-container {
+                      background: rgba(255, 255, 255, 0.1);
+                      backdrop-filter: blur(10px);
+                      padding: 40px;
+                      border-radius: 20px;
+                      max-width: 500px;
+                  }
+                  h1 { color: #fff; font-size: 4rem; margin: 0 0 20px 0; }
+                  h2 { color: #f8f9fa; font-size: 1.5rem; margin: 0 0 30px 0; font-weight: 300; }
+                  a { 
+                      color: #fff;
+                      background: rgba(255, 255, 255, 0.2);
+                      padding: 12px 30px;
+                      border-radius: 25px;
+                      text-decoration: none;
+                      font-weight: 500;
+                      transition: all 0.3s ease;
+                  }
+                  a:hover { 
+                      background: rgba(255, 255, 255, 0.3);
+                      transform: translateY(-2px);
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="error-container">
+                  <h1>404</h1>
+                  <h2>Oops! Page not found</h2>
+                  <p>The page you're looking for seems to have wandered off.</p>
+                  <br>
+                  <a href="/">← Back to Course Dashboard</a>
+              </div>
+          </body>
+          </html>
+          EOF
+          fi
+
+          echo "✅ Deployment files prepared"
+          echo "📁 Files in _site directory:"
+          ls -la _site/
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "_site"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Display Deployment Info
+        run: |
+          echo "🚀 Deployment completed successfully!"
+          echo "📍 Site URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "⏰ Deployed at: $(date)"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo ""
+          echo "🔗 Your progress dashboard is now live at:"
+          echo "${{ steps.deployment.outputs.page_url }}"
+          echo ""
+          echo "📋 Deployment includes:"
+          echo "- 📊 Progress dashboard (index.html)"
+          echo "- 📖 Course content (README.md)"  
+          echo "- 🛠️ Setup guide"
+          echo "- 📈 Progress reports"
+          echo "- 🎨 Assets and modules"
 
   notify-completion:
     needs: [update-progress, deploy-pages]
     runs-on: ubuntu-latest
     if: always()
-    
+
     steps:
-    - name: Workflow Summary
-      run: |
-        echo "📊 WORKFLOW EXECUTION SUMMARY"
-        echo "════════════════════════════════════════"
-        echo "🔄 Progress Update Job: ${{ needs.update-progress.result }}"
-        echo "🚀 Pages Deployment Job: ${{ needs.deploy-pages.result }}"
-        echo "📅 Execution Date: $(date)"
-        echo "🌿 Branch: ${{ github.ref_name }}"
-        echo "👤 Triggered by: ${{ github.actor }}"
-        echo ""
-        
-        if [ "${{ needs.update-progress.result }}" = "success" ]; then
-          echo "✅ Progress update completed successfully"
-        else
-          echo "❌ Progress update failed or was skipped"
-        fi
-        
-        if [ "${{ needs.deploy-pages.result }}" = "success" ]; then
-          echo "✅ GitHub Pages deployment completed successfully"
-          echo "🔗 Your site should be available shortly at your GitHub Pages URL"
-        elif [ "${{ needs.deploy-pages.result }}" = "skipped" ]; then
-          echo "⏭️ GitHub Pages deployment skipped (not master/main branch)"
-        else
-          echo "❌ GitHub Pages deployment failed"
-        fi
-        
-        echo ""
-        echo "🎯 Next steps:"
-        echo "1. Check your GitHub Pages URL for the updated site"
-        echo "2. Verify progress tracking is working correctly"
-        echo "3. Continue with your learning journey!"
+      - name: Workflow Summary
+        run: |
+          echo "📊 WORKFLOW EXECUTION SUMMARY"
+          echo "════════════════════════════════════════"
+          echo "🔄 Progress Update Job: ${{ needs.update-progress.result }}"
+          echo "🚀 Pages Deployment Job: ${{ needs.deploy-pages.result }}"
+          echo "📅 Execution Date: $(date)"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "👤 Triggered by: ${{ github.actor }}"
+          echo "🔗 Repository: ${{ github.repository }}"
+          echo ""
+
+          if [ "${{ needs.update-progress.result }}" = "success" ]; then
+            echo "✅ Progress update completed successfully"
+            if [ "${{ needs.update-progress.outputs.changes-made }}" = "true" ]; then
+              echo "📝 Changes were committed back to repository"
+            else
+              echo "📝 No changes needed to be committed"
+            fi
+          else
+            echo "❌ Progress update failed or was skipped"
+          fi
+
+          if [ "${{ needs.deploy-pages.result }}" = "success" ]; then
+            echo "✅ GitHub Pages deployment completed successfully"
+            echo "🔗 Your site should be available shortly at your GitHub Pages URL"
+          elif [ "${{ needs.deploy-pages.result }}" = "skipped" ]; then
+            echo "⏭️ GitHub Pages deployment skipped (not master/main branch)"
+          else
+            echo "❌ GitHub Pages deployment failed"
+          fi
+
+          echo ""
+          echo "🎯 Next steps:"
+          echo "1. Check your GitHub Pages URL for the updated site"
+          echo "2. Verify progress tracking is working correctly"
+          echo "3. Continue with your learning journey!"
+          echo "4. Monitor future workflow runs in the Actions tab"

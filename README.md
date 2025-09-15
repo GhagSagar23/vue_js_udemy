@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-24%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-27%25-yellow)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -37,25 +37,25 @@ By completing this course, you will be able to:
 
 ### Module 1: HTML Fundamentals
 
-**Progress: 12/13 Topics** ![Progress](https://img.shields.io/badge/Progress-92%25-brightgreen)
+**Progress: 13/13 Topics** ![Progress](https://img.shields.io/badge/Progress-100%25-brightgreen)
 
 **Topics Covered:**
 
-| Topic                | Status         | Description                                                          | Hands-on Project          |
-| -------------------- | -------------- | -------------------------------------------------------------------- | ------------------------- |
-| Setup & Environment  | ✅ Complete    | Editor setup, creating HTML files                                    | Create first HTML file    |
-| HTML Anatomy         | ✅ Complete    | Elements, tags, attributes structure                                 | Build basic page template |
-| Essential Tags       | ✅ Complete    | `<html>`, `<head>`, `<title>`, `<body>`                              | Complete page structure   |
-| Content Tags         | ✅ Complete    | `<h1>`, `<p>`, `<div>`, `<span>`                                     | Text content layout       |
-| Heading Tags         | ✅ Complete    | `<h1>` to `<h6>`, `<span>`                                           | Headings layout           |
-| Self-closing Tags    | ✅ Complete    | `<hr>`, `<br>`, proper usage                                         | Line breaks and dividers  |
-| Attributes & Classes | ✅ Complete    | `id`, `class`, `style` attributes                                    | Styled elements           |
-| Hyperlinks           | ✅ Complete    | `<a>` tags, navigation between pages                                 | Multi-page website        |
-| Images               | ✅ Complete    | `<img>` tags, alt text, optimization                                 | Image gallery             |
-| Lists                | ✅ Complete    | `<ul>`, `<ol>`, `<li>` for content organization                      | Navigation menu           |
-| Tables               | ✅ Complete    | `<table>`, `<tr>`, `<td>`, `<th>` structure                          | Data presentation         |
-| Semantic Elements    | ✅ Complete    | `<nav>`, `<header>`, `<section>`, `<article>`, `<aside>`, `<footer>` | Professional page layout  |
-| GitHub Pages Deploy  | ⬜ Not Started | Going live with your HTML site                                       | Live website deployment   |
+| Topic                | Status      | Description                                                          | Hands-on Project          |
+| -------------------- | ----------- | -------------------------------------------------------------------- | ------------------------- |
+| Setup & Environment  | ✅ Complete | Editor setup, creating HTML files                                    | Create first HTML file    |
+| HTML Anatomy         | ✅ Complete | Elements, tags, attributes structure                                 | Build basic page template |
+| Essential Tags       | ✅ Complete | `<html>`, `<head>`, `<title>`, `<body>`                              | Complete page structure   |
+| Content Tags         | ✅ Complete | `<h1>`, `<p>`, `<div>`, `<span>`                                     | Text content layout       |
+| Heading Tags         | ✅ Complete | `<h1>` to `<h6>`, `<span>`                                           | Headings layout           |
+| Self-closing Tags    | ✅ Complete | `<hr>`, `<br>`, proper usage                                         | Line breaks and dividers  |
+| Attributes & Classes | ✅ Complete | `id`, `class`, `style` attributes                                    | Styled elements           |
+| Hyperlinks           | ✅ Complete | `<a>` tags, navigation between pages                                 | Multi-page website        |
+| Images               | ✅ Complete | `<img>` tags, alt text, optimization                                 | Image gallery             |
+| Lists                | ✅ Complete | `<ul>`, `<ol>`, `<li>` for content organization                      | Navigation menu           |
+| Tables               | ✅ Complete | `<table>`, `<tr>`, `<td>`, `<th>` structure                          | Data presentation         |
+| Semantic Elements    | ✅ Complete | `<nav>`, `<header>`, `<section>`, `<article>`, `<aside>`, `<footer>` | Professional page layout  |
+| GitHub Pages Deploy  | ✅ Complete | Going live with your HTML site                                       | Live website deployment   |
 
 **Milestone Project:** Personal Portfolio Website (HTML only)
 
