@@ -1,77 +1,139 @@
-name: Update Course Progress
+name: Simple Progress Update
 
 on:
   push:
     branches: [master, develop]
-  pull_request:
-    branches: [master]
+    paths:
+      - "README.md"
+      - "modules/**"
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   update-progress:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '🤖 Auto-update')"
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Install dependencies
-        run: |
-          if [ -f package.json ]; then
-            npm ci
-          else
-            npm init -y
-            npm install
-          fi
 
       - name: Update Progress Badges
         run: |
-          # Run progress tracking script
-          if [ -f "scripts/update-progress.js" ]; then
-            npm run progress || echo "Progress script not found, skipping..."
+          #!/bin/bash
+          echo "📊 Analyzing progress in README.md..."
+
+          if [ ! -f "README.md" ]; then
+            echo "README.md not found, exiting..."
+            exit 0
           fi
 
-          # Alternative: Update badges with shell commands
-          if [ -f "README.md" ]; then
-            COMPLETED=$(grep -o "✅ Complete" README.md | wc -l)
-            NOT_STARTED=$(grep -o "⬜ Not Started" README.md | wc -l)
+          # Count progress items
+          COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
+          NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0")
+          TOTAL=$((COMPLETED + NOT_STARTED))
+
+          echo "Found: $COMPLETED completed, $NOT_STARTED not started"
+          echo "Total topics: $TOTAL"
+
+          if [ $TOTAL -eq 0 ]; then
+            echo "No progress items found, exiting..."
+            exit 0
+          fi
+
+          # Calculate percentage
+          PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+          echo "Progress percentage: $PERCENTAGE%"
+
+          # Determine color based on percentage
+          if [ $PERCENTAGE -eq 0 ]; then
+            COLOR="red"
+          elif [ $PERCENTAGE -lt 25 ]; then
+            COLOR="orange"  
+          elif [ $PERCENTAGE -lt 50 ]; then
+            COLOR="yellow"
+          elif [ $PERCENTAGE -lt 75 ]; then
+            COLOR="yellowgreen"
+          elif [ $PERCENTAGE -lt 100 ]; then
+            COLOR="green"
+          else
+            COLOR="brightgreen"
+          fi
+
+          echo "Badge color: $COLOR"
+
+          # Update progress badges
+          sed -i "s/Progress-[0-9]*%25-[a-z]*/Progress-${PERCENTAGE}%25-${COLOR}/g" README.md
+          sed -i "s/Progress-[0-9]*%25/Progress-${PERCENTAGE}%25/g" README.md
+
+          # Update module progress lines
+          # Module 1: HTML (12 topics expected)
+          MODULE1_COMPLETED=$(grep -A 20 "### Module 1:" README.md | grep -c "✅ Complete" || echo "0")
+          MODULE1_PERCENT=$(((MODULE1_COMPLETED * 100) / 12))
+          sed -i "s/\*\*Progress: [0-9]*\/12 Topics\*\*/\*\*Progress: ${MODULE1_COMPLETED}\/12 Topics\*\*/g" README.md
+
+          # Module 2: CSS (15 topics expected)  
+          MODULE2_COMPLETED=$(grep -A 30 "### Module 2:" README.md | grep -c "✅ Complete" || echo "0")
+          MODULE2_PERCENT=$(((MODULE2_COMPLETED * 100) / 15))
+          sed -i "s/\*\*Progress: [0-9]*\/15 Topics\*\*/\*\*Progress: ${MODULE2_COMPLETED}\/15 Topics\*\*/g" README.md
+
+          # Module 3: JavaScript (9 topics expected)
+          MODULE3_COMPLETED=$(grep -A 20 "### Module 3:" README.md | grep -c "✅ Complete" || echo "0") 
+          MODULE3_PERCENT=$(((MODULE3_COMPLETED * 100) / 9))
+          sed -i "s/\*\*Progress: [0-9]*\/9 Topics\*\*/\*\*Progress: ${MODULE3_COMPLETED}\/9 Topics\*\*/g" README.md
+
+          # Module 4: DOM (12 topics expected)
+          MODULE4_COMPLETED=$(grep -A 25 "### Module 4:" README.md | grep -c "✅ Complete" || echo "0")
+          MODULE4_PERCENT=$(((MODULE4_COMPLETED * 100) / 12))  
+          sed -i "s/\*\*Progress: [0-9]*\/12 Topics\*\*/\*\*Progress: ${MODULE4_COMPLETED}\/12 Topics\*\*/g" README.md
+
+          echo "📈 Updated progress:"
+          echo "  Overall: $PERCENTAGE% ($COMPLETED/$TOTAL)"
+          echo "  Module 1: $MODULE1_PERCENT% ($MODULE1_COMPLETED/12)" 
+          echo "  Module 2: $MODULE2_PERCENT% ($MODULE2_COMPLETED/15)"
+          echo "  Module 3: $MODULE3_PERCENT% ($MODULE3_COMPLETED/9)"
+          echo "  Module 4: $MODULE4_PERCENT% ($MODULE4_COMPLETED/12)"
+
+      - name: Update index.html (if exists)
+        run: |
+          if [ -f "index.html" ]; then
+            echo "📊 Updating index.html progress visualization..."
+            
+            COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
+            NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0")
             TOTAL=$((COMPLETED + NOT_STARTED))
             
             if [ $TOTAL -gt 0 ]; then
               PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+              ANGLE=$((PERCENTAGE * 36 / 10))
               
-              # Update progress badges
-              sed -i "s/Progress-[0-9]*%25/Progress-${PERCENTAGE}%25/g" README.md || true
-              sed -i "s/Progress-[0-9]*%-[a-z]*/Progress-${PERCENTAGE}%25-yellow/g" README.md || true
+              # Update progress text
+              sed -i "s/<div class=\"progress-text\">[0-9]*%<\/div>/<div class=\"progress-text\">${PERCENTAGE}%<\/div>/g" index.html
               
-              echo "📊 Updated progress: $COMPLETED/$TOTAL ($PERCENTAGE%)"
+              # Update progress circle
+              sed -i "s/conic-gradient(#4CAF50 0deg [0-9.]*deg/conic-gradient(#4CAF50 0deg ${ANGLE}deg/g" index.html
+              
+              echo "✅ Updated index.html with $PERCENTAGE% progress"
             fi
           fi
 
-      - name: Commit Progress Updates
+      - name: Commit changes
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Add files if they exist
-          git add README.md || true
-          git add index.html || true
-          git add progress-report.md || true
-
-          # Only commit if there are changes
-          if git diff --staged --quiet; then
+          if git diff --quiet README.md index.html; then
             echo "No changes to commit"
           else
-            git commit -m "🤖 Auto-update progress tracking"
+            COMPLETED=$(grep -c "✅ Complete" README.md || echo "0")
+            NOT_STARTED=$(grep -c "⬜ Not Started" README.md || echo "0") 
+            TOTAL=$((COMPLETED + NOT_STARTED))
+            PERCENTAGE=$(((COMPLETED * 100) / TOTAL))
+            
+            git add README.md index.html
+            git commit -m "🤖 Auto-update progress tracking: ${PERCENTAGE}% complete ($COMPLETED/$TOTAL topics)"
             git push
           fi
