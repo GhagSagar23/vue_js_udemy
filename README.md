@@ -82,7 +82,7 @@ By completing this course, you will be able to:
 | -------------------- | -------------- | --------------------------------------------------- | ---------------------- |
 | CSS Integration      | ✅ Complete    | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
 | CSS Syntax           | ✅ Complete    | Selectors, declarations, properties                 | Basic styling rules    |
-| Element Selection    | ⬜ Not Started | Tag, ID, class selectors                            | Targeted styling       |
+| Element Selection    | ✅ Complete    | Tag, ID, class selectors                            | Targeted styling       |
 | Colors & Backgrounds | ⬜ Not Started | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
 | Box Model            | ⬜ Not Started | Borders, margins, padding, height, width            | Layout understanding   |
 | Typography           | ⬜ Not Started | Text styling, font properties, Google Fonts         | Typography showcase    |
