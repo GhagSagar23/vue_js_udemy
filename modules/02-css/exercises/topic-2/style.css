@@ -9,6 +9,21 @@ Points Covered:
 - Use of flexbox
 - Use of CSS selectors (element, class, id, descendant, child, pseudo-class)
 */
+
+body {
+  background-color: rgba(0, 0, 0, 0.8);
+  font-family: "IBM Plex Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+nav {
+  background-color: #778899;
+  padding: 10px;
+  margin-bottom: 20px;
+  color: white;
+}
+
 h1 {
   background-color: #4CAF50;
   color: white;
@@ -18,14 +33,9 @@ h1 {
 
 h2 {
   color: #333;
-  border-bottom: 2px solid #4CAF50;
+  border-bottom: 2px solid #b8860b;
   padding-bottom: 5px;
-}
-
-body {
-  font-family: "IBM Plex Serif", serif;
-  font-weight: 400;
-  font-style: normal;
+  color: white;
 }
 
 p {
@@ -33,6 +43,7 @@ p {
   font-weight: 300;
   font-style: italic;
   margin-bottom: 15px;
+  color: white;
 }
 
 li {
@@ -40,23 +51,37 @@ li {
   font-family: "IBM Plex Serif", serif;
   font-weight: 500;
   font-style: italic;
+  color: white;
 }
 
 th {
   font-family: "IBM Plex Serif", serif;
   font-weight: 600;
   font-style: normal;
+  color: white;
 }
 
 td {
   font-family: "IBM Plex Serif", serif;
   font-weight: 400;
   font-style: normal;
+  color: white;
 }
 
 footer {
   text-align: center;
   padding: 10px;
-  background-color: #f1f1f1;
+  background-color: #778899;
   margin-top: 20px;
+}
+footer p {
+  color: white;
+  font-size: 24px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #87ceeb;
+  margin: 20px 0;
 }
