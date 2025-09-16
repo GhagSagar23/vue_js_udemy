@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-33%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-35%25-yellowgreen)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -74,7 +74,7 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 3/15 Topics** ![Progress](https://img.shields.io/badge/Progress-20%25-yellow)
+**Progress: 4/15 Topics** ![Progress](https://img.shields.io/badge/Progress-27%25-yellow)
 
 **Topics Covered:**
 
@@ -214,46 +214,6 @@ vue_js_udemy/
 - `feature/module-{number}-{topic}` (e.g., `feature/module-1-html-basics`)
 - `exercise/module-{number}-{exercise-name}` (e.g., `exercise/module-2-responsive-design`)
 - `project/milestone-{number}` (e.g., `project/milestone-1-portfolio`)
-
----
-
-## 🏷️ Pull Request Labels
-
-### Priority Labels
-
-- **🔴 high-priority**: Critical fixes or important features that need immediate attention
-- **🟡 medium-priority**: Standard features or improvements with normal timeline
-- **🟢 low-priority**: Nice-to-have features or minor improvements
-
-### Type Labels
-
-- **✨ feature**: New feature addition or enhancement to existing functionality
-- **🐛 bugfix**: Bug fixes or error corrections in code or documentation
-- **📚 documentation**: Updates to README, guides, or code comments
-- **🎨 ui/ux**: User interface or user experience improvements
-- **♻️ refactor**: Code refactoring without changing functionality
-- **🧪 testing**: Adding or updating tests and test-related changes
-
-### Module Labels
-
-- **📄 html**: Changes related to HTML module (Module 1)
-- **🎨 css**: Changes related to CSS module (Module 2)
-- **⚡ javascript**: Changes related to JavaScript fundamentals (Module 3)
-- **🌐 dom**: Changes related to DOM manipulation (Module 4)
-
-### Status Labels
-
-- **👀 needs-review**: Pull request ready for code review
-- **🔄 in-progress**: Work in progress, not ready for review
-- **✅ approved**: Approved and ready to merge
-- **❌ changes-requested**: Changes requested during review
-- **🚫 blocked**: Blocked by external dependencies or issues
-
-### Example PR Title Format:
-
-`[Module-1] ✨ Add HTML semantic elements exercise`
-`[Module-2] 🐛 Fix responsive design layout issue`
-`[Project] 🎨 Improve portfolio website styling`
 
 ---
 
