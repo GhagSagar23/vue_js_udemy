@@ -1,0 +1,25 @@
+div {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #333;
+  padding: 10px;
+  margin: 10px;
+}
+
+h2 {
+  border: solid 2px #333;
+  padding: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+  border: solid 2px #333;
+  padding: 8px;
+}
+th, td {
+  border: solid 1px #333;
+  padding: 8px;
+  text-align: center;
+}
