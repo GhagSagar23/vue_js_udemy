@@ -5,11 +5,23 @@
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
 ![DOM](https://img.shields.io/badge/DOM-Not%20Started-lightgrey)
+<br>
+[![Udemy](https://img.shields.io/badge/Udemy-A435F0?logo=udemy&logoColor=fff)](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
 
 > **Modern HTML, CSS, JavaScript coding for beginners**  
 > Learn how to create interactive, responsive, and dynamic websites from scratch
 
 ## 📋 Course Overview
+
+### Udemy Course Details
+
+- **Course Title:** Modern Web Design: HTML, CSS, JavaScript for Beginners
+- **Platform:** [Udemy](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
+- **Direct Link:** [Course Link](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
+- **Instructor:** [Laurence Svekis](https://www.udemy.com/user/lars51/)
+- **Duration:** 9+ hours on-demand video
+- **Includes:** HTML, CSS, JavaScript, DOM, Projects, Lifetime Access
+
 
 This comprehensive web design course covers all modern coding fundamentals needed to create professional websites. From basic HTML structure to advanced JavaScript DOM manipulation, this course provides a complete learning path for aspiring web developers.
 
