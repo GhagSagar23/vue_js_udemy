@@ -5,6 +5,8 @@
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
 ![DOM](https://img.shields.io/badge/DOM-Not%20Started-lightgrey)
+<br>
+[![Udemy](https://img.shields.io/badge/Udemy-A435F0?logo=udemy&logoColor=fff)](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
 
 > **Modern HTML, CSS, JavaScript coding for beginners**  
 > Learn how to create interactive, responsive, and dynamic websites from scratch
