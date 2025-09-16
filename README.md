@@ -85,7 +85,7 @@ By completing this course, you will be able to:
 | Element Selection    | ✅ Complete    | Tag, ID, class selectors                            | Targeted styling       |
 | Colors & Backgrounds | ✅ Complete    | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
 | Box Model            | ✅ Complete    | Borders, margins, padding, height, width            | Layout understanding   |
-| Typography           | ⬜ Not Started | Text styling, font properties, Google Fonts         | Typography showcase    |
+| Typography           | ✅ Complete    | Text styling, font properties, Google Fonts         | Typography showcase    |
 | Link Styling         | ⬜ Not Started | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
 | Display Properties   | ⬜ Not Started | `inline`, `block`, `none` display types             | Element positioning    |
 | Positioning          | ⬜ Not Started | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
