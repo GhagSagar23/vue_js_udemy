@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-29%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-31%25-yellow)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -10,6 +10,15 @@
 > Learn how to create interactive, responsive, and dynamic websites from scratch
 
 ## 📋 Course Overview
+
+### Udemy Course Details
+
+- **Course Title:** Modern Web Design: HTML, CSS, JavaScript for Beginners
+- **Platform:** [Udemy](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
+- **Direct Link:** [Course Link](https://www.udemy.com/course/web-design-html-css-js/?kw=Frontend+web+developer+Modern+HTML&src=sac&couponCode=MT250915G2)
+- **Instructor:** [Laurence Svekis](https://www.udemy.com/user/lars51/)
+- **Duration:** 9+ hours on-demand video
+- **Includes:** HTML, CSS, JavaScript, DOM, Projects, Lifetime Access
 
 This comprehensive web design course covers all modern coding fundamentals needed to create professional websites. From basic HTML structure to advanced JavaScript DOM manipulation, this course provides a complete learning path for aspiring web developers.
 
@@ -63,14 +72,14 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 1/15 Topics** ![Progress](https://img.shields.io/badge/Progress-7%25-orange)
+**Progress: 2/15 Topics** ![Progress](https://img.shields.io/badge/Progress-13%25-orange)
 
 **Topics Covered:**
 
 | Topic                | Status         | Description                                         | Hands-on Project       |
 | -------------------- | -------------- | --------------------------------------------------- | ---------------------- |
-| CSS Integration      | ✅ Complete | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
-| CSS Syntax           | ⬜ Not Started | Selectors, declarations, properties                 | Basic styling rules    |
+| CSS Integration      | ✅ Complete    | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
+| CSS Syntax           | ✅ Complete    | Selectors, declarations, properties                 | Basic styling rules    |
 | Element Selection    | ⬜ Not Started | Tag, ID, class selectors                            | Targeted styling       |
 | Colors & Backgrounds | ⬜ Not Started | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
 | Box Model            | ⬜ Not Started | Borders, margins, padding, height, width            | Layout understanding   |
