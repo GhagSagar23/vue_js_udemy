@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-27%25-yellow)
+![Course Progress](https://img.shields.io/badge/Progress-29%25-yellow)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -63,13 +63,13 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 0/15 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
+**Progress: 1/15 Topics** ![Progress](https://img.shields.io/badge/Progress-7%25-orange)
 
 **Topics Covered:**
 
 | Topic                | Status         | Description                                         | Hands-on Project       |
 | -------------------- | -------------- | --------------------------------------------------- | ---------------------- |
-| CSS Integration      | ⬜ Not Started | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
+| CSS Integration      | ✅ Complete | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
 | CSS Syntax           | ⬜ Not Started | Selectors, declarations, properties                 | Basic styling rules    |
 | Element Selection    | ⬜ Not Started | Tag, ID, class selectors                            | Targeted styling       |
 | Colors & Backgrounds | ⬜ Not Started | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
