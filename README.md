@@ -91,7 +91,7 @@ By completing this course, you will be able to:
 | Positioning          | ⬜ Not Started | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
 | Float & Clear        | ⬜ Not Started | Float layouts, clearing floats                      | Multi-column layout    |
 | CSS Combinators      | ⬜ Not Started | Child selectors, descendant selectors               | Advanced selection     |
-| Pseudo Elements      | ⬜ Not Started | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
+| Pseudo Elements      | ✅ Complete    | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
 | Responsive Design    | ⬜ Not Started | Media queries, mobile-first approach                | Mobile-friendly site   |
 | CSS Grid             | ⬜ Not Started | `display: grid`, `grid-template-areas`              | Grid-based layout      |
 | CSS Flexbox          | ⬜ Not Started | Flexible box layout, axes, alignment                | Flexible components    |
