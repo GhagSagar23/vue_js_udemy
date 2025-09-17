@@ -86,8 +86,8 @@ By completing this course, you will be able to:
 | Colors & Backgrounds | ✅ Complete    | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
 | Box Model            | ✅ Complete    | Borders, margins, padding, height, width            | Layout understanding   |
 | Typography           | ✅ Complete    | Text styling, font properties, Google Fonts         | Typography showcase    |
-| Link Styling         | ⬜ Not Started | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
-| Display Properties   | ⬜ Not Started | `inline`, `block`, `none` display types             | Element positioning    |
+| Link Styling         | ✅ Complete    | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
+| Display Properties   | ✅ Complete    | `inline`, `block`, `none` display types             | Element positioning    |
 | Positioning          | ⬜ Not Started | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
 | Float & Clear        | ⬜ Not Started | Float layouts, clearing floats                      | Multi-column layout    |
 | CSS Combinators      | ⬜ Not Started | Child selectors, descendant selectors               | Advanced selection     |

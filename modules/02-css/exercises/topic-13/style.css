@@ -1,0 +1,102 @@
+/* Display property demo styles */
+.display-demo {
+  margin: 24px 0;
+  padding: 16px;
+  background: #f7f7fa;
+  border: 1.5px dashed #764ba2;
+}
+
+.inline-example {
+  display: inline;
+  background: #e0e0e0;
+  color: #764ba2;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+.block-example {
+  display: block;
+  background: #4caf50;
+  color: #fff;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.none-example {
+  display: none;
+}
+/* Pseudo-element demo styles */
+.first-line-demo::first-line {
+  color: #4caf50;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.first-letter-demo::first-letter {
+  color: #764ba2;
+  font-size: 2em;
+  font-weight: bold;
+  float: left;
+  line-height: 1;
+  margin-right: 6px;
+}
+
+.after-demo::after {
+  content: " ← (added by ::after)";
+  color: #667eea;
+  font-style: italic;
+  font-size: 0.95em;
+}
+div {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #333;
+  padding: 10px;
+  margin: 10px;
+}
+
+h2 {
+  border: solid 2px #333;
+  padding: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+  border: solid 2px #333;
+  padding: 8px;
+}
+th,
+td {
+  border: solid 1px #333;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Pseudo Elements */
+
+a:link {
+  color: red;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+a:active {
+  color: yellow;
+}
+
+/* Display Properties */
+li {
+  display: inline-block;
+}

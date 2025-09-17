@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model Test Page</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Pseudo Elements Demo</h1>
+      <nav>
+        <ul>
+          <li><a href="#section1">Section 1</a></li>
+          <li><a href="#section2">Section 2</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    <section>
+      <h2>Display Property Examples</h2>
+      <div class="display-demo">
+        <span class="inline-example">This is <b>inline</b> (span)</span>
+        <span class="inline-example">Another inline element</span>
+        <div class="block-example">This is <b>block</b> (div)</div>
+        <span class="none-example">You should not see this (display: none)</span>
+        <p style="margin-top:12px; color:#888; font-size:0.98em;">
+          <b>Note:</b> The <code>inline-example</code> spans appear side by side, the <code>block-example</code> div takes a new line, and the <code>none-example</code> span is hidden.
+        </p>
+      </div>
+    </section>
+      <section id="section1">
+        <div>
+          <h2>Basic Elements</h2>
+          <p>
+            This is a <strong>sample paragraph</strong> to test the
+            <em>box model</em> in CSS.
+          </p>
+        </div>
+        <div class="pseudo-demo">
+          <h2>Pseudo-element Examples</h2>
+          <p class="first-line-demo">
+            The first line of this paragraph is styled differently using <code>::first-line</code>.<br>
+            The rest of the paragraph remains normal.
+          </p>
+          <p class="first-letter-demo">
+            Notice how the <code>::first-letter</code> pseudo-element makes the first letter stand out in this paragraph.
+          </p>
+          <span class="after-demo">This span uses <code>::after</code> to add content.</span>
+        </div>
+        </div>
+        <ul>
+          <li>Unordered list item 1</li>
+          <li>Unordered list item 2</li>
+        </ul>
+        <ol>
+          <li>Ordered list item 1</li>
+          <li>Ordered list item 2</li>
+        </ol>
+        <img src="../../resources/sagar.jpg" alt="Sample Image" width="120" />
+        <a href="https://www.example.com" target="_blank">External Link</a>
+      </section>
+      <section id="section2">
+        <h2>Table Example</h2>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Sr. No.</th>
+              <th>Name</th>
+              <th>Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Sagar</td>
+              <td>Student</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Alex</td>
+              <td>Instructor</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin: 16px; padding: 12px; background: #f0f0f0">
+          This is a <code>&lt;div&gt;</code> for box model testing.
+        </div>
+        <hr />
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Box Model Test Page</p>
+    </footer>
+  </body>
+</html>
