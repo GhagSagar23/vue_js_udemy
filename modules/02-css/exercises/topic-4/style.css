@@ -1,0 +1,67 @@
+/* Pseudo-element demo styles */
+.first-line-demo::first-line {
+  color: #4caf50;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.first-letter-demo::first-letter {
+  color: #764ba2;
+  font-size: 2em;
+  font-weight: bold;
+  float: left;
+  line-height: 1;
+  margin-right: 6px;
+}
+
+.after-demo::after {
+  content: " ← (added by ::after)";
+  color: #667eea;
+  font-style: italic;
+  font-size: 0.95em;
+}
+div {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #333;
+  padding: 10px;
+  margin: 10px;
+}
+
+h2 {
+  border: solid 2px #333;
+  padding: 4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 10px 0;
+  border: solid 2px #333;
+  padding: 8px;
+}
+th,
+td {
+  border: solid 1px #333;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Pseudo Elements */
+
+a:link {
+  color: red;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+a:active {
+  color: yellow;
+}
