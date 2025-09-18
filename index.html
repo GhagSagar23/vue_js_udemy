@@ -17,41 +17,156 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
     />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Component Stylesheets -->
+    <link rel="stylesheet" href="style/background-effects.css" />
+    <link rel="stylesheet" href="style/navigation.css" />
+    <link rel="stylesheet" href="style/cards-grids.css" />
+    <link rel="stylesheet" href="style/profile-components.css" />
+    <link rel="stylesheet" href="style/experience-section.css" />
+    <link rel="stylesheet" href="style/loading-animations.css" />
+    <link rel="stylesheet" href="style/layout-base.css" />
+
+    <link
+      rel="stylesheet"
+      href="profile_components/name_title/name_title.css"
+    />
+    <link
+      rel="stylesheet"
+      href="profile_components/progress_bar/progress_bar.css"
+    />
     <!-- Loader overlay will be placed in <body> -->
   </head>
 
   <body>
-    <!-- Loader Overlay -->
+    <!-- Neural Network Background -->
+    <div class="neural-background" id="neuralBackground">
+      <canvas id="neuralCanvas"></canvas>
+    </div>
+
+    <!-- Particle Trail Background -->
+    <div class="particle-background" id="particleBackground">
+      <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav" id="stickyNav">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <span class="nav-icon">🚀</span>
+          <span class="nav-name">Sagar Ghag</span>
+        </div>
+        <div class="nav-links">
+          <a href="#home" class="nav-link active" data-section="home">Home</a>
+          <a href="#journey" class="nav-link" data-section="journey">Journey</a>
+          <a href="#experience" class="nav-link" data-section="experience"
+            >Experience</a
+          >
+          <a href="#tech-stack" class="nav-link" data-section="tech-stack"
+            >Tech Stack</a
+          >
+          <a href="#progress" class="nav-link" data-section="progress"
+            >Progress</a
+          >
+          <a href="#achievements" class="nav-link" data-section="achievements"
+            >Achievements</a
+          >
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Enhanced Loader Overlay -->
     <div class="loader-overlay" id="loaderOverlay">
-      <div class="loader">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+      <div class="loader-container">
+        <div class="modern-loader">
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <div class="loader-ring"></div>
+          <div class="loader-center">
+            <span class="loader-icon">🚀</span>
+          </div>
+        </div>
+        <div class="loader-text">
+          <h2>Loading Amazing Content...</h2>
+          <p class="loader-progress">Preparing your journey</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skeleton Loading (hidden by default) -->
+    <div class="skeleton-overlay" id="skeletonOverlay" style="display: none">
+      <div class="container">
+        <div class="skeleton-header">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-subtitle"></div>
+          <div class="skeleton-description"></div>
+        </div>
+
+        <div class="skeleton-grid">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+
+        <div class="skeleton-content">
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
       </div>
     </div>
     <div class="container">
       <!-- Header with Profile -->
-      <div class="header">
-        <div class="profile-section">
-          <div class="profile-avatar">👨‍💻</div>
-          <div class="profile-info">
-            <h1>Hi, I'm Sagar! 👋</h1>
-            <div class="subtitle">Flutter & Vue.JS Developer</div>
-            <div class="description">
-              6 years of mobile development experience, currently expanding into
-              modern web development. Passionate about creating exceptional user
-              experiences across mobile and web platforms.
-            </div>
+      <div class="header scrub-scroll-container" id="home">
+        <!-- Name Title Component -->
+        <div class="name-title-component">
+          <div class="content">
+            <h1 class="title">
+              Hi, I'm Sagar
+              <div class="aurora">
+                <div class="aurora__item"></div>
+                <div class="aurora__item"></div>
+                <div class="aurora__item"></div>
+                <div class="aurora__item"></div>
+              </div>
+            </h1>
+            <p class="subtitle">Flutter & Vue.JS Developer</p>
+          </div>
+        </div>
+
+        <div class="profile-description">
+          <div class="description">
+            6 years of mobile development experience, currently expanding into
+            modern web development. Passionate about creating exceptional user
+            experiences across mobile and web platforms.
           </div>
         </div>
 
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/ghag23" target="_blank"
+          <a
+            class="linkedin"
+            href="https://www.linkedin.com/in/ghag23"
+            target="_blank"
             >💼 LinkedIn</a
           >
-          <a href="https://github.com/GhagSagar23" target="_blank">🐙 GitHub</a>
-          <a href="mailto:sagar.ghag1997@gmail.com">📧 Email</a>
           <a
+            class="github"
+            href="https://github.com/GhagSagar23"
+            target="_blank"
+            >🐙 GitHub</a
+          >
+          <a class="email" href="mailto:sagar.ghag1997@gmail.com">📧 Email</a>
+          <a
+            class="whatsapp"
             href="https://wa.me/917383565932?text=Hi,%20I%20found%20you%20on%20Github.%0A%0ACan%20we%20connect?"
             target="_blank"
             >💬 WhatsApp</a
@@ -60,116 +175,687 @@
       </div>
 
       <!-- Learning Journey -->
-      <div class="learning-journey">
+      <div class="learning-journey scrub-scroll-container" id="journey">
         <div class="journey-header">
-          <h2>🌐 My Web Development Learning Journey</h2>
+          <h2 class="scrub-scroll-parallax">
+            🌐 My Web Development Learning Journey
+          </h2>
           <div class="journey-description">
-            As a seasoned Flutter & Vue.JS Developer, I'm expanding my expertise
-            into full-stack web development. This dashboard tracks my progress
-            through comprehensive web technologies including HTML5, CSS3,
-            JavaScript ES6+, Vue.js, and modern DOM manipulation techniques.
+            With <strong>6+ years of mobile development experience</strong> and
+            <strong>5 years specializing in Flutter</strong>, I'm now expanding
+            my expertise into full-stack web development. As a Senior Software
+            Engineer at CriticalStart, I've successfully published the
+            <a
+              href="https://pub.dev/packages/livelyness_detection"
+              target="_blank"
+              style="color: #4fc3f7; text-decoration: none"
+              >livelyness_detection</a
+            >
+            Flutter package for advanced facial detection capabilities.
+            <br /><br />
+            This learning dashboard tracks my strategic transition from
+            cross-platform mobile development to comprehensive web technologies
+            including <strong>HTML5, CSS3, JavaScript ES6+, Vue.js</strong>, and
+            modern DOM manipulation techniques. My goal is to become a versatile
+            full-stack developer, leveraging my solid mobile foundation to
+            create seamless user experiences across all platforms.
           </div>
         </div>
       </div>
 
       <!-- Professional Experience -->
-      <div class="experience-section">
-        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px">
+      <div class="experience-section scrub-scroll-container" id="experience">
+        <h2 style="color: white; text-align: center; margin-bottom: 40px">
           💼 Professional Experience
         </h2>
-        <div class="experience-grid">
-          <div class="experience-card">
-            <h3>🏢 Current Role</h3>
-            <p>
-              <strong>Senior Software Engineer</strong><br />
-              @ CriticalStart<br />
-              Flutter & Vue.JS Developer
-            </p>
+        <div class="experience-horizontal-container">
+          <!-- Critical Start -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <div class="company-badge current">Current</div>
+                <h3>Senior Software Engineer</h3>
+                <h4>Critical Start</h4>
+                <div class="duration">Sep 2024 - Present</div>
+                <div class="location">Pune, India · Hybrid</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>
+                    Lead cross-platform mobile app development using Flutter,
+                    iOS (Swift), and Android
+                  </li>
+                  <li>
+                    Implement Fastlane CI/CD pipelines for automated deployment
+                  </li>
+                  <li>
+                    Manage App Store Connect and Google Play Console deployments
+                  </li>
+                  <li>
+                    Integrate cloud services (Firebase, AWS, Google Cloud)
+                  </li>
+                  <li>Mentor junior engineers and conduct code reviews</li>
+                  <li>
+                    Improved test coverage by 20% and reduced deployment times
+                    by 30%
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="experience-card">
-            <h3>📱 Mobile Expertise</h3>
-            <p>
-              <strong>5 years Flutter Development</strong><br />
-              <strong>2 years iOS Development</strong><br />
-              Cross-platform mobile apps
-            </p>
+
+          <!-- Doshaheen Solutions -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>Flutter Team & Tech Lead</h3>
+                <h4>Doshaheen Solutions</h4>
+                <div class="duration">Aug 2023 - Aug 2024</div>
+                <div class="location">Pune, India · On-site</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>
+                    Directed Flutter development team for cross-platform mobile
+                    applications
+                  </li>
+                  <li>
+                    Spearheaded adoption of emerging Flutter technologies and
+                    GraphQL APIs
+                  </li>
+                  <li>
+                    Mentored interns and junior engineers through technical
+                    guidance
+                  </li>
+                  <li>
+                    Collaborated with CTO on technical strategies and business
+                    alignment
+                  </li>
+                  <li>
+                    Introduced CI/CD practices (GitLab + Firebase Distribution)
+                  </li>
+                  <li>
+                    Successfully delivered multiple apps to App Store and Google
+                    Play
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="experience-card">
-            <h3>🚀 Open Source</h3>
-            <p>
-              <strong>livelyness_detection</strong><br />
-              Flutter package for facial detection<br />
-              Published on pub.dev
-            </p>
+
+          <!-- Zipdate -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>Senior Software Engineer</h3>
+                <h4>Zipdate</h4>
+                <div class="duration">Jun 2022 - Aug 2023</div>
+                <div class="location">Mumbai, India</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>
+                    Led end-to-end project lifecycle for Flutter applications
+                  </li>
+                  <li>
+                    Oversaw large codebases ensuring maintainability and
+                    scalability
+                  </li>
+                  <li>
+                    Researched and integrated latest Flutter frameworks and
+                    libraries
+                  </li>
+                  <li>
+                    Collaborated with CTO on technical strategies and business
+                    goals
+                  </li>
+                  <li>
+                    Established QA cycles and CI/CD automation with Fastlane
+                  </li>
+                  <li>
+                    Enhanced collaboration between engineering, design, and
+                    product teams
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="experience-card">
-            <h3>🎯 Current Focus</h3>
-            <p>
-              <strong>Full-Stack Development</strong><br />
-              Learning Vue.js, HTML5, CSS3<br />
-              Modern JavaScript & DOM
-            </p>
+
+          <!-- Sunflower Lab -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>Flutter & iOS Developer</h3>
+                <h4>Sunflower Lab</h4>
+                <div class="duration">Feb 2020 - Feb 2022</div>
+                <div class="location">Vadodara, India · On-site</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>Designed and developed Flutter and iOS applications</li>
+                  <li>Enhanced app UI/UX and optimized performance</li>
+                  <li>
+                    Integrated cloud services (Firebase, Google Cloud, AWS)
+                  </li>
+                  <li>Collaborated with product managers and designers</li>
+                  <li>Shipped new iOS features using Swift and SwiftUI</li>
+                  <li>
+                    Published multiple applications to App Store and Google Play
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- VR Software Systems -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>iOS Developer</h3>
+                <h4>VR Software Systems</h4>
+                <div class="duration">Aug 2018 - Sep 2019</div>
+                <div class="location">Vadodara, India</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>
+                    Developed native iOS applications using Swift and
+                    Objective-C
+                  </li>
+                  <li>Implemented MVVM architecture patterns</li>
+                  <li>Integrated REST APIs and JSON data handling</li>
+                  <li>
+                    Worked with Google ML Kit for machine learning features
+                  </li>
+                  <li>Followed Scrum methodologies and Agile practices</li>
+                  <li>Utilized Git for version control and collaboration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dots & Coms -->
+          <div class="experience-flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h3>iPhone Developer</h3>
+                <h4>Dots & Coms</h4>
+                <div class="duration">May 2017 - Dec 2017</div>
+                <div class="location">Vadodara, India</div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="flip-card-back">
+                <h4>Key Responsibilities</h4>
+                <ul>
+                  <li>
+                    Developed iPhone applications using Swift and Objective-C
+                  </li>
+                  <li>Implemented mobile application architecture patterns</li>
+                  <li>Worked with Xcode IDE and iOS development tools</li>
+                  <li>Integrated REST APIs and HTTP protocols</li>
+                  <li>Applied object-oriented programming principles</li>
+                  <li>Collaborated using Jira and Git version control</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Tech Stack -->
-      <div class="tech-stack">
-        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px">
+      <div class="tech-stack scrub-scroll-container" id="tech-stack">
+        <h2
+          class="scrub-scroll-parallax"
+          style="color: white; text-align: center; margin-bottom: 20px"
+        >
           🛠️ Tech Stack
         </h2>
-        <div class="tech-categories">
-          <div class="tech-category">
-            <h3>📱 Mobile Development</h3>
-            <div class="tech-list">
-              <span class="tech-item">Flutter</span>
-              <span class="tech-item">Dart</span>
-              <span class="tech-item">Swift</span>
-              <span class="tech-item">Kotlin</span>
-              <span class="tech-item">iOS</span>
-              <span class="tech-item">Android</span>
+        <div class="tech-horizontal-container">
+          <!-- Mobile Development -->
+          <div class="tech-flip-card">
+            <div class="tech-flip-card-inner">
+              <div class="tech-flip-card-front">
+                <h3>📱 Mobile Development</h3>
+                <div class="tech-preview">
+                  <span class="tech-item-preview">Flutter</span>
+                  <span class="tech-item-preview">Dart</span>
+                  <span class="tech-item-preview">Swift</span>
+                  <span class="tech-item-preview">+3 more</span>
+                </div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="tech-flip-card-back">
+                <h4>Mobile Technologies</h4>
+                <div class="tech-details">
+                  <div class="tech-skill">
+                    <span class="skill-name">Flutter</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 95%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Dart</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 95%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Swift</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Kotlin</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">iOS</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Android</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="tech-category">
-            <h3>🌐 Web Development (Learning)</h3>
-            <div class="tech-list">
-              <span class="tech-item learning">HTML5</span>
-              <span class="tech-item learning">CSS3</span>
-              <span class="tech-item learning">JavaScript ES6+</span>
-              <span class="tech-item learning">Vue.js</span>
-              <span class="tech-item learning">DOM Manipulation</span>
-              <span class="tech-item learning">Responsive Design</span>
+
+          <!-- Web Development -->
+          <div class="tech-flip-card">
+            <div class="tech-flip-card-inner">
+              <div class="tech-flip-card-front">
+                <div class="learning-badge">Learning</div>
+                <h3>🌐 Web Development</h3>
+                <div class="tech-preview">
+                  <span class="tech-item-preview learning">HTML5</span>
+                  <span class="tech-item-preview learning">CSS3</span>
+                  <span class="tech-item-preview learning">JavaScript</span>
+                  <span class="tech-item-preview">+3 more</span>
+                </div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="tech-flip-card-back">
+                <h4>Web Technologies (Learning)</h4>
+                <div class="tech-details">
+                  <div class="tech-skill">
+                    <span class="skill-name">HTML5</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 75%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">CSS3</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 70%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">JavaScript ES6+</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 60%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Vue.js</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 40%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">DOM Manipulation</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Responsive Design</span>
+                    <div class="skill-level">
+                      <div
+                        class="skill-bar learning-bar"
+                        style="width: 70%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="tech-category">
-            <h3>🔧 Tools & Technologies</h3>
-            <div class="tech-list">
-              <span class="tech-item">Git</span>
-              <span class="tech-item">GitHub Actions</span>
-              <span class="tech-item">Firebase</span>
-              <span class="tech-item">VS Code</span>
-              <span class="tech-item">Xcode</span>
-              <span class="tech-item">Android Studio</span>
+
+          <!-- Tools & Technologies -->
+          <div class="tech-flip-card">
+            <div class="tech-flip-card-inner">
+              <div class="tech-flip-card-front">
+                <h3>🔧 Tools & Technologies</h3>
+                <div class="tech-preview">
+                  <span class="tech-item-preview">Git</span>
+                  <span class="tech-item-preview">Firebase</span>
+                  <span class="tech-item-preview">VS Code</span>
+                  <span class="tech-item-preview">+3 more</span>
+                </div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="tech-flip-card-back">
+                <h4>Development Tools</h4>
+                <div class="tech-details">
+                  <div class="tech-skill">
+                    <span class="skill-name">Git</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">GitHub Actions</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Firebase</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">VS Code</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 95%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Xcode</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Android Studio</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 80%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="tech-category">
-            <h3>🎯 Methodologies</h3>
-            <div class="tech-list">
-              <span class="tech-item">Agile</span>
-              <span class="tech-item">Scrum</span>
-              <span class="tech-item">TDD</span>
-              <span class="tech-item">BDD</span>
-              <span class="tech-item">CI/CD</span>
+
+          <!-- Methodologies -->
+          <div class="tech-flip-card">
+            <div class="tech-flip-card-inner">
+              <div class="tech-flip-card-front">
+                <h3>🎯 Methodologies</h3>
+                <div class="tech-preview">
+                  <span class="tech-item-preview">Agile</span>
+                  <span class="tech-item-preview">Scrum</span>
+                  <span class="tech-item-preview">TDD</span>
+                  <span class="tech-item-preview">+2 more</span>
+                </div>
+                <div class="hover-hint">Hover for details →</div>
+              </div>
+              <div class="tech-flip-card-back">
+                <h4>Development Practices</h4>
+                <div class="tech-details">
+                  <div class="tech-skill">
+                    <span class="skill-name">Agile</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">Scrum</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">TDD</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 75%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">BDD</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 70%"></div>
+                    </div>
+                  </div>
+                  <div class="tech-skill">
+                    <span class="skill-name">CI/CD</span>
+                    <div class="skill-level">
+                      <div class="skill-bar" style="width: 80%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Course Progress Overview -->
-      <div class="progress-overview">
+      <div class="progress-overview scrub-scroll-container" id="progress">
         <div class="overall-progress">
-          <div class="progress-circle" id="overallProgress">
-            <div class="progress-text">45%</div>
+          <div
+            class="wobbling-element"
+            style="position: relative; margin: 10px"
+          >
+            <div id="percentageCounter">45%</div>
+
+            <svg width="300" height="300" viewBox="-100 -100 200 200">
+              <mask id="progress-mask">
+                <rect width="300" height="300" />
+                <circle
+                  id="progressRing"
+                  r="96"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-width="7"
+                  stroke-dasharray="100 100"
+                  stroke-dashoffset="55"
+                  pathLength="100"
+                />
+              </mask>
+              <circle
+                class="outer_circle"
+                cx="0"
+                cy="0"
+                r="99"
+                pathLength="64"
+              />
+              <circle
+                class="outer_circle_bars_l"
+                cx="0"
+                cy="0"
+                r="96"
+                pathLength="64"
+              />
+              <circle
+                class="outer_circle_bars_r"
+                cx="0"
+                cy="0"
+                r="96"
+                pathLength="64"
+              />
+
+              <circle
+                class="inner_progress_circle"
+                mask="url(#progress-mask)"
+                cx="0"
+                cy="0"
+                r="96"
+                pathLength="64"
+                transform="rotate(-90 0 0)"
+              />
+
+              <circle
+                class="inner_half_circle"
+                cx="0"
+                cy="0"
+                r="80"
+                pathLength="50"
+              />
+
+              <circle
+                class="center_outer_circle"
+                cx="0"
+                cy="0"
+                r="73"
+                pathLength="50"
+              />
+
+              <circle
+                class="center_inner_circle_second"
+                cx="0"
+                cy="0"
+                r="67"
+                pathLength="100"
+              />
+
+              <circle
+                class="center_inner_circle_3"
+                cx="0"
+                cy="0"
+                r="65"
+                pathLength="100"
+              />
+
+              <circle
+                class="center_inner_circle_3_dashed_verticle"
+                cx="0"
+                cy="0"
+                r="61"
+                pathLength="64"
+              />
+
+              <circle
+                class="center_inner_circle_3_dashed"
+                cx="0"
+                cy="0"
+                r="61"
+                pathLength="100"
+              />
+
+              <circle
+                class="center_inner_circle_2"
+                cx="0"
+                cy="0"
+                r="58"
+                pathLength="100"
+              />
+
+              <circle
+                class="center_inner_circle_1"
+                cx="0"
+                cy="0"
+                r="55"
+                pathLength="100"
+              />
+
+              <circle
+                class="center_inner_circle_0"
+                cx="0"
+                cy="0"
+                r="35"
+                pathLength="40"
+              />
+
+              <rect
+                class="small_rectangles"
+                x="-1.5"
+                y="-68"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="-2.5"
+                y="64"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="-68"
+                y="-2.5"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="64"
+                y="-1.5"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="-48"
+                y="-49"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="45"
+                y="-48"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="45"
+                y="46"
+                width="4"
+                height="4"
+                rx="1"
+              />
+              <rect
+                class="small_rectangles"
+                x="-49"
+                y="44"
+                width="4"
+                height="4"
+                rx="1"
+              />
+            </svg>
           </div>
           <h2>Overall Course Progress</h2>
           <p>
@@ -191,7 +877,7 @@
               <div class="progress-fill" style="width: 100%"></div>
             </div>
             <div class="module-stats">
-              <span>13/12 Topics Complete</span>
+              <span>13/13 Topics Complete</span>
               <span>100% Complete</span>
             </div>
           </div>
@@ -250,70 +936,61 @@
       </div>
 
       <!-- Achievements -->
-      <div class="achievements">
-        <h2>🏆 Learning Achievements</h2>
+      <div class="achievements scrub-scroll-container" id="achievements">
+        <h2 class="scrub-scroll-parallax">🏆 Learning Achievements</h2>
         <div class="achievement-grid">
-          <div class="achievement.unlocked">
-            <div class="achievement-icon">🎯</div>
+          <div class="achievement-unlocked">
+            <div class="achievement-icon scrub-scroll-animate">🎯</div>
             <h3>First Steps</h3>
             <p>Complete your first HTML file</p>
           </div>
 
-          <div class="achievement.unlocked">
-            <div class="achievement-icon">🎨</div>
+          <div class="achievement-unlocked">
+            <div class="achievement-icon scrub-scroll-animate">🎨</div>
             <h3>Style Master</h3>
             <p>Create your first styled webpage</p>
           </div>
 
-          <div class="achievement">
-            <div class="achievement-icon">⚡</div>
-            <h3>Interactive Wizard</h3>
-            <p>Add your first JavaScript functionality</p>
-          </div>
-
-          <div class="achievement">
-            <div class="achievement-icon">🌐</div>
-            <h3>DOM Manipulator</h3>
-            <p>Dynamically change page content</p>
-          </div>
-
-          <div class="achievement">
-            <div class="achievement-icon">📱</div>
-            <h3>Responsive Designer</h3>
-            <p>Create a mobile-friendly website</p>
-          </div>
-
-          <div class="achievement.unlocked">
-            <div class="achievement-icon">🚀</div>
+          <div class="achievement-unlocked">
+            <div class="achievement-icon scrub-scroll-animate">🚀</div>
             <h3>Deployment Pro</h3>
             <p>Deploy your site to GitHub Pages</p>
           </div>
 
           <div class="achievement">
-            <div class="achievement-icon">🎓</div>
+            <div class="achievement-icon scrub-scroll-animate">⚡</div>
+            <h3>Interactive Wizard</h3>
+            <p>Add your first JavaScript functionality</p>
+          </div>
+
+          <div class="achievement">
+            <div class="achievement-icon scrub-scroll-animate">🌐</div>
+            <h3>DOM Manipulator</h3>
+            <p>Dynamically change page content</p>
+          </div>
+
+          <div class="achievement">
+            <div class="achievement-icon scrub-scroll-animate">📱</div>
+            <h3>Responsive Designer</h3>
+            <p>Create a mobile-friendly website</p>
+          </div>
+
+          <div class="achievement">
+            <div class="achievement-icon scrub-scroll-animate">🎓</div>
             <h3>Course Graduate</h3>
             <p>Complete all 4 modules</p>
           </div>
 
           <div class="achievement">
-            <div class="achievement-icon">💼</div>
+            <div class="achievement-icon scrub-scroll-animate">💼</div>
             <h3>Full-Stack Ready</h3>
             <p>Build your professional portfolio</p>
           </div>
         </div>
-
-        <div style="text-align: center">
-          <button class="update-btn" onclick="updateProgress()">
-            📊 Update Progress
-          </button>
-          <p style="margin-top: 15px; font-size: 0.9rem; color: #7f8c8d">
-            Click to refresh progress from your latest commits
-          </p>
-        </div>
       </div>
 
       <!-- Footer -->
-      <div class="footer">
+      <div class="footer scrub-scroll-container">
         <h3>🚀 Ready to Connect?</h3>
         <p>
           <strong
@@ -355,6 +1032,7 @@
         </p>
       </div>
     </div>
+    <div class="spacer"></div>
 
     <script>
       // Loader logic
@@ -427,45 +1105,688 @@
 
       // Initialize progress visualization
       function initializeProgress() {
-        const progressCircle = document.getElementById("overallProgress");
-        const percentage = 6; // This would be calculated from actual progress
+        // Initialize the animated progress bar component
+        const counterElement = document.getElementById("percentageCounter");
+        const progressRing = document.getElementById("progressRing");
 
-        const angle = percentage * 3.6;
-        progressCircle.style.background = `conic-gradient(#4CAF50 0deg ${angle}deg, #e0e0e0 ${angle}deg 360deg)`;
+        if (!counterElement || !progressRing) return;
+
+        let count = 0;
+        const target = 45; // Current overall progress percentage
+        const duration = 2000; // in milliseconds
+        const intervalTime = 20; // in milliseconds
+
+        const increment = target / (duration / intervalTime);
+
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            count = target;
+            clearInterval(timer);
+          }
+          counterElement.textContent = `${Math.floor(count)}%`;
+
+          // Update the ring progress in SVG mask
+          progressRing.setAttribute("stroke-dashoffset", 100 - count);
+        }, intervalTime);
       }
 
-      // Load progress on page load
+      // Enhanced Loading System
       document.addEventListener("DOMContentLoaded", function () {
+        initializeNeuralNetwork();
+        initializeParticleSystem();
+        initializeEnhancedLoading();
         initializeProgress();
-
-        // Add welcome message after page loads
-        setTimeout(() => {
-          showNotification(
-            "👋 Welcome to my learning journey! Track my progress as I master web development."
-          );
-        }, 2500);
+        initializeNavigation();
       });
 
-      // Add hover effects to profile avatar
-      document
-        .querySelector(".profile-avatar")
-        .addEventListener("mouseenter", function () {
-          this.style.transform = "rotate(10deg) scale(1.1)";
+      // === NEURAL NETWORK BACKGROUND SYSTEM ===
+      let neuralNetwork = null;
+      let particleSystem = null;
+      let mouse = { x: 0, y: 0, isMoving: false };
+      let lastMouseMove = 0;
+
+      function initializeNeuralNetwork() {
+        const neuralCanvas = document.getElementById("neuralCanvas");
+
+        if (!neuralCanvas) return;
+
+        // Performance settings based on device
+        const isMobile =
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+        const isLowPower = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        const performanceConfig = {
+          nodeCount: isMobile ? 30 : 50,
+          animationQuality: isMobile ? "low" : "high",
+          reducedMotion: isLowPower,
+        };
+
+        // Initialize neural network
+        neuralNetwork = new NeuralNetworkBackground(
+          neuralCanvas,
+          performanceConfig
+        );
+
+        // Skip animations for reduced motion preference
+        if (isLowPower) {
+          neuralNetwork.config.pulseSpeed = 0;
+          return;
+        }
+
+        // Mouse tracking
+        document.addEventListener("mousemove", (e) => {
+          mouse.x = e.clientX;
+          mouse.y = e.clientY;
+          mouse.isMoving = true;
+          lastMouseMove = Date.now();
+
+          neuralNetwork.updateMouse(mouse.x, mouse.y);
         });
 
-      document
-        .querySelector(".profile-avatar")
-        .addEventListener("mouseleave", function () {
-          this.style.transform = "rotate(0deg) scale(1)";
+        // Touch events for mobile
+        document.addEventListener(
+          "touchmove",
+          (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            mouse.x = touch.clientX;
+            mouse.y = touch.clientY;
+            mouse.isMoving = true;
+            lastMouseMove = Date.now();
+
+            neuralNetwork.updateMouse(mouse.x, mouse.y);
+          },
+          { passive: false }
+        );
+
+        document.addEventListener("touchstart", (e) => {
+          const touch = e.touches[0];
+          mouse.x = touch.clientX;
+          mouse.y = touch.clientY;
         });
 
-      // Add smooth scrolling for internal links
+        // Stop mouse movement detection after 100ms
+        setInterval(() => {
+          if (Date.now() - lastMouseMove > 100) {
+            mouse.isMoving = false;
+          }
+        }, 50);
+
+        // Handle resize
+        window.addEventListener("resize", () => {
+          neuralNetwork.resize();
+        });
+
+        // Start animations
+        neuralNetwork.start();
+
+        // Pause animations when tab is not visible (performance optimization)
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            neuralNetwork.stop();
+          } else {
+            neuralNetwork.start();
+          }
+        });
+      }
+
+      // === PARTICLE SYSTEM INITIALIZATION ===
+      function initializeParticleSystem() {
+        const particleCanvas = document.getElementById("particleCanvas");
+
+        if (!particleCanvas) return;
+
+        // Performance settings based on device
+        const isMobile =
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent
+          );
+
+        const performanceConfig = {
+          maxParticles: isMobile ? 80 : 150,
+          animationQuality: isMobile ? "low" : "high",
+        };
+
+        particleSystem = new ParticleTrailSystem(
+          particleCanvas,
+          performanceConfig
+        );
+
+        // Mouse move event for particle generation
+        document.addEventListener("mousemove", (e) => {
+          if (particleSystem) {
+            particleSystem.addParticle(e.clientX, e.clientY);
+          }
+        });
+
+        // Touch move event for mobile particle generation
+        document.addEventListener("touchmove", (e) => {
+          if (particleSystem && e.touches.length > 0) {
+            const touch = e.touches[0];
+            particleSystem.addParticle(touch.clientX, touch.clientY);
+          }
+        });
+
+        // Resize handler
+        window.addEventListener("resize", () => {
+          if (particleSystem) {
+            particleSystem.resize();
+          }
+        });
+
+        particleSystem.start();
+
+        // Pause animations when tab is not visible (performance optimization)
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            particleSystem.stop();
+          } else {
+            particleSystem.start();
+          }
+        });
+      }
+
+      // Neural Network Background Class
+      class NeuralNetworkBackground {
+        constructor(canvas, performanceConfig = {}) {
+          this.canvas = canvas;
+          this.ctx = canvas.getContext("2d");
+          this.nodes = [];
+          this.connections = [];
+          this.mouseX = 0;
+          this.mouseY = 0;
+          this.animationId = null;
+          this.performanceConfig = performanceConfig;
+
+          this.config = {
+            nodeCount: performanceConfig.nodeCount || 50,
+            connectionDistance:
+              performanceConfig.animationQuality === "low" ? 120 : 150,
+            mouseInfluence: 200,
+            nodeColor: "rgba(139, 92, 246, 0.8)",
+            connectionColor: "rgba(139, 92, 246, 0.3)",
+            activeColor: "rgba(139, 92, 246, 1)",
+            nodeRadius: performanceConfig.animationQuality === "low" ? 1.5 : 2,
+            pulseSpeed: performanceConfig.reducedMotion ? 0 : 0.02,
+          };
+
+          this.resize();
+          this.createNodes();
+        }
+
+        resize() {
+          this.canvas.width = window.innerWidth;
+          this.canvas.height = window.innerHeight;
+        }
+
+        createNodes() {
+          this.nodes = [];
+          for (let i = 0; i < this.config.nodeCount; i++) {
+            this.nodes.push({
+              x: Math.random() * this.canvas.width,
+              y: Math.random() * this.canvas.height,
+              vx: (Math.random() - 0.5) * 0.5,
+              vy: (Math.random() - 0.5) * 0.5,
+              originalX: 0,
+              originalY: 0,
+              pulse: Math.random() * Math.PI * 2,
+              active: false,
+            });
+
+            // Set original position
+            this.nodes[i].originalX = this.nodes[i].x;
+            this.nodes[i].originalY = this.nodes[i].y;
+          }
+        }
+
+        updateMouse(x, y) {
+          this.mouseX = x;
+          this.mouseY = y;
+        }
+
+        update() {
+          // Update nodes
+          this.nodes.forEach((node) => {
+            // Gentle floating movement
+            node.x += node.vx;
+            node.y += node.vy;
+
+            // Bounce off edges
+            if (node.x < 0 || node.x > this.canvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > this.canvas.height) node.vy *= -1;
+
+            // Mouse attraction
+            const dx = this.mouseX - node.x;
+            const dy = this.mouseY - node.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < this.config.mouseInfluence) {
+              const force =
+                (this.config.mouseInfluence - distance) /
+                this.config.mouseInfluence;
+              node.x += dx * force * 0.01;
+              node.y += dy * force * 0.01;
+              node.active = true;
+            } else {
+              node.active = false;
+            }
+
+            // Update pulse
+            node.pulse += this.config.pulseSpeed;
+          });
+
+          // Update connections
+          this.connections = [];
+          for (let i = 0; i < this.nodes.length; i++) {
+            for (let j = i + 1; j < this.nodes.length; j++) {
+              const dx = this.nodes[i].x - this.nodes[j].x;
+              const dy = this.nodes[i].y - this.nodes[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < this.config.connectionDistance) {
+                const opacity = 1 - distance / this.config.connectionDistance;
+                this.connections.push({
+                  from: this.nodes[i],
+                  to: this.nodes[j],
+                  opacity: opacity,
+                  active: this.nodes[i].active || this.nodes[j].active,
+                });
+              }
+            }
+          }
+        }
+
+        draw() {
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+          // Draw connections
+          this.connections.forEach((connection) => {
+            const opacity = connection.opacity * (connection.active ? 1 : 0.5);
+            const color = connection.active
+              ? `rgba(139, 92, 246, ${opacity})`
+              : `rgba(139, 92, 246, ${opacity * 0.3})`;
+
+            this.ctx.strokeStyle = color;
+            this.ctx.lineWidth = connection.active ? 2 : 1;
+            this.ctx.beginPath();
+            this.ctx.moveTo(connection.from.x, connection.from.y);
+            this.ctx.lineTo(connection.to.x, connection.to.y);
+            this.ctx.stroke();
+
+            // Pulse effect on active connections
+            if (connection.active) {
+              const pulseOpacity = Math.sin(Date.now() * 0.005) * 0.3 + 0.7;
+              this.ctx.strokeStyle = `rgba(139, 92, 246, ${pulseOpacity})`;
+              this.ctx.lineWidth = 3;
+              this.ctx.stroke();
+            }
+          });
+
+          // Draw nodes
+          this.nodes.forEach((node) => {
+            const pulseSize = Math.sin(node.pulse) * 0.5 + 1;
+            const radius =
+              this.config.nodeRadius *
+              (node.active ? pulseSize * 1.5 : pulseSize);
+
+            // Node glow
+            if (node.active) {
+              const gradient = this.ctx.createRadialGradient(
+                node.x,
+                node.y,
+                0,
+                node.x,
+                node.y,
+                radius * 3
+              );
+              gradient.addColorStop(0, "rgba(139, 92, 246, 0.8)");
+              gradient.addColorStop(1, "rgba(139, 92, 246, 0)");
+
+              this.ctx.fillStyle = gradient;
+              this.ctx.beginPath();
+              this.ctx.arc(node.x, node.y, radius * 3, 0, Math.PI * 2);
+              this.ctx.fill();
+            }
+
+            // Node core
+            this.ctx.fillStyle = node.active
+              ? this.config.activeColor
+              : this.config.nodeColor;
+            this.ctx.beginPath();
+            this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+            this.ctx.fill();
+          });
+        }
+
+        animate() {
+          this.update();
+          this.draw();
+          this.animationId = requestAnimationFrame(() => this.animate());
+        }
+
+        start() {
+          this.animate();
+        }
+
+        stop() {
+          if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+          }
+        }
+      }
+
+      // Enhanced Particle Trail System Class
+      class ParticleTrailSystem {
+        constructor(canvas, performanceConfig = {}) {
+          this.canvas = canvas;
+          this.ctx = canvas.getContext("2d");
+          this.particles = [];
+          this.animationId = null;
+          this.performanceConfig = performanceConfig;
+
+          this.config = {
+            maxParticles: performanceConfig.maxParticles || 150, // Increased from 50
+            particleLife:
+              performanceConfig.animationQuality === "low" ? 50 : 80, // Increased lifespan
+            particleSize:
+              performanceConfig.animationQuality === "low" ? 1.5 : 2.5, // Slightly smaller for more particles
+            velocity: 0.8, // Increased velocity
+            colors: this.getThemeColors(), // Use theme colors
+          };
+
+          this.resize();
+        }
+
+        getThemeColors() {
+          const style = getComputedStyle(document.documentElement);
+          return [
+            style.getPropertyValue("--particle-primary-color").trim() ||
+              "rgba(242, 242, 247, 0.9)",
+            style.getPropertyValue("--particle-secondary-color").trim() ||
+              "rgba(242, 242, 247, 0.7)",
+            style.getPropertyValue("--particle-tertiary-color").trim() ||
+              "rgba(242, 242, 247, 0.5)",
+          ];
+        }
+
+        resize() {
+          this.canvas.width = window.innerWidth;
+          this.canvas.height = window.innerHeight;
+        }
+
+        addParticle(x, y) {
+          if (this.particles.length > this.config.maxParticles) {
+            this.particles.shift();
+          }
+
+          // Add multiple particles for richer effect
+          for (let i = 0; i < 3; i++) {
+            this.particles.push({
+              x: x + (Math.random() - 0.5) * 10,
+              y: y + (Math.random() - 0.5) * 10,
+              vx: (Math.random() - 0.5) * this.config.velocity,
+              vy: (Math.random() - 0.5) * this.config.velocity,
+              life: this.config.particleLife,
+              maxLife: this.config.particleLife,
+              size: this.config.particleSize + Math.random() * 1,
+              color:
+                this.config.colors[
+                  Math.floor(Math.random() * this.config.colors.length)
+                ],
+            });
+          }
+        }
+
+        update() {
+          this.particles = this.particles.filter((particle) => {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+            particle.life--;
+
+            // Gravity and friction
+            particle.vy += 0.015;
+            particle.vx *= 0.995;
+            particle.vy *= 0.995;
+
+            return particle.life > 0;
+          });
+        }
+
+        draw() {
+          this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+          this.particles.forEach((particle) => {
+            const opacity = particle.life / particle.maxLife;
+            const size = particle.size * opacity;
+
+            // Simple particle without glow - just solid color
+            this.ctx.fillStyle = particle.color.replace(
+              /[\d.]+\)$/,
+              `${opacity})`
+            );
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
+            this.ctx.fill();
+          });
+        }
+
+        animate() {
+          this.update();
+          this.draw();
+          this.animationId = requestAnimationFrame(() => this.animate());
+        }
+
+        start() {
+          this.animate();
+        }
+
+        stop() {
+          if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+          }
+        }
+      }
+
+      function initializeEnhancedLoading() {
+        const loaderOverlay = document.getElementById("loaderOverlay");
+        const skeletonOverlay = document.getElementById("skeletonOverlay");
+        const loaderProgress = document.querySelector(".loader-progress");
+
+        const loadingSteps = [
+          "Initializing components...",
+          "Loading animations...",
+          "Preparing content...",
+          "Optimizing experience...",
+          "Almost ready...",
+        ];
+
+        let currentStep = 0;
+
+        // Animate loading text
+        const progressInterval = setInterval(() => {
+          if (currentStep < loadingSteps.length) {
+            loaderProgress.textContent = loadingSteps[currentStep];
+            currentStep++;
+          }
+        }, 400);
+
+        // Simulate content loading with skeleton
+        setTimeout(() => {
+          clearInterval(progressInterval);
+
+          // Hide main loader
+          loaderOverlay.classList.add("fade-out");
+
+          // Show skeleton briefly
+          setTimeout(() => {
+            loaderOverlay.style.display = "none";
+            skeletonOverlay.style.display = "block";
+
+            // Simulate skeleton loading time
+            setTimeout(() => {
+              skeletonOverlay.style.opacity = "0";
+              skeletonOverlay.style.transition = "opacity 0.5s ease";
+
+              setTimeout(() => {
+                skeletonOverlay.style.display = "none";
+
+                // Trigger progressive content reveal
+                revealContentProgressively();
+
+                // Show welcome message
+                setTimeout(() => {
+                  showNotification(
+                    "👋 Welcome to my learning journey! Track my progress as I master web development."
+                  );
+                }, 1000);
+              }, 500);
+            }, 800);
+          }, 300);
+        }, 2000);
+      }
+
+      function revealContentProgressively() {
+        const sections = document.querySelectorAll(".scrub-scroll-container");
+        const cards = document.querySelectorAll(
+          ".module-card, .experience-card, .tech-category"
+        );
+
+        // Initially hide all content
+        sections.forEach((section) => {
+          section.style.opacity = "0";
+          section.style.transform = "translateY(30px)";
+        });
+
+        // Reveal sections with stagger
+        sections.forEach((section, index) => {
+          setTimeout(() => {
+            section.style.transition =
+              "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            section.style.opacity = "1";
+            section.style.transform = "translateY(0)";
+          }, index * 200);
+        });
+
+        // Add loading shimmer effect to cards initially
+        cards.forEach((card) => {
+          card.classList.add("loading-shimmer");
+          setTimeout(() => {
+            card.classList.remove("loading-shimmer");
+          }, 2000 + Math.random() * 1000);
+        });
+      }
+
+      // Initialize Navigation System
+      function initializeNavigation() {
+        const stickyNav = document.getElementById("stickyNav");
+        const navToggle = document.getElementById("navToggle");
+        const navLinks = document.querySelector(".nav-links");
+        const progressBar = document.getElementById("scrollProgressBar");
+        const sections = document.querySelectorAll("[id]");
+        const navLinksElements = document.querySelectorAll(".nav-link");
+
+        // Show/hide sticky navigation based on scroll
+        let lastScrollY = window.scrollY;
+        window.addEventListener("scroll", () => {
+          const currentScrollY = window.scrollY;
+
+          // Show nav after scrolling down 100px
+          if (currentScrollY > 100) {
+            stickyNav.classList.add("visible");
+          } else {
+            stickyNav.classList.remove("visible");
+          }
+
+          // Update scroll progress
+          const scrollProgress =
+            (currentScrollY /
+              (document.documentElement.scrollHeight - window.innerHeight)) *
+            100;
+          progressBar.style.width = Math.min(scrollProgress, 100) + "%";
+
+          // Update active navigation link
+          updateActiveNavLink();
+
+          lastScrollY = currentScrollY;
+        });
+
+        // Mobile navigation toggle
+        navToggle.addEventListener("click", () => {
+          navToggle.classList.toggle("active");
+          navLinks.classList.toggle("active");
+        });
+
+        // Navigation link click handlers
+        navLinksElements.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetSection = link.getAttribute("data-section");
+            const targetElement = document.getElementById(targetSection);
+
+            if (targetElement) {
+              // Close mobile menu if open
+              navToggle.classList.remove("active");
+              navLinks.classList.remove("active");
+
+              // Smooth scroll to section
+              const offsetTop = targetElement.offsetTop - 80; // Account for sticky nav height
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "smooth",
+              });
+
+              // Update active link
+              navLinksElements.forEach((l) => l.classList.remove("active"));
+              link.classList.add("active");
+            }
+          });
+        });
+
+        // Update active navigation link based on scroll position
+        function updateActiveNavLink() {
+          let currentSection = "";
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop - 120;
+            const sectionHeight = section.offsetHeight;
+
+            if (
+              window.scrollY >= sectionTop &&
+              window.scrollY < sectionTop + sectionHeight
+            ) {
+              currentSection = section.getAttribute("id");
+            }
+          });
+
+          navLinksElements.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("data-section") === currentSection) {
+              link.classList.add("active");
+            }
+          });
+        }
+
+        // Initial active link update
+        updateActiveNavLink();
+      }
+
+      // Enhanced smooth scrolling for internal links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: "smooth",
+            });
+          }
         });
       });
     </script>

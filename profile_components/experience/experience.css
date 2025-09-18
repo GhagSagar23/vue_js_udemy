@@ -1,0 +1,391 @@
+/* ================================
+   PROFESSIONAL EXPERIENCE SECTION
+   ================================ */
+
+/* === EXPERIENCE CONTAINER === */
+.experience-horizontal-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+}
+
+/* === FLIP CARD STRUCTURE === */
+.experience-flip-card {
+  perspective: 1000px;
+  min-width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.experience-flip-card:hover {
+  height: 280px;
+  min-width: 350px;
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.experience-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* === CARD FACES === */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  padding: 15px;
+  align-items: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* === FRONT CARD CONTENT === */
+.flip-card-front h3 {
+  color: #4fc3f7;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.flip-card-front h4 {
+  color: #f2f2f7;
+  font-size: 1em;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.duration {
+  color: #90caf9;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+
+.location {
+  color: #b0bec5;
+  font-size: 0.8em;
+  margin-bottom: 12px;
+}
+
+.company-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+.hover-hint {
+  color: #64b5f6;
+  font-size: 0.75em;
+  opacity: 0.8;
+  margin-top: auto;
+}
+
+/* === BACK CARD CONTENT === */
+.flip-card-back h4 {
+  color: #4fc3f7;
+  font-size: 1em;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.flip-card-back ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.flip-card-back li {
+  color: #e1f5fe;
+  font-size: 0.75em;
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.3;
+}
+
+.flip-card-back li:before {
+  content: "▶";
+  color: #4fc3f7;
+  position: absolute;
+  left: 0;
+  font-size: 0.7em;
+  top: 1px;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .experience-horizontal-container {
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .experience-flip-card {
+    min-width: 280px;
+    height: 180px;
+  }
+
+  .experience-flip-card:hover {
+    height: 240px;
+    min-width: 320px;
+  }
+
+  .flip-card-front h3 {
+    font-size: 1em;
+  }
+
+  .flip-card-back li {
+    font-size: 0.7em;
+    margin-bottom: 6px;
+    padding-left: 15px;
+    line-height: 1.3;
+  }
+
+  .flip-card-back h4 {
+    font-size: 0.9em;
+    margin-bottom: 12px;
+  }
+
+  .flip-card-back {
+    padding: 12px;
+  }
+}
+
+/* === EXPERIENCE CONTAINER === */
+.experience-horizontal-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 0;
+  scroll-behavior: smooth;
+}
+
+/* === FLIP CARD STRUCTURE === */
+.experience-flip-card {
+  perspective: 1000px;
+  min-width: 300px;
+  height: 200px;
+  flex-shrink: 0;
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.experience-flip-card:hover {
+  height: 280px;
+  min-width: 350px;
+  z-index: 10;
+  transform: scale(1.05);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.experience-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* === CARD FACES === */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  padding: 15px;
+  align-items: flex-start;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* === FRONT CARD CONTENT === */
+.flip-card-front h3 {
+  color: #4fc3f7;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.flip-card-front h4 {
+  color: #f2f2f7;
+  font-size: 1em;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.duration {
+  color: #90caf9;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+
+.location {
+  color: #b0bec5;
+  font-size: 0.8em;
+  margin-bottom: 12px;
+}
+
+.company-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: bold;
+}
+
+.hover-hint {
+  color: #64b5f6;
+  font-size: 0.75em;
+  opacity: 0.8;
+  margin-top: auto;
+}
+
+/* === BACK CARD CONTENT === */
+.flip-card-back h4 {
+  color: #4fc3f7;
+  font-size: 1em;
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.flip-card-back ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.flip-card-back li {
+  color: #e1f5fe;
+  font-size: 0.75em;
+  margin-bottom: 8px;
+  padding-left: 15px;
+  position: relative;
+  line-height: 1.3;
+}
+
+.flip-card-back li:before {
+  content: "▶";
+  color: #4fc3f7;
+  position: absolute;
+  left: 0;
+  font-size: 0.7em;
+  top: 1px;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  .experience-horizontal-container {
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .experience-flip-card {
+    min-width: 280px;
+    height: 180px;
+  }
+
+  .experience-flip-card:hover {
+    height: 240px;
+    min-width: 320px;
+  }
+
+  .flip-card-front h3 {
+    font-size: 1em;
+  }
+
+  .flip-card-back li {
+    font-size: 0.7em;
+    margin-bottom: 6px;
+    padding-left: 15px;
+    line-height: 1.3;
+  }
+
+  .flip-card-back h4 {
+    font-size: 0.9em;
+    margin-bottom: 12px;
+  }
+
+  .flip-card-back {
+    padding: 12px;
+  }
+}

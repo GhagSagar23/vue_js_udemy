@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap");
+
+body {
+  background: radial-gradient(
+      93% 93% at 8% 128%,
+      rgba(255, 238, 194, 1) 0%,
+      rgba(255, 238, 194, 0.2) 60%,
+      rgba(194, 233, 255, 0) 100%
+    ),
+    radial-gradient(
+      49% 88% at 27% -14%,
+      rgba(93, 227, 236, 0.73) 0%,
+      rgba(93, 227, 236, 0.17) 60%,
+      rgba(93, 227, 236, 0) 100%
+    ),
+    radial-gradient(
+      115% 156% at 90% 89%,
+      rgba(75, 254, 222, 1) 0%,
+      rgba(75, 254, 222, 0) 100%
+    ),
+    linear-gradient(
+      234deg,
+      rgba(69, 74, 187, 1) 25%,
+      rgba(69, 74, 187, 0.77) 35%,
+      rgba(69, 74, 187, 0.4) 50%,
+      rgba(91, 196, 229, 0) 84%
+    ),
+    radial-gradient(
+      119% 119% at 3% 26%,
+      rgba(48, 142, 230, 1) 0%,
+      rgba(48, 158, 230, 0) 74%
+    ),
+    linear-gradient(
+      360deg,
+      rgba(242, 245, 250, 1) 0%,
+      rgba(242, 245, 250, 1) 100%
+    );
+  background-blend-mode: multiply, overlay, screen, darken, lighten;
+}
+
+.name-title-component {
+  --bg: transparent;
+  --clr-1: #00c2ff;
+  --clr-2: #33ff8c;
+  --clr-3: #ffc640;
+  --clr-4: #e54cff;
+
+  --blur: 1rem;
+  --fs: clamp(2.5rem, 6vw, 5rem);
+  --ls: clamp(-1.75px, -0.25vw, -3.5px);
+}
+
+.name-title-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+  color: #fff;
+  font-family: "Inter", "DM Sans", Arial, sans-serif;
+  padding: 20px 0;
+  min-height: 200px;
+}
+
+.name-title-component *,
+.name-title-component *::before,
+.name-title-component *::after {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.name-title-component .content {
+  text-align: center;
+}
+
+.name-title-component .title {
+  font-size: var(--fs);
+  font-weight: 800;
+  letter-spacing: var(--ls);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  margin: 0;
+}
+
+.name-title-component .subtitle {
+  font-size: var(--fs);
+  font-weight: 400;
+  letter-spacing: var(--ls);
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+  margin: 0;
+}
+
+.name-title-component .aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  mix-blend-mode: darken;
+  pointer-events: none;
+}
+
+.name-title-component .aurora__item {
+  overflow: hidden;
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  background-color: var(--clr-1);
+  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  filter: blur(var(--blur));
+  mix-blend-mode: overlay;
+}
+
+.name-title-component .aurora__item:nth-of-type(1) {
+  top: -50%;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-1 12s ease-in-out infinite alternate;
+}
+
+.name-title-component .aurora__item:nth-of-type(2) {
+  background-color: var(--clr-3);
+  right: 0;
+  top: 0;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-2 12s ease-in-out infinite alternate;
+}
+
+.name-title-component .aurora__item:nth-of-type(3) {
+  background-color: var(--clr-2);
+  left: 0;
+  bottom: 0;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-3 8s ease-in-out infinite alternate;
+}
+
+.name-title-component .aurora__item:nth-of-type(4) {
+  background-color: var(--clr-4);
+  right: 0;
+  bottom: -50%;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-4 24s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-1 {
+  0% {
+    top: 0;
+    right: 0;
+  }
+
+  50% {
+    top: 100%;
+    right: 75%;
+  }
+
+  75% {
+    top: 100%;
+    right: 25%;
+  }
+
+  100% {
+    top: 0;
+    right: 0;
+  }
+}
+
+@keyframes aurora-2 {
+  0% {
+    top: -50%;
+    left: 0%;
+  }
+
+  60% {
+    top: 100%;
+    left: 75%;
+  }
+
+  85% {
+    top: 100%;
+    left: 25%;
+  }
+
+  100% {
+    top: -50%;
+    left: 0%;
+  }
+}
+
+@keyframes aurora-3 {
+  0% {
+    bottom: 0;
+    left: 0;
+  }
+
+  40% {
+    bottom: 100%;
+    left: 75%;
+  }
+
+  65% {
+    bottom: 40%;
+    left: 50%;
+  }
+
+  100% {
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@keyframes aurora-4 {
+  0% {
+    bottom: -50%;
+    right: 0;
+  }
+
+  50% {
+    bottom: 0%;
+    right: 40%;
+  }
+
+  90% {
+    bottom: 50%;
+    right: 25%;
+  }
+
+  100% {
+    bottom: -50%;
+    right: 0;
+  }
+}
+
+@keyframes aurora-border {
+  0% {
+    border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  }
+
+  25% {
+    border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%;
+  }
+
+  50% {
+    border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%;
+  }
+
+  75% {
+    border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%;
+  }
+
+  100% {
+    border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  }
+}

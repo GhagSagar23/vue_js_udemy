@@ -1,0 +1,83 @@
+/* ================================
+   BACKGROUND EFFECTS STYLES
+   ================================ */
+
+/* === NEURAL NETWORK BACKGROUND === */
+.neural-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--background);
+  overflow: hidden;
+}
+
+#neuralCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* === PARTICLE TRAIL BACKGROUND === */
+.particle-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#particleCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .neural-background {
+    display: none;
+  }
+  .particle-background {
+    display: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .neural-background {
+    opacity: 0.7;
+  }
+  .particle-background {
+    opacity: 0.5;
+  }
+
+  #neuralCanvas {
+    will-change: auto;
+  }
+  #particleCanvas {
+    will-change: auto;
+  }
+}
+
+/* Low-power device optimizations */
+@media (max-resolution: 1dppx) {
+  .neural-background {
+    opacity: 0.5;
+  }
+  .particle-background {
+    opacity: 0.3;
+  }
+}
