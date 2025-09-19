@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-45%25-yellowgreen)
+![Course Progress](https://img.shields.io/badge/Progress-51%25-yellowgreen)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -74,7 +74,7 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 9/15 Topics** ![Progress](https://img.shields.io/badge/Progress-60%25-yellowgreen)
+**Progress: 12/15 Topics** ![Progress](https://img.shields.io/badge/Progress-80%25-green)
 
 **Topics Covered:**
 
@@ -88,9 +88,9 @@ By completing this course, you will be able to:
 | Typography           | ✅ Complete    | Text styling, font properties, Google Fonts         | Typography showcase    |
 | Link Styling         | ✅ Complete    | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
 | Display Properties   | ✅ Complete    | `inline`, `block`, `none` display types             | Element positioning    |
-| Positioning          | ⬜ Not Started | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
-| Float & Clear        | ⬜ Not Started | Float layouts, clearing floats                      | Multi-column layout    |
-| CSS Combinators      | ⬜ Not Started | Child selectors, descendant selectors               | Advanced selection     |
+| Positioning          | ✅ Complete    | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
+| Float & Clear        | ✅ Complete    | Float layouts, clearing floats                      | Multi-column layout    |
+| CSS Combinators      | ✅ Complete    | Child selectors, descendant selectors               | Advanced selection     |
 | Pseudo Elements      | ✅ Complete    | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
 | Responsive Design    | ⬜ Not Started | Media queries, mobile-first approach                | Mobile-friendly site   |
 | CSS Grid             | ⬜ Not Started | `display: grid`, `grid-template-areas`              | Grid-based layout      |
