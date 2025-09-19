@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-51%25-yellowgreen)
+![Course Progress](https://img.shields.io/badge/Progress-53%25-yellowgreen)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -74,7 +74,7 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 12/15 Topics** ![Progress](https://img.shields.io/badge/Progress-80%25-green)
+**Progress: 13/15 Topics** ![Progress](https://img.shields.io/badge/Progress-87%25-brightgreen)
 
 **Topics Covered:**
 
@@ -92,7 +92,7 @@ By completing this course, you will be able to:
 | Float & Clear        | ✅ Complete    | Float layouts, clearing floats                      | Multi-column layout    |
 | CSS Combinators      | ✅ Complete    | Child selectors, descendant selectors               | Advanced selection     |
 | Pseudo Elements      | ✅ Complete    | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
-| Responsive Design    | ⬜ Not Started | Media queries, mobile-first approach                | Mobile-friendly site   |
+| Responsive Design    | ✅ Complete    | Media queries, mobile-first approach                | Mobile-friendly site   |
 | CSS Grid             | ⬜ Not Started | `display: grid`, `grid-template-areas`              | Grid-based layout      |
 | CSS Flexbox          | ⬜ Not Started | Flexible box layout, axes, alignment                | Flexible components    |
 

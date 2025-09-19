@@ -4,7 +4,7 @@ const path = require('path');
 class TableBasedProgressTracker {
   constructor() {
     this.modules = [
-      { name: 'HTML Fundamentals', number: 1, expectedTopics: 12, icon: '📄' },
+      { name: 'HTML Fundamentals', number: 1, expectedTopics: 13, icon: '📄' },
       { name: 'CSS Styling & Design', number: 2, expectedTopics: 15, icon: '🎨' },
       { name: 'JavaScript Fundamentals', number: 3, expectedTopics: 9, icon: '⚡' },
       { name: 'JavaScript DOM Manipulation', number: 4, expectedTopics: 12, icon: '🌐' }
@@ -235,7 +235,7 @@ class TableBasedProgressTracker {
       },
       {
         name: 'Deployment Pro',
-        condition: overall.completed >= 12, // Completed basic deployment
+        condition: overall.completed >= 13, // Completed basic deployment
         selector: 'Deployment Pro'
       },
       {
