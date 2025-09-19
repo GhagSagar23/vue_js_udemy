@@ -78,23 +78,23 @@ By completing this course, you will be able to:
 
 **Topics Covered:**
 
-| Topic                | Status         | Description                                         | Hands-on Project       |
-| -------------------- | -------------- | --------------------------------------------------- | ---------------------- |
-| CSS Integration      | ✅ Complete    | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
-| CSS Syntax           | ✅ Complete    | Selectors, declarations, properties                 | Basic styling rules    |
-| Element Selection    | ✅ Complete    | Tag, ID, class selectors                            | Targeted styling       |
-| Colors & Backgrounds | ✅ Complete    | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
-| Box Model            | ✅ Complete    | Borders, margins, padding, height, width            | Layout understanding   |
-| Typography           | ✅ Complete    | Text styling, font properties, Google Fonts         | Typography showcase    |
-| Link Styling         | ✅ Complete    | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
-| Display Properties   | ✅ Complete    | `inline`, `block`, `none` display types             | Element positioning    |
-| Positioning          | ✅ Complete    | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
-| Float & Clear        | ✅ Complete    | Float layouts, clearing floats                      | Multi-column layout    |
-| CSS Combinators      | ✅ Complete    | Child selectors, descendant selectors               | Advanced selection     |
-| Pseudo Elements      | ✅ Complete    | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
-| Responsive Design    | ✅ Complete    | Media queries, mobile-first approach                | Mobile-friendly site   |
-| CSS Grid             | ⬜ Not Started | `display: grid`, `grid-template-areas`              | Grid-based layout      |
-| CSS Flexbox          | ⬜ Not Started | Flexible box layout, axes, alignment                | Flexible components    |
+| Topic                | Status      | Description                                         | Hands-on Project       |
+| -------------------- | ----------- | --------------------------------------------------- | ---------------------- |
+| CSS Integration      | ✅ Complete | Adding CSS to HTML: inline, internal, external      | Styled HTML template   |
+| CSS Syntax           | ✅ Complete | Selectors, declarations, properties                 | Basic styling rules    |
+| Element Selection    | ✅ Complete | Tag, ID, class selectors                            | Targeted styling       |
+| Colors & Backgrounds | ✅ Complete | Named colors, HEX, RGB, RGBA, background properties | Colorful webpage       |
+| Box Model            | ✅ Complete | Borders, margins, padding, height, width            | Layout understanding   |
+| Typography           | ✅ Complete | Text styling, font properties, Google Fonts         | Typography showcase    |
+| Link Styling         | ✅ Complete | Pseudo-classes: `:hover`, `:visited`, `:active`     | Interactive navigation |
+| Display Properties   | ✅ Complete | `inline`, `block`, `none` display types             | Element positioning    |
+| Positioning          | ✅ Complete | `static`, `relative`, `fixed`, `absolute`, `sticky` | Positioned elements    |
+| Float & Clear        | ✅ Complete | Float layouts, clearing floats                      | Multi-column layout    |
+| CSS Combinators      | ✅ Complete | Child selectors, descendant selectors               | Advanced selection     |
+| Pseudo Elements      | ✅ Complete | `::first-line`, `::first-letter`, `::after`         | Enhanced styling       |
+| Responsive Design    | ✅ Complete | Media queries, mobile-first approach                | Mobile-friendly site   |
+| CSS Grid             | ✅ Complete | `display: grid`, `grid-template-areas`              | Grid-based layout      |
+| CSS Flexbox          | ✅ Complete | Flexible box layout, axes, alignment                | Flexible components    |
 
 **Milestone Project:** Responsive Portfolio Website with Modern Design
 
