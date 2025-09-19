@@ -161,7 +161,7 @@
     stroke-dasharray: 0 100;
   }
   100% {
-    stroke-dasharray: 45 55; /* 45% progress */
+    stroke-dasharray: 57 43; /* 57% progress */
   }
 }
 

@@ -169,6 +169,12 @@ class TableBasedProgressTracker {
       `conic-gradient(#4CAF50 0deg ${angle}deg, #e0e0e0 ${angle}deg 360deg)`
     );
 
+    // Update the hardcoded target value in JavaScript initializeProgress function
+    content = content.replace(
+      /const target = \d+; \/\/ Current overall progress percentage/g,
+      `const target = ${overall.percentage}; // Current overall progress percentage`
+    );
+
     // Update individual module progress bars and stats
     const moduleCards = [
       { selector: 'HTML Fundamentals', index: 0 },
@@ -203,6 +209,9 @@ class TableBasedProgressTracker {
 
     fs.writeFileSync(indexPath, content);
     console.log(`✅ Updated index.html with ${overall.percentage}% overall progress and individual module progress`);
+
+    // Update CSS progress animation
+    this.updateProgressBarCSS(overall.percentage);
   }
 
   updateAchievements(content, overall, modules) {
@@ -271,6 +280,27 @@ class TableBasedProgressTracker {
     });
 
     return content;
+  }
+
+  updateProgressBarCSS(percentage) {
+    const cssPath = path.join(__dirname, '..', 'profile_components', 'progress_bar', 'progress_bar.css');
+
+    if (!fs.existsSync(cssPath)) {
+      console.warn('⚠️  progress_bar.css not found, skipping CSS update');
+      return;
+    }
+
+    let content = fs.readFileSync(cssPath, 'utf8');
+
+    // Update the stroke-dasharray in the progressFillAnimation keyframe
+    const complement = 100 - percentage;
+    content = content.replace(
+      /stroke-dasharray: \d+ \d+; \/\* \d+% progress \*\//g,
+      `stroke-dasharray: ${percentage} ${complement}; /* ${percentage}% progress */`
+    );
+
+    fs.writeFileSync(cssPath, content);
+    console.log(`✅ Updated progress_bar.css with ${percentage}% animation`);
   }
 
   getProgressColor(percentage) {
