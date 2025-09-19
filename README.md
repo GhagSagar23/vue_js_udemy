@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-45%25-yellowgreen)
+![Course Progress](https://img.shields.io/badge/Progress-51%25-yellowgreen)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -74,7 +74,7 @@ By completing this course, you will be able to:
 
 ### Module 2: CSS Styling & Design
 
-**Progress: 9/15 Topics** ![Progress](https://img.shields.io/badge/Progress-60%25-yellowgreen)
+**Progress: 12/15 Topics** ![Progress](https://img.shields.io/badge/Progress-80%25-green)
 
 **Topics Covered:**
 
