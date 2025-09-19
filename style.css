@@ -254,30 +254,58 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Ensure proper scrolling behavior */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.6;
   color: var(--text-primary);
   background: var(--background);
-  overflow-x: hidden;
   position: relative;
+  /* Ensure proper scrolling on all devices */
+  -webkit-overflow-scrolling: touch;
+  /* Remove overflow restrictions that can break mobile scrolling */
+  overflow: auto;
+  min-height: 100vh;
 }
 
 /* === TYPOGRAPHY === */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary);
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: 0.5em;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.125rem;
+}
+h6 {
+  font-size: 1rem;
+}
 
 p {
   color: var(--text-secondary);
@@ -297,7 +325,9 @@ a:hover {
 
 /* === ACCESSIBILITY === */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -314,22 +344,43 @@ a:hover {
 @media (max-width: 768px) {
   body {
     font-size: 14px;
+    /* Ensure scrolling works on mobile */
+    overflow: auto !important;
+    position: relative;
   }
-  
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.25rem; }
-  h4 { font-size: 1.125rem; }
-  h5 { font-size: 1rem; }
-  h6 { font-size: 0.875rem; }
+
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  h4 {
+    font-size: 1.125rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 0.875rem;
+  }
 }
 
 @media (max-width: 480px) {
   body {
     font-size: 13px;
   }
-  
-  h1 { font-size: 1.75rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.125rem; }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
 }

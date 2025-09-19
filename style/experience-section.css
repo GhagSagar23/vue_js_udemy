@@ -12,6 +12,9 @@
   /* Allow cards to pop out of container */
   overflow-y: visible;
   position: relative;
+  /* Mobile scrolling improvements */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 /* === FLIP CARD STRUCTURE === */
@@ -43,6 +46,12 @@
   /* DO NOT change height/width as this affects layout flow */
 }
 
+/* Add touch support for mobile */
+.experience-flip-card:active {
+  z-index: 10;
+  transform: scale(1.4);
+}
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -54,6 +63,11 @@
 }
 
 .experience-flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Add touch support for mobile flip */
+.experience-flip-card:active .flip-card-inner {
   transform: rotateY(180deg);
 }
 
@@ -188,13 +202,19 @@
 /* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
   .experience-horizontal-container {
-    gap: 30px; /* Adjusted for mobile scaling */
-    padding: 50px 15px; /* Adjusted padding for mobile */
+    gap: 20px; /* Reduced gap for mobile */
+    padding: 30px 15px; /* Reduced padding for mobile */
+    /* Ensure proper touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    /* Force hardware acceleration for smoother scrolling */
+    transform: translateZ(0);
   }
 
   .experience-flip-card {
-    min-width: 280px;
-    height: 180px;
+    min-width: 260px; /* Reduced width for mobile */
+    height: 160px; /* Reduced height for mobile */
   }
 
   /* Adjust transform origin for mobile */
@@ -207,8 +227,8 @@
   }
 
   .experience-flip-card:hover {
-    /* Only use transform scaling for mobile too */
-    transform: scale(1.2);
+    /* Reduced scaling for mobile to prevent overflow */
+    transform: scale(1.1);
   }
 
   .flip-card-front h3 {
@@ -245,6 +265,9 @@
   scroll-behavior: smooth;
   overflow-y: visible;
   position: relative;
+  /* Mobile scrolling improvements */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 /* === TECH FLIP CARD STRUCTURE === */
@@ -274,6 +297,12 @@
   transform: scale(1.4);
 }
 
+/* Add touch support for mobile */
+.tech-flip-card:active {
+  z-index: 10;
+  transform: scale(1.4);
+}
+
 .tech-flip-card-inner {
   position: relative;
   width: 100%;
@@ -285,6 +314,11 @@
 }
 
 .tech-flip-card:hover .tech-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Add touch support for mobile flip */
+.tech-flip-card:active .tech-flip-card-inner {
   transform: rotateY(180deg);
 }
 
@@ -450,13 +484,19 @@
 /* === TECH RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
   .tech-horizontal-container {
-    gap: 30px;
-    padding: 50px 15px;
+    gap: 20px; /* Reduced gap for mobile */
+    padding: 30px 15px; /* Reduced padding for mobile */
+    /* Ensure proper touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    /* Force hardware acceleration for smoother scrolling */
+    transform: translateZ(0);
   }
 
   .tech-flip-card {
-    min-width: 280px;
-    height: 180px;
+    min-width: 260px; /* Reduced width for mobile */
+    height: 160px; /* Reduced height for mobile */
   }
 
   .tech-flip-card:first-child {
@@ -468,7 +508,8 @@
   }
 
   .tech-flip-card:hover {
-    transform: scale(1.2);
+    /* Reduced scaling for mobile */
+    transform: scale(1.1);
   }
 
   .tech-flip-card-front h3 {
@@ -491,5 +532,54 @@
 
   .tech-flip-card-back {
     padding: 12px;
+  }
+}
+
+/* === EXTRA SMALL MOBILE (480px and below) === */
+@media (max-width: 480px) {
+  .experience-horizontal-container,
+  .tech-horizontal-container {
+    gap: 15px;
+    padding: 20px 10px;
+    /* Ensure smooth scrolling on very small screens */
+    scroll-snap-type: x mandatory;
+  }
+
+  .experience-flip-card,
+  .tech-flip-card {
+    min-width: 240px;
+    height: 140px;
+    /* Add scroll snap for better mobile experience */
+    scroll-snap-align: start;
+  }
+
+  .experience-flip-card:hover,
+  .tech-flip-card:hover {
+    /* Minimal scaling on very small screens */
+    transform: scale(1.05);
+  }
+
+  /* Smaller text on mobile */
+  .flip-card-front h3,
+  .tech-flip-card-front h3 {
+    font-size: 0.9em;
+  }
+
+  .flip-card-back h4,
+  .tech-flip-card-back h4 {
+    font-size: 0.8em;
+  }
+
+  .flip-card-back li {
+    font-size: 0.65em;
+  }
+
+  .skill-name {
+    font-size: 0.7em;
+  }
+
+  .tech-item-preview {
+    font-size: 0.65em;
+    padding: 2px 6px;
   }
 }
