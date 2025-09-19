@@ -13,8 +13,10 @@
 .modules-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 30px; /* Increased gap for better spacing during flip */
   margin-bottom: 30px;
+  position: relative; /* Ensure proper positioning context */
+  overflow: visible; /* Allow cards to extend outside grid bounds when flipping */
 }
 
 .achievement-grid {
@@ -39,22 +41,74 @@
   margin-top: 20px;
 }
 
-/* === MODULE CARDS === */
-.module-card {
+/* === MODULE FLIP CARDS === */
+.module-flip-card {
+  background: transparent;
+  width: 100%;
+  height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: z-index 0s linear 0.4s; /* Delay z-index reset */
+  transform-style: preserve-3d;
+  overflow: visible; /* Allow 3D transformed elements to extend */
+}
+
+.module-flip-card:hover {
+  z-index: 10; /* Bring to front on hover */
+  transition: z-index 0s linear 0s; /* Immediate z-index increase */
+}
+
+.module-flip-card-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  backface-visibility: hidden; /* Improve performance */
+}
+
+.module-flip-card:hover .module-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.module-flip-card-front,
+.module-flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   background: var(--card-bg);
   border-radius: 20px;
   padding: 30px;
   border: 1px solid var(--border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
-  transform-origin: center;
-  perspective: 1000px;
+  transform-style: preserve-3d;
+  will-change: transform; /* Optimize for transforms */
 }
 
-.module-card::before {
+.module-flip-card:hover .module-flip-card-front,
+.module-flip-card:hover .module-flip-card-back {
+  box-shadow: 0 15px 50px rgba(139, 92, 246, 0.25);
+}
+
+.module-flip-card-front {
+  transform: rotateY(0deg);
+}
+
+.module-flip-card-front::before {
   content: "";
   position: absolute;
   top: 0;
@@ -70,22 +124,103 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
+  border-radius: 20px;
 }
 
-.module-card:hover {
-  transform: translateY(-12px) rotateX(5deg) rotateY(5deg) scale(1.02);
-  box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2),
-    0 0 0 1px rgba(139, 92, 246, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  border-color: rgba(139, 92, 246, 0.3);
-}
-
-.module-card:hover::before {
+.module-flip-card:hover .module-flip-card-front::before {
   opacity: 1;
 }
 
-.module-card:active {
-  transform: translateY(-8px) rotateX(2deg) rotateY(2deg) scale(0.98);
-  transition: all 0.1s ease;
+.module-flip-card-back {
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.1) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
+  transform: rotateY(180deg);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.module-flip-card-back h4 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.module-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.module-topics li {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 6px 0;
+  padding-left: 15px;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.module-topics li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.module-topics.upcoming li::before {
+  content: "→";
+  color: #f59e0b;
+}
+
+.module-topics li:hover {
+  color: var(--text-primary);
+}
+
+.module-action {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.module-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+.module-action.upcoming {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.module-action.upcoming:hover {
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+.hover-hint {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.module-flip-card:hover .hover-hint {
+  opacity: 0;
+  transform: translateX(10px);
 }
 
 .module-header {
@@ -397,8 +532,33 @@
     gap: 15px;
   }
 
-  .module-card {
+  .module-flip-card {
+    height: 260px;
+  }
+
+  .module-flip-card-front,
+  .module-flip-card-back {
     padding: 20px;
+  }
+
+  .module-topics li {
+    font-size: 0.85rem;
+    padding: 4px 0;
+  }
+
+  .module-action {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+
+  /* Disable flip on mobile for better touch experience */
+  .module-flip-card:hover .module-flip-card-inner {
+    transform: none;
+  }
+
+  /* Enable tap to flip on mobile */
+  .module-flip-card:active .module-flip-card-inner {
+    transform: rotateY(180deg);
   }
 
   .experience-card {

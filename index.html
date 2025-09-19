@@ -679,195 +679,204 @@
       <!-- Course Progress Overview -->
       <div class="progress-overview scrub-scroll-container" id="progress">
         <div class="overall-progress">
-          <div
-            class="wobbling-element"
-            style="position: relative; margin: 10px"
-          >
-            <div id="percentageCounter">57%</div>
+          <div class="progress-card">
+            <div class="card-header">
+              <h3>Progress Overview</h3>
+            </div>
+            <div class="card-content">
+              <div
+                class="progress-bar-container"
+                style="position: relative; margin: 10px"
+              >
+                <div class="wobbling-element">
+                  <div id="percentageCounter">57%</div>
 
-            <svg width="300" height="300" viewBox="-100 -100 200 200">
-              <mask id="progress-mask">
-                <rect width="300" height="300" />
-                <circle
-                  id="progressRing"
-                  r="96"
-                  fill="none"
-                  stroke="#fff"
-                  stroke-width="7"
-                  stroke-dasharray="100 100"
-                  stroke-dashoffset="55"
-                  pathLength="100"
-                />
-              </mask>
-              <circle
-                class="outer_circle"
-                cx="0"
-                cy="0"
-                r="99"
-                pathLength="64"
-              />
-              <circle
-                class="outer_circle_bars_l"
-                cx="0"
-                cy="0"
-                r="96"
-                pathLength="64"
-              />
-              <circle
-                class="outer_circle_bars_r"
-                cx="0"
-                cy="0"
-                r="96"
-                pathLength="64"
-              />
+                  <svg width="300" height="300" viewBox="-100 -100 200 200">
+                    <mask id="progress-mask">
+                      <rect width="300" height="300" />
+                      <circle
+                        id="progressRing"
+                        r="96"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="7"
+                        stroke-dasharray="100 100"
+                        stroke-dashoffset="43"
+                        pathLength="100"
+                      />
+                    </mask>
+                    <circle
+                      class="outer_circle"
+                      cx="0"
+                      cy="0"
+                      r="99"
+                      pathLength="64"
+                    />
+                    <circle
+                      class="outer_circle_bars_l"
+                      cx="0"
+                      cy="0"
+                      r="96"
+                      pathLength="64"
+                    />
+                    <circle
+                      class="outer_circle_bars_r"
+                      cx="0"
+                      cy="0"
+                      r="96"
+                      pathLength="64"
+                    />
 
-              <circle
-                class="inner_progress_circle"
-                mask="url(#progress-mask)"
-                cx="0"
-                cy="0"
-                r="96"
-                pathLength="64"
-                transform="rotate(-90 0 0)"
-              />
+                    <circle
+                      class="inner_progress_circle"
+                      mask="url(#progress-mask)"
+                      cx="0"
+                      cy="0"
+                      r="96"
+                      pathLength="64"
+                      transform="rotate(-90 0 0)"
+                    />
 
-              <circle
-                class="inner_half_circle"
-                cx="0"
-                cy="0"
-                r="80"
-                pathLength="50"
-              />
+                    <circle
+                      class="inner_half_circle"
+                      cx="0"
+                      cy="0"
+                      r="80"
+                      pathLength="50"
+                    />
 
-              <circle
-                class="center_outer_circle"
-                cx="0"
-                cy="0"
-                r="73"
-                pathLength="50"
-              />
+                    <circle
+                      class="center_outer_circle"
+                      cx="0"
+                      cy="0"
+                      r="73"
+                      pathLength="50"
+                    />
 
-              <circle
-                class="center_inner_circle_second"
-                cx="0"
-                cy="0"
-                r="67"
-                pathLength="100"
-              />
+                    <circle
+                      class="center_inner_circle_second"
+                      cx="0"
+                      cy="0"
+                      r="67"
+                      pathLength="100"
+                    />
 
-              <circle
-                class="center_inner_circle_3"
-                cx="0"
-                cy="0"
-                r="65"
-                pathLength="100"
-              />
+                    <circle
+                      class="center_inner_circle_3"
+                      cx="0"
+                      cy="0"
+                      r="65"
+                      pathLength="100"
+                    />
 
-              <circle
-                class="center_inner_circle_3_dashed_verticle"
-                cx="0"
-                cy="0"
-                r="61"
-                pathLength="64"
-              />
+                    <circle
+                      class="center_inner_circle_3_dashed_verticle"
+                      cx="0"
+                      cy="0"
+                      r="61"
+                      pathLength="64"
+                    />
 
-              <circle
-                class="center_inner_circle_3_dashed"
-                cx="0"
-                cy="0"
-                r="61"
-                pathLength="100"
-              />
+                    <circle
+                      class="center_inner_circle_3_dashed"
+                      cx="0"
+                      cy="0"
+                      r="61"
+                      pathLength="100"
+                    />
 
-              <circle
-                class="center_inner_circle_2"
-                cx="0"
-                cy="0"
-                r="58"
-                pathLength="100"
-              />
+                    <circle
+                      class="center_inner_circle_2"
+                      cx="0"
+                      cy="0"
+                      r="58"
+                      pathLength="100"
+                    />
 
-              <circle
-                class="center_inner_circle_1"
-                cx="0"
-                cy="0"
-                r="55"
-                pathLength="100"
-              />
+                    <circle
+                      class="center_inner_circle_1"
+                      cx="0"
+                      cy="0"
+                      r="55"
+                      pathLength="100"
+                    />
 
-              <circle
-                class="center_inner_circle_0"
-                cx="0"
-                cy="0"
-                r="35"
-                pathLength="40"
-              />
+                    <circle
+                      class="center_inner_circle_0"
+                      cx="0"
+                      cy="0"
+                      r="35"
+                      pathLength="40"
+                    />
 
-              <rect
-                class="small_rectangles"
-                x="-1.5"
-                y="-68"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="-2.5"
-                y="64"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="-68"
-                y="-2.5"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="64"
-                y="-1.5"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="-48"
-                y="-49"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="45"
-                y="-48"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="45"
-                y="46"
-                width="4"
-                height="4"
-                rx="1"
-              />
-              <rect
-                class="small_rectangles"
-                x="-49"
-                y="44"
-                width="4"
-                height="4"
-                rx="1"
-              />
-            </svg>
+                    <rect
+                      class="small_rectangles"
+                      x="-1.5"
+                      y="-68"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="-2.5"
+                      y="64"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="-68"
+                      y="-2.5"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="64"
+                      y="-1.5"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="-48"
+                      y="-49"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="45"
+                      y="-48"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="45"
+                      y="46"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                    <rect
+                      class="small_rectangles"
+                      x="-49"
+                      y="44"
+                      width="4"
+                      height="4"
+                      rx="1"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
           </div>
           <h2>Overall Course Progress</h2>
           <p>
@@ -877,71 +886,155 @@
         </div>
 
         <div class="modules-grid">
-          <div
-            class="module-card"
-            onclick="window.open('modules/01-html/README.md', '_blank')"
-          >
-            <div class="module-header">
-              <div class="module-icon">📄</div>
-              <div class="module-title">HTML Fundamentals</div>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 100%"></div>
-            </div>
-            <div class="module-stats">
-              <span>13/13 Topics Complete</span>
-              <span>100% Complete</span>
-            </div>
-          </div>
-
-          <div
-            class="module-card"
-            onclick="window.open('modules/02-css/README.md', '_blank')"
-          >
-            <div class="module-header">
-              <div class="module-icon">🎨</div>
-              <div class="module-title">CSS Styling & Design</div>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 100%"></div>
-            </div>
-            <div class="module-stats">
-              <span>15/15 Topics Complete</span>
-              <span>100% Complete</span>
-            </div>
-          </div>
-
-          <div
-            class="module-card"
-            onclick="window.open('modules/03-javascript/README.md', '_blank')"
-          >
-            <div class="module-header">
-              <div class="module-icon">⚡</div>
-              <div class="module-title">JavaScript Fundamentals</div>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 0%"></div>
-            </div>
-            <div class="module-stats">
-              <span>0/9 Topics Complete</span>
-              <span>0% Complete</span>
+          <div class="module-flip-card">
+            <div class="module-flip-card-inner">
+              <div class="module-flip-card-front">
+                <div class="module-header">
+                  <div class="module-icon">📄</div>
+                  <div class="module-title">HTML Fundamentals</div>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <div class="module-stats">
+                  <span>13/13 Topics Complete</span>
+                  <span>100% Complete</span>
+                </div>
+                <div class="hover-hint">Hover for topics →</div>
+              </div>
+              <div class="module-flip-card-back">
+                <h4>Topics Covered</h4>
+                <ul class="module-topics">
+                  <li>HTML Anatomy & Essential Tags</li>
+                  <li>Content & Heading Tags</li>
+                  <li>Self-closing Tags</li>
+                  <li>Attributes & Classes</li>
+                  <li>Hyperlinks & Navigation</li>
+                  <li>Images & Media</li>
+                  <li>Lists & Tables</li>
+                  <li>Semantic Elements</li>
+                </ul>
+                <div
+                  class="module-action"
+                  onclick="window.open('modules/01-html/README.md', '_blank')"
+                >
+                  📖 View Details
+                </div>
+              </div>
             </div>
           </div>
 
-          <div
-            class="module-card"
-            onclick="window.open('modules/04-dom/README.md', '_blank')"
-          >
-            <div class="module-header">
-              <div class="module-icon">🌐</div>
-              <div class="module-title">JavaScript DOM</div>
+          <div class="module-flip-card">
+            <div class="module-flip-card-inner">
+              <div class="module-flip-card-front">
+                <div class="module-header">
+                  <div class="module-icon">🎨</div>
+                  <div class="module-title">CSS Styling & Design</div>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <div class="module-stats">
+                  <span>15/15 Topics Complete</span>
+                  <span>100% Complete</span>
+                </div>
+                <div class="hover-hint">Hover for topics →</div>
+              </div>
+              <div class="module-flip-card-back">
+                <h4>Topics Covered</h4>
+                <ul class="module-topics">
+                  <li>CSS Integration Methods</li>
+                  <li>Selectors & Properties</li>
+                  <li>Box Model & Layout</li>
+                  <li>Flexbox & Grid</li>
+                  <li>Colors & Typography</li>
+                  <li>Responsive Design</li>
+                  <li>Animations & Transitions</li>
+                  <li>Advanced Styling</li>
+                </ul>
+                <div
+                  class="module-action"
+                  onclick="window.open('modules/02-css/README.md', '_blank')"
+                >
+                  📖 View Details
+                </div>
+              </div>
             </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 0%"></div>
+          </div>
+
+          <div class="module-flip-card">
+            <div class="module-flip-card-inner">
+              <div class="module-flip-card-front">
+                <div class="module-header">
+                  <div class="module-icon">⚡</div>
+                  <div class="module-title">JavaScript Fundamentals</div>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="module-stats">
+                  <span>0/9 Topics Complete</span>
+                  <span>0% Complete</span>
+                </div>
+                <div class="hover-hint">Hover for topics →</div>
+              </div>
+              <div class="module-flip-card-back">
+                <h4>Topics to Learn</h4>
+                <ul class="module-topics upcoming">
+                  <li>Variables & Data Types</li>
+                  <li>Functions & Scope</li>
+                  <li>Arrays & Objects</li>
+                  <li>Control Flow & Loops</li>
+                  <li>Events & Event Handling</li>
+                  <li>ES6+ Features</li>
+                  <li>Error Handling</li>
+                  <li>Modern JavaScript</li>
+                </ul>
+                <div
+                  class="module-action upcoming"
+                  onclick="window.open('modules/03-javascript/README.md', '_blank')"
+                >
+                  🚀 Start Learning
+                </div>
+              </div>
             </div>
-            <div class="module-stats">
-              <span>0/12 Topics Complete</span>
-              <span>0% Complete</span>
+          </div>
+
+          <div class="module-flip-card">
+            <div class="module-flip-card-inner">
+              <div class="module-flip-card-front">
+                <div class="module-header">
+                  <div class="module-icon">🌐</div>
+                  <div class="module-title">JavaScript DOM</div>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="module-stats">
+                  <span>0/12 Topics Complete</span>
+                  <span>0% Complete</span>
+                </div>
+                <div class="hover-hint">Hover for topics →</div>
+              </div>
+              <div class="module-flip-card-back">
+                <h4>Topics to Learn</h4>
+                <ul class="module-topics upcoming">
+                  <li>DOM Selection & Navigation</li>
+                  <li>Element Manipulation</li>
+                  <li>Event Listeners</li>
+                  <li>Form Handling</li>
+                  <li>Dynamic Content Creation</li>
+                  <li>Browser APIs</li>
+                  <li>Local Storage</li>
+                  <li>AJAX & Fetch API</li>
+                </ul>
+                <div
+                  class="module-action upcoming"
+                  onclick="window.open('modules/04-dom/README.md', '_blank')"
+                >
+                  🚀 Start Learning
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1115,32 +1208,174 @@
         }, 4000);
       }
 
-      // Initialize progress visualization
-      function initializeProgress() {
-        // Initialize the animated progress bar component
-        const counterElement = document.getElementById("percentageCounter");
-        const progressRing = document.getElementById("progressRing");
+      // Progress Bar Controller Class
+      class ProgressBarController {
+        constructor() {
+          this.counterElement = document.getElementById("percentageCounter");
+          this.progressRing = document.getElementById("progressRing");
+          this.progressCard = document.querySelector(".progress-card");
+          this.progressContainer = document.querySelector(
+            ".progress-bar-container"
+          );
+          this.progressCircle = document.querySelector(
+            ".inner_progress_circle"
+          );
 
-        if (!counterElement || !progressRing) return;
+          // Progress configuration
+          this.targetProgress = 57; // Target percentage (can be made configurable)
+          this.currentProgress = 0;
+          this.animationDuration = 2000; // 2 seconds
+          this.isAnimating = false;
+          this.animationFrame = null;
 
-        let count = 0;
-        const target = 57; // Current overall progress percentage
-        const duration = 2000; // in milliseconds
-        const intervalTime = 20; // in milliseconds
+          // Debug: Check if elements are found
+          console.log("Progress Bar Elements found:", {
+            counter: !!this.counterElement,
+            ring: !!this.progressRing,
+            card: !!this.progressCard,
+            container: !!this.progressContainer,
+            circle: !!this.progressCircle,
+          });
 
-        const increment = target / (duration / intervalTime);
+          this.init();
+        }
 
-        const timer = setInterval(() => {
-          count += increment;
-          if (count >= target) {
-            count = target;
-            clearInterval(timer);
+        init() {
+          // Initialize the progress bar at the target percentage (completed state)
+          this.updateProgress(this.targetProgress);
+          this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+          // Use the card for hover detection for better user experience
+          const hoverTarget = this.progressCard || this.progressContainer;
+          if (hoverTarget) {
+            hoverTarget.addEventListener("mouseenter", () =>
+              this.startHoverAnimation()
+            );
+            hoverTarget.addEventListener("mouseleave", () =>
+              this.resetProgress()
+            );
+            console.log("Progress bar hover events attached");
+          } else {
+            console.error("No hover target found for progress bar");
           }
-          counterElement.textContent = `${Math.floor(count)}%`;
+        }
 
-          // Update the ring progress in SVG mask
-          progressRing.setAttribute("stroke-dashoffset", 100 - count);
-        }, intervalTime);
+        startHoverAnimation() {
+          if (this.isAnimating) return;
+
+          console.log("Starting hover animation");
+          this.isAnimating = true;
+
+          // Start animation from 0% to target percentage
+          const startTime = performance.now();
+          const startProgress = 0;
+          const targetProgress = this.targetProgress;
+
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / this.animationDuration, 1);
+
+            // Use easeOutCubic for smooth animation
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const currentValue =
+              startProgress + (targetProgress - startProgress) * eased;
+
+            this.updateProgress(currentValue);
+
+            if (progress < 1) {
+              this.animationFrame = requestAnimationFrame(animate);
+            } else {
+              this.isAnimating = false;
+              console.log("Hover animation complete");
+            }
+          };
+
+          this.animationFrame = requestAnimationFrame(animate);
+        }
+
+        resetProgress() {
+          if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
+          }
+
+          this.isAnimating = false;
+          console.log("Resetting to completed state");
+
+          // Animate back to the completed percentage (target) smoothly
+          const startTime = performance.now();
+          const startProgress = this.currentProgress;
+          const targetProgress = this.targetProgress; // Reset to completed state
+          const resetDuration = 800; // Faster reset animation
+
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / resetDuration, 1);
+
+            // Use easeInCubic for reset animation
+            const eased = progress * progress * progress;
+            const currentValue =
+              startProgress + (targetProgress - startProgress) * eased;
+
+            this.updateProgress(currentValue);
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            }
+          };
+
+          requestAnimationFrame(animate);
+        }
+
+        updateProgress(percentage) {
+          this.currentProgress = percentage;
+
+          // Update counter text with smooth interpolation
+          const displayValue = Math.round(percentage);
+          if (this.counterElement) {
+            this.counterElement.textContent = `${displayValue}%`;
+          }
+
+          // Update progress ring in the mask (this controls the visible progress)
+          if (this.progressRing) {
+            // The progressRing has pathLength="100" and starts with stroke-dashoffset="100"
+            // For percentage progress, we set offset to (100 - percentage)
+            this.progressRing.setAttribute(
+              "stroke-dashoffset",
+              100 - percentage
+            );
+          }
+
+          // Update main progress circle (this is what's actually visible through the mask)
+          if (this.progressCircle) {
+            // The inner_progress_circle has pathLength="64", so we need to scale our percentage
+            const scaledProgress = (percentage / 100) * 64;
+            const dashArray = `${scaledProgress} ${64 - scaledProgress}`;
+            this.progressCircle.setAttribute("stroke-dasharray", dashArray);
+          }
+        }
+
+        // Method to change target progress dynamically
+        setTargetProgress(newTarget) {
+          this.targetProgress = Math.max(0, Math.min(100, newTarget));
+        }
+      }
+
+      // Initialize progress visualization with hover controls
+      function initializeProgress() {
+        // Create and initialize the hover-controlled progress bar
+        if (typeof ProgressBarController !== "undefined") {
+          window.progressBarController = new ProgressBarController();
+        } else {
+          // Fallback: Load the progress bar script and then initialize
+          const script = document.createElement("script");
+          script.src = "profile_components/progress_bar/progress_bar.js";
+          script.onload = () => {
+            window.progressBarController = new ProgressBarController();
+          };
+          document.head.appendChild(script);
+        }
       }
 
       // Enhanced Loading System
