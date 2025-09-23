@@ -273,14 +273,6 @@ body {
     stroke-dasharray: 48.64 15.36; /* 76% progress */
   }
 }
-  100% {
-    stroke-dasharray: 48.64 15.36; /* 76% progress */
-  }
-}
-  100% {
-    stroke-dasharray: 48.64 15.36; /* 76% progress */
-  }
-}
 
 /* Rectangle pulsing animation */
 @keyframes rectanglePulse {
