@@ -175,6 +175,12 @@ class TableBasedProgressTracker {
       `const target = ${overall.percentage}; // Current overall progress percentage`
     );
 
+    // Update the targetProgress value in ProgressBarController class
+    content = content.replace(
+      /this\.targetProgress = \d+; \/\/ Target percentage \(can be made configurable\)/g,
+      `this.targetProgress = ${overall.percentage}; // Target percentage (can be made configurable)`
+    );
+
     // Update individual module progress bars and stats
     const moduleCards = [
       { selector: 'HTML Fundamentals', index: 0 },
@@ -284,23 +290,66 @@ class TableBasedProgressTracker {
 
   updateProgressBarCSS(percentage) {
     const cssPath = path.join(__dirname, '..', 'profile_components', 'progress_bar', 'progress_bar.css');
+    const htmlPath = path.join(__dirname, '..', 'profile_components', 'progress_bar', 'progress_bar.html');
 
-    if (!fs.existsSync(cssPath)) {
+    // Update CSS file
+    if (fs.existsSync(cssPath)) {
+      let cssContent = fs.readFileSync(cssPath, 'utf8');
+
+      // Calculate the dash array values for a circle of circumference 64
+      const circumference = 64;
+      const dashLength = (percentage / 100) * circumference;
+      const gapLength = circumference - dashLength;
+
+      // Update the main progress circle stroke-dasharray (more specific pattern)
+      cssContent = cssContent.replace(
+        /stroke-dasharray: [\d.]+ [\d.]+; \/\* Updated to [\d]+% progress \([\d]+% of 64 = [\d.]+\) \*\//g,
+        `stroke-dasharray: ${dashLength.toFixed(2)} ${gapLength.toFixed(2)}; /* Updated to ${percentage}% progress (${percentage}% of 64 = ${dashLength.toFixed(2)}) */`
+      );
+
+      // Update the keyframe animation - be more specific to avoid duplication
+      const keyframePattern = /\/\* Progress fill animation for the main ring \*\/\s*@keyframes progressFillAnimation \{[\s\S]*?\}/;
+      const newKeyframe = `/* Progress fill animation for the main ring */
+@keyframes progressFillAnimation {
+  0% {
+    stroke-dasharray: 0 64;
+  }
+  100% {
+    stroke-dasharray: ${dashLength.toFixed(2)} ${gapLength.toFixed(2)}; /* ${percentage}% progress */
+  }
+}`;
+
+      if (keyframePattern.test(cssContent)) {
+        cssContent = cssContent.replace(keyframePattern, newKeyframe);
+      } else {
+        // If keyframe doesn't exist, add it before the rectangle pulse animation
+        const insertPoint = cssContent.indexOf('/* Rectangle pulsing animation */');
+        if (insertPoint !== -1) {
+          cssContent = cssContent.slice(0, insertPoint) + newKeyframe + '\n\n' + cssContent.slice(insertPoint);
+        }
+      }
+
+      fs.writeFileSync(cssPath, cssContent);
+      console.log(`✅ Updated progress_bar.css with ${percentage}% animation (${dashLength.toFixed(2)} ${gapLength.toFixed(2)})`);
+    } else {
       console.warn('⚠️  progress_bar.css not found, skipping CSS update');
-      return;
     }
 
-    let content = fs.readFileSync(cssPath, 'utf8');
+    // Update HTML file
+    if (fs.existsSync(htmlPath)) {
+      let htmlContent = fs.readFileSync(htmlPath, 'utf8');
 
-    // Update the stroke-dasharray in the progressFillAnimation keyframe
-    const complement = 100 - percentage;
-    content = content.replace(
-      /stroke-dasharray: \d+ \d+; \/\* \d+% progress \*\//g,
-      `stroke-dasharray: ${percentage} ${complement}; /* ${percentage}% progress */`
-    );
+      // Update the percentage counter in HTML
+      htmlContent = htmlContent.replace(
+        /<div id="percentageCounter">\d+%<\/div>/g,
+        `<div id="percentageCounter">${percentage}%</div>`
+      );
 
-    fs.writeFileSync(cssPath, content);
-    console.log(`✅ Updated progress_bar.css with ${percentage}% animation`);
+      fs.writeFileSync(htmlPath, htmlContent);
+      console.log(`✅ Updated progress_bar.html with ${percentage}% display`);
+    } else {
+      console.warn('⚠️  progress_bar.html not found, skipping HTML update');
+    }
   }
 
   getProgressColor(percentage) {
