@@ -1,6 +1,6 @@
 # 🚀 Quick Starting Guide for Modern Web Design
 
-![Course Progress](https://img.shields.io/badge/Progress-57%25-yellowgreen)
+![Course Progress](https://img.shields.io/badge/Progress-76%25-green)
 ![HTML](https://img.shields.io/badge/HTML-Not%20Started-lightgrey)
 ![CSS](https://img.shields.io/badge/CSS-Not%20Started-lightgrey)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Not%20Started-lightgrey)
@@ -102,21 +102,21 @@ By completing this course, you will be able to:
 
 ### Module 3: JavaScript Fundamentals
 
-**Progress: 0/9 Topics** ![Progress](https://img.shields.io/badge/Progress-0%25-red)
+**Progress: 9/9 Topics** ![Progress](https://img.shields.io/badge/Progress-100%25-brightgreen)
 
 **Topics Covered:**
 
-| Topic                   | Status         | Description                                      | Hands-on Project     |
-| ----------------------- | -------------- | ------------------------------------------------ | -------------------- |
-| JavaScript Introduction | ⬜ Not Started | `alert()`, `prompt()`, adding JS to HTML         | Interactive alerts   |
-| Variables               | ⬜ Not Started | `let`, `const`, variable declarations            | Data storage         |
-| Data Types              | ⬜ Not Started | Strings, numbers, booleans, undefined, null      | Type exploration     |
-| Operators               | ⬜ Not Started | Arithmetic, comparison, logical operators        | Calculator function  |
-| Arrays                  | ⬜ Not Started | Array creation, methods, manipulation            | Data collections     |
-| Objects                 | ⬜ Not Started | Object literals, properties, methods             | User profiles        |
-| Functions               | ⬜ Not Started | Function declarations, parameters, return values | Reusable code blocks |
-| Conditions              | ⬜ Not Started | `if`, `else if`, `else`, `switch` statements     | Decision making      |
-| Loops                   | ⬜ Not Started | `for`, `while`, `do-while`, `forEach` loops      | Iteration practice   |
+| Topic                   | Status      | Description                                      | Hands-on Project     |
+| ----------------------- | ----------- | ------------------------------------------------ | -------------------- |
+| JavaScript Introduction | ✅ Complete | `alert()`, `prompt()`, adding JS to HTML         | Interactive alerts   |
+| Variables               | ✅ Complete | `let`, `const`, variable declarations            | Data storage         |
+| Data Types              | ✅ Complete | Strings, numbers, booleans, undefined, null      | Type exploration     |
+| Operators               | ✅ Complete | Arithmetic, comparison, logical operators        | Calculator function  |
+| Arrays                  | ✅ Complete | Array creation, methods, manipulation            | Data collections     |
+| Objects                 | ✅ Complete | Object literals, properties, methods             | User profiles        |
+| Functions               | ✅ Complete | Function declarations, parameters, return values | Reusable code blocks |
+| Conditions              | ✅ Complete | `if`, `else if`, `else`, `switch` statements     | Decision making      |
+| Loops                   | ✅ Complete | `for`, `while`, `do-while`, `forEach` loops      | Iteration practice   |
 
 **Milestone Project:** Interactive Web Calculator
 

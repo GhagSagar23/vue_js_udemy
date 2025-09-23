@@ -157,7 +157,7 @@ body {
   fill: transparent;
   stroke: #f2f2f7; /* Website accent color */
   stroke-width: 7;
-  stroke-dasharray: 36.48 27.52; /* Start with 57% progress (57% of 64 = 36.48) */
+  stroke-dasharray: 48.64 15.36; /* Updated to 76% progress (76% of 64 = 48.64) */
   stroke-dashoffset: 0.05;
   opacity: 0.9;
   transition: stroke-dasharray 0.1s ease;
@@ -267,10 +267,10 @@ body {
 /* Progress fill animation for the main ring */
 @keyframes progressFillAnimation {
   0% {
-    stroke-dasharray: 0 100;
+    stroke-dasharray: 0 64;
   }
   100% {
-    stroke-dasharray: 57 43; /* 57% progress */
+    stroke-dasharray: 48.64 15.36; /* 76% progress */
   }
 }
 

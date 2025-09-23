@@ -7,7 +7,7 @@ class ProgressBarController {
     this.progressCircle = document.querySelector(".inner_progress_circle");
     
     // Progress configuration
-    this.targetProgress = 57; // Target percentage (can be made configurable)
+    this.targetProgress = 76; // Target percentage (can be made configurable)
     this.currentProgress = 0;
     this.animationDuration = 2000; // 2 seconds
     this.isAnimating = false;
